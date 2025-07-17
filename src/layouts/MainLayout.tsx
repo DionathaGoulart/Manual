@@ -1,5 +1,5 @@
 import React from 'react'
-import Footer from './Footer'
+import TracSidebar from '@components/test'
 
 interface MainLayoutProps {
   children?: React.ReactNode
@@ -8,8 +8,8 @@ interface MainLayoutProps {
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <>
+      <TracSidebar />
       <main className="space-y-24">{children}</main>
-      <Footer />
     </>
   )
 }
