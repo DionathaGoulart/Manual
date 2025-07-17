@@ -1,14 +1,26 @@
+// components/TracSidebar.tsx
 import React, { useState, useEffect, useRef } from 'react'
+import Sidebar from './Sidebar' // Importa o container da Sidebar
 
-const TracSidebar = () => {
+interface Subitem {
+  id: string
+  title: string
+}
+
+interface MenuItemData {
+  id: string
+  title: string
+  subitems: Subitem[]
+}
+
+const TracSidebar: React.FC = () => {
   const [expandedItem, setExpandedItem] = useState<string | null>(null)
   const [activeItem, setActiveItem] = useState('1.1')
-  // Novo estado para controlar se o scroll spy está ativo
   const [isScrollingByClick, setIsScrollingByClick] = useState(false)
 
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({})
 
-  const menuItems = [
+  const menuItems: MenuItemData[] = [
     {
       id: 'introducao',
       title: 'Introdução',
@@ -110,7 +122,17 @@ const TracSidebar = () => {
     }
   ]
 
-  // Modificado: Adicionado isScrollingByClick como dependência e condição
+  // Logic to map a subitem ID to its parent item ID for initial expansion
+  useEffect(() => {
+    // This effect runs once on mount to set the initial expanded item based on activeItem
+    const initialParent = menuItems.find((item) =>
+      item.subitems.some((sub) => sub.id === activeItem)
+    )
+    if (initialParent) {
+      setExpandedItem(initialParent.id)
+    }
+  }, []) // Empty dependency array means this runs only once
+
   useEffect(() => {
     const observerOptions = {
       root: null,
@@ -119,7 +141,6 @@ const TracSidebar = () => {
     }
 
     const observer = new IntersectionObserver((entries) => {
-      // APENAS ATUALIZA O ACTIVE ITEM SE NÃO ESTIVER ROLANDO POR CLIQUE
       if (isScrollingByClick) return
 
       entries.forEach((entry) => {
@@ -152,7 +173,7 @@ const TracSidebar = () => {
       })
       observer.disconnect()
     }
-  }, [menuItems, expandedItem, isScrollingByClick]) // isScrollingByClick adicionado aqui
+  }, [menuItems, expandedItem, isScrollingByClick])
 
   const toggleExpand = (itemId: string) => {
     const itemToExpand = menuItems.find((item) => item.id === itemId)
@@ -165,87 +186,42 @@ const TracSidebar = () => {
         const firstSubitemId = itemToExpand.subitems[0].id
         setActiveItem(firstSubitemId)
 
-        // Ativa a flag de rolagem por clique
         setIsScrollingByClick(true)
         sectionRefs.current[firstSubitemId]?.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
         })
-        // Desativa a flag após um pequeno delay (tempo para a rolagem terminar)
         setTimeout(() => {
           setIsScrollingByClick(false)
-        }, 800) // 800ms é um bom tempo para a maioria das animações de scroll
+        }, 800)
       }
     }
   }
 
   const handleSubitemClick = (subitemId: string) => {
     setActiveItem(subitemId)
-    // Ativa a flag de rolagem por clique
     setIsScrollingByClick(true)
     sectionRefs.current[subitemId]?.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
     })
-    // Desativa a flag após um pequeno delay (tempo para a rolagem terminar)
     setTimeout(() => {
       setIsScrollingByClick(false)
-    }, 800) // 800ms é um bom tempo para a maioria das animações de scroll
+    }, 800)
   }
 
   return (
     <div className="min-h-screen bg-gray-900 flex">
-      {/* Sidebar */}
-      <div className="w-64 text-white flex flex-col fixed h-full overflow-y-auto z-10 top-0 left-0">
-        {/* Logo */}
-        <div className="p-6 flex justify-center items-center mb-8">
-          <img
-            src="https://via.placeholder.com/150x50?text=Seu+Logo"
-            alt="Logo Trac6"
-            className="h-12 w-auto"
-          />
-        </div>
-
-        {/* Menu Items */}
-        <nav className="flex-1 py-4">
-          <ul className="space-y-1">
-            {menuItems.map((item) => (
-              <li key={item.id}>
-                {/* Main Item */}
-                <button
-                  onClick={() => toggleExpand(item.id)}
-                  className="w-full text-left px-6 py-3 text-sm transition-colors duration-200 hover:bg-white/10 text-gray-300 hover:text-white"
-                >
-                  <span>{item.title}</span>
-                </button>
-
-                {/* Subitems */}
-                {expandedItem === item.id && (
-                  <ul className="ml-4">
-                    {item.subitems.map((subitem) => (
-                      <li key={subitem.id}>
-                        <button
-                          onClick={() => handleSubitemClick(subitem.id)}
-                          className={`w-full text-left pl-8 pr-6 py-2 text-sm transition-colors duration-200 hover:bg-white/10 flex items-center ${
-                            activeItem === subitem.id
-                              ? 'bg-orange-500 text-white'
-                              : 'text-gray-400 hover:text-white'
-                          }`}
-                        >
-                          <span className="mr-3 text-xs font-mono text-gray-400">
-                            {subitem.id}
-                          </span>
-                          <span>{subitem.title}</span>
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
+      {/* Sidebar Component */}
+      <Sidebar
+        menuItems={menuItems}
+        expandedItem={expandedItem}
+        activeItem={activeItem}
+        onToggleExpand={toggleExpand}
+        onSubitemClick={handleSubitemClick}
+        logoSrc="https://via.placeholder.com/150x50?text=Seu+Logo" // Passa o src do logo
+        logoAlt="Logo Trac6" // Passa o alt do logo
+      />
 
       {/* Main Content */}
       <div className="flex-1 bg-gray-900 p-8 ml-64">

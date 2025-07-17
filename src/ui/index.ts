@@ -1,5 +1,5 @@
 export { default as AccordionItem } from './AccordionItem'
-export { default as Button } from './Button'
+export { default as Button } from './Button/Button'
 export { default as Card } from './Card'
 export { default as ImageModal } from './ImageModal'
 export { default as Input } from './Input'

@@ -1,5 +1,5 @@
 import React from 'react'
-import TracSidebar from '@components/test'
+import TracSidebar from '@components/TracSidebar'
 
 interface MainLayoutProps {
   children?: React.ReactNode
