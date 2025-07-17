@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { ChevronDown, ChevronRight } from 'lucide-react'
 
 const TracSidebar = () => {
-  const [expandedItems, setExpandedItems] = useState<string[]>([])
+  const [expandedItem, setExpandedItem] = useState<string | null>(null)
   const [activeItem, setActiveItem] = useState('1.1')
+
+  // Usaremos um useRef para armazenar as referências das seções
+  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({})
 
   const menuItems = [
     {
@@ -107,22 +110,92 @@ const TracSidebar = () => {
     }
   ]
 
+  // Efeito para configurar o IntersectionObserver
+  useEffect(() => {
+    const observerOptions = {
+      // Use null para observar em relação à viewport do documento
+      root: null,
+      // rootMargin ajustado: top -20% significa que a seção será considerada "ativa"
+      // quando seu topo estiver 20% abaixo do topo da viewport.
+      // bottom -80% significa que ela deixará de ser ativa quando o topo de outra seção
+      // estiver mais ou menos 80% acima da base da viewport.
+      rootMargin: '-20% 0px -80% 0px',
+      threshold: 0 // Aciona assim que qualquer parte do elemento entra ou sai
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        // Se a seção está intersectando E está vindo de cima para baixo (rolagem para baixo)
+        // ou se for a única a intersectar quando rolamos para cima
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id
+          setActiveItem(sectionId)
+
+          // Encontra o item principal correspondente ao subitem visível
+          const parentItem = menuItems.find((item) =>
+            item.subitems.some((sub) => sub.id === sectionId)
+          )
+          // Expande o item principal se ele não estiver expandido ou se for um novo item
+          if (parentItem && expandedItem !== parentItem.id) {
+            setExpandedItem(parentItem.id)
+          }
+        }
+      })
+    }, observerOptions)
+
+    // Observa todas as seções que temos referências
+    // Certifique-se de que todas as refs estejam prontas
+    const currentRefs = Object.values(sectionRefs.current)
+    currentRefs.forEach((section) => {
+      if (section) {
+        observer.observe(section)
+      }
+    })
+
+    // Limpeza: desconecta o observer quando o componente é desmontado
+    return () => {
+      currentRefs.forEach((section) => {
+        if (section) {
+          observer.unobserve(section)
+        }
+      })
+      observer.disconnect()
+    }
+  }, [menuItems, expandedItem]) // activeItem não precisa ser dependência aqui para evitar loops de re-renderização
+
   const toggleExpand = (itemId: string) => {
-    setExpandedItems((prev) =>
-      prev.includes(itemId)
-        ? prev.filter((id) => id !== itemId)
-        : [...prev, itemId]
-    )
+    const itemToExpand = menuItems.find((item) => item.id === itemId)
+
+    if (expandedItem === itemId) {
+      setExpandedItem(null)
+    } else {
+      setExpandedItem(itemId)
+      if (itemToExpand && itemToExpand.subitems.length > 0) {
+        // Ao expandir, também rola para a seção do primeiro subitem
+        const firstSubitemId = itemToExpand.subitems[0].id
+        setActiveItem(firstSubitemId) // Ativa o primeiro subitem
+        sectionRefs.current[firstSubitemId]?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start' // Rola para o topo da seção
+        })
+      }
+    }
   }
 
   const handleSubitemClick = (subitemId: string) => {
     setActiveItem(subitemId)
+    // Ao clicar, rola para a seção correspondente
+    sectionRefs.current[subitemId]?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
   }
 
   return (
     <div className="min-h-screen bg-gray-900 flex">
       {/* Sidebar */}
-      <div className="w-64 bg-gray-800 text-white flex flex-col">
+      {/* Certifique-se de que a sidebar seja fixa e ocupe a altura total */}
+      <div className="w-64 bg-gray-800 text-white flex flex-col fixed h-full overflow-y-auto z-10 top-0 left-0">
         {/* Logo */}
         <div className="p-6 border-b border-gray-700">
           <div className="flex items-center space-x-3">
@@ -134,7 +207,7 @@ const TracSidebar = () => {
         </div>
 
         {/* Menu Items */}
-        <nav className="flex-1 py-4 overflow-y-auto">
+        <nav className="flex-1 py-4">
           <ul className="space-y-1">
             {menuItems.map((item) => (
               <li key={item.id}>
@@ -144,7 +217,7 @@ const TracSidebar = () => {
                   className="w-full text-left px-6 py-3 text-sm transition-colors duration-200 hover:bg-gray-700 flex items-center justify-between text-gray-300 hover:text-white"
                 >
                   <span>{item.title}</span>
-                  {expandedItems.includes(item.id) ? (
+                  {expandedItem === item.id ? (
                     <ChevronDown className="w-4 h-4" />
                   ) : (
                     <ChevronRight className="w-4 h-4" />
@@ -152,7 +225,7 @@ const TracSidebar = () => {
                 </button>
 
                 {/* Subitems */}
-                {expandedItems.includes(item.id) && (
+                {expandedItem === item.id && (
                   <ul className="bg-gray-850 border-l-2 border-gray-700 ml-4">
                     {item.subitems.map((subitem) => (
                       <li key={subitem.id}>
@@ -180,25 +253,59 @@ const TracSidebar = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 bg-gray-900 p-8">
+      {/* O conteúdo principal deve ter um padding-left para não ficar por baixo da sidebar */}
+      <div className="flex-1 bg-gray-900 p-8 ml-64">
+        {' '}
+        {/* Removido overflow-y-auto e h-screen aqui */}
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl font-bold text-white mb-4">
-            Seção {activeItem}
-          </h1>
-          <p className="text-gray-400 text-lg">
-            Conteúdo da seção "{activeItem}" seria exibido aqui.
-          </p>
-
-          <div className="mt-8 p-6 bg-gray-800 rounded-lg">
-            <h2 className="text-xl font-semibold text-white mb-3">
-              Exemplo de Conteúdo
-            </h2>
-            <p className="text-gray-300 leading-relaxed">
-              Este é um exemplo de como o conteúdo principal seria exibido ao
-              lado da sidebar. O item ativo atual é:{' '}
-              <span className="text-red-400 font-semibold">{activeItem}</span>
-            </p>
-          </div>
+          {menuItems.map((item) => (
+            <React.Fragment key={item.id}>
+              {item.subitems.map((subitem) => (
+                <section
+                  key={subitem.id}
+                  id={subitem.id}
+                  ref={(el) => (sectionRefs.current[subitem.id] = el)}
+                  className="mb-12 p-6 bg-gray-800 rounded-lg shadow-lg min-h-[70vh]" // Aumentei o min-h para facilitar a detecção
+                >
+                  <h1 className="text-3xl font-bold text-white mb-4">
+                    Seção {subitem.id}: {subitem.title}
+                  </h1>
+                  <p className="text-gray-400 text-lg">
+                    Este é o conteúdo detalhado para a seção "{subitem.title}"
+                    (ID: {subitem.id}).
+                  </p>
+                  <div className="mt-4 text-gray-500">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                    <p className="mt-2">
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p className="mt-2">
+                      Este é um parágrafo extra para garantir que cada seção
+                      tenha conteúdo suficiente para permitir a rolagem e a
+                      detecção do IntersectionObserver.
+                    </p>
+                    <p className="mt-2">
+                      Continuando com mais conteúdo para preencher o espaço e
+                      testar a rolagem. É importante que as seções sejam altas o
+                      suficiente para que o IntersectionObserver possa ter uma
+                      boa área de detecção.
+                    </p>
+                  </div>
+                </section>
+              ))}
+            </React.Fragment>
+          ))}
+          {/* Adicione um espaço extra no final para que as últimas seções possam rolar até o topo */}
+          <div className="h-[80vh]"></div>{' '}
+          {/* Aumentado para garantir que a última seção possa ser ativada */}
         </div>
       </div>
     </div>
