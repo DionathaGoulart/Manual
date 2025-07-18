@@ -1,4 +1,3 @@
-// components/SidebarLogo.tsx
 import React from 'react'
 
 interface SidebarLogoProps {

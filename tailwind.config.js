@@ -15,16 +15,7 @@ export default {
         'secondary-light': '#202020',
       },
       fontFamily: {
-        'mosvita': ['Mosvita', 'sans-serif'],
-        'mosvita-expanded': ['Mosvita Expanded', 'sans-serif'],
-      },
-      fontWeight: {
-        'light': 300,
-        'normal': 400,
-        'semibold': 600,
-        'bold': 700,
-        'extrabold': 800,
-        'black': 900,
+        'lt-superior': ['LT Superior', 'sans-serif'],
       },
       animation: {
         autoRun3d: "autoRun3d 20s linear infinite",

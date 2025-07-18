@@ -1,6 +1,5 @@
-// components/TracSidebar.tsx
 import React, { useState, useEffect, useRef } from 'react'
-import Sidebar from './Sidebar' // Importa o container da Sidebar
+import Sidebar from './Sidebar'
 
 interface Subitem {
   id: string
@@ -211,7 +210,7 @@ const TracSidebar: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 flex">
+    <div className="min-h-screen bg-neutral-900 flex">
       {/* Sidebar Component */}
       <Sidebar
         menuItems={menuItems}

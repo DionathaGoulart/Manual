@@ -1,6 +1,5 @@
-// components/MenuItem.tsx
 import React from 'react'
-import SubMenuItem from './SubMenuItem' // Importa o SubMenuItem
+import SubMenuItem from './SubMenuItem'
 
 interface Subitem {
   id: string
@@ -26,12 +25,19 @@ const MenuItem: React.FC<MenuItemProps> = ({
   onToggleExpand,
   onSubitemClick
 }) => {
+  // Verifica se algum subitem está ativo
+  const hasActiveSubitem = item.subitems.some(
+    (subitem) => subitem.id === activeItem
+  )
+
   return (
     <li>
       {/* Item Principal */}
       <button
         onClick={() => onToggleExpand(item.id)}
-        className="w-full text-left px-6 py-3 text-sm transition-colors duration-200 hover:bg-white/10 text-gray-300 hover:text-white"
+        className={`w-full text-left px-6 py-3 transition-colors duration-200 hover:text-[#FF5733] font-lt-superior text-[19px] leading-[27px] tracking-[0.01em] font-normal ${
+          hasActiveSubitem ? 'text-[#FF5733]' : 'text-white/40'
+        }`}
       >
         <span>{item.title}</span>
       </button>

@@ -1,4 +1,3 @@
-// components/SubMenuItem.tsx
 import React from 'react'
 
 interface SubMenuItemProps {
@@ -18,12 +17,22 @@ const SubMenuItem: React.FC<SubMenuItemProps> = ({
     <li>
       <button
         onClick={() => onClick(id)}
-        className={`w-full text-left pl-8 pr-6 py-2 text-sm transition-colors duration-200 hover:bg-white/10 flex items-center ${
-          active ? 'bg-orange-500 text-white' : 'text-gray-400 hover:text-white'
+        className={`w-full text-left pl-8 pr-6 py-2 transition-colors duration-200 group ${
+          active ? 'text-[#FF5733]' : 'text-gray-400 hover:text-[#FF5733]'
         }`}
       >
-        <span className="mr-3 text-xs font-mono text-gray-400">{id}</span>
-        <span>{title}</span>
+        <span
+          className={`mr-3 text-xs font-mono ${
+            active
+              ? 'text-[#FF5733]'
+              : 'text-gray-400 group-hover:text-[#FF5733]'
+          }`}
+        >
+          {id}
+        </span>
+        <span className="font-lt-superior font-normal text-[15px] leading-[23px] tracking-[0.03em]">
+          {title}
+        </span>
       </button>
     </li>
   )
