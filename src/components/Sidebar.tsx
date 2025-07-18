@@ -82,16 +82,16 @@ const Sidebar: React.FC<SidebarProps> = ({
       {/* Sidebar */}
       <div
         className={`
- w-[90%] max-w-md text-white flex flex-col fixed h-full overflow-y-auto z-50 top-0
- transition-transform duration-300 ease-in-out
- md:translate-x-0 md:static
- ${
-   isMobileMenuOpen
-     ? 'translate-x-0 left-1/2 -translate-x-1/2'
-     : '-translate-x-full'
- }
- bg-gray-900 // Ensure a solid background
- `}
+          w-full md:w-64 // Ocupa 100% da largura em mobile, 64px (ou outra) em desktop
+          text-white flex flex-col fixed h-full overflow-y-auto z-50 top-0 left-0 // Adicionado left-0 para garantir que fique na esquerda
+          transition-transform duration-300 ease-in-out
+          ${
+            isMobileMenuOpen
+              ? 'translate-x-0'
+              : '-translate-x-full md:translate-x-0' // Em mobile, esconde; em desktop, sempre visível
+          }
+          bg-gray-900 // Garante um background sólido
+        `}
       >
         <SidebarLogo logoSrc={logoSrc} altText={logoAlt} />
 
