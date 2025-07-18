@@ -51,7 +51,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   // Função para expandir/recolher itens
   const handleToggleExpand = (itemId: string) => {
     const itemToExpand = menuItems.find((item) => item.id === itemId)
-
     if (expandedItem === itemId) {
       setExpandedItem(null)
     } else {
@@ -93,7 +92,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         logoSrc="/logo.svg"
         logoAlt="Logo da Empresa"
       />
-      <main className="ml-64 space-y-24">{children}</main>
+
+      {/* Main responsivo: sem margin no mobile, com margin no desktop */}
+      <main className="md:ml-64 space-y-24 pt-16 md:pt-0 px-4 md:px-0">
+        {children}
+      </main>
     </>
   )
 }
