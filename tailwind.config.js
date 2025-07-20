@@ -7,15 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        text: '#FFFFFF',
-        'text-muted': 'rgba(255, 255, 255, 0.6)',
-        primary: '#D9FF85',
-        secondary: '#191919',
-        border: '#2C2C2C',
-        'secondary-light': '#202020',
+        text: 'rgba(249, 249, 249, 1)',
       },
       fontFamily: {
-        'lt-superior': ['LT Superior', 'sans-serif'],
+        'lt-superior-serif': ['LT Superior Serif', 'serif'],
       },
       animation: {
         autoRun3d: "autoRun3d 20s linear infinite",
