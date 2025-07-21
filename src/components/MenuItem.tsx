@@ -1,17 +1,9 @@
 import React from 'react'
 import SubMenuItem from './SubMenuItem'
-
-interface Subitem {
-  id: string
-  title: string
-}
+import { MenuItemData } from '../types/sidebar'
 
 interface MenuItemProps {
-  item: {
-    id: string
-    title: string
-    subitems: Subitem[]
-  }
+  item: MenuItemData
   expanded: boolean
   activeItem: string
   onToggleExpand: (itemId: string) => void
@@ -25,26 +17,33 @@ const MenuItem: React.FC<MenuItemProps> = ({
   onToggleExpand,
   onSubitemClick
 }) => {
-  // Verifica se algum subitem está ativo
   const hasActiveSubitem = item.subitems.some(
     (subitem) => subitem.id === activeItem
   )
+
+  const buttonClasses = `
+    w-full text-left px-6 py-3 transition-colors duration-200
+    hover:text-[#FF5733] font-lt-superior text-[19px] leading-[27px]
+    tracking-[0.01em] font-normal
+    ${hasActiveSubitem ? 'text-[#FF5733]' : 'text-white/40'}
+  `
+    .trim()
+    .replace(/\s+/g, ' ')
 
   return (
     <li>
       {/* Item Principal */}
       <button
         onClick={() => onToggleExpand(item.id)}
-        className={`w-full text-left px-6 py-3 transition-colors duration-200 hover:text-[#FF5733] font-lt-superior text-[19px] leading-[27px] tracking-[0.01em] font-normal ${
-          hasActiveSubitem ? 'text-[#FF5733]' : 'text-white/40'
-        }`}
+        className={buttonClasses}
+        aria-expanded={expanded}
       >
         <span>{item.title}</span>
       </button>
 
       {/* Subitens */}
       {expanded && (
-        <ul className="ml-4">
+        <ul className="ml-4" role="menu">
           {item.subitems.map((subitem) => (
             <SubMenuItem
               key={subitem.id}

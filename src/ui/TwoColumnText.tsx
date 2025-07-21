@@ -1,29 +1,38 @@
 import React from 'react'
 
-// Tipos para as propriedades do componente
+// ============================================================================
+// TIPOS
+// ============================================================================
+
 export type TwoColumnTextProps = {
-  leftTitle: string // Título da coluna esquerda
-  leftParagraph: string // Parágrafo da coluna esquerda
-  rightTitle: string // Título da coluna direita
-  rightParagraph: string // Parágrafo da coluna direita
-  gap?: string // Espaçamento entre as colunas (ex: 'gap-8', 'gap-4')
-  className?: string // Classes CSS adicionais para o container principal
-  titleClassName?: string // Classes CSS adicionais para os títulos
-  paragraphClassName?: string // Classes CSS adicionais para os parágrafos
+  leftTitle: string
+  leftParagraph: string
+  rightTitle: string
+  rightParagraph: string
+  gap?: string
+  className?: string
+  titleClassName?: string
+  paragraphClassName?: string
 }
+
+// ============================================================================
+// COMPONENTE
+// ============================================================================
 
 const TwoColumnText: React.FC<TwoColumnTextProps> = ({
   leftTitle,
   leftParagraph,
   rightTitle,
   rightParagraph,
-  gap = 'gap-8', // Gap padrão de 32px
+  gap = 'gap-8',
   className = '',
-  titleClassName = 'text-2xl font-bold text-gray-800 mb-4', // Estilo padrão para títulos
-  paragraphClassName = 'text-base text-gray-600 leading-relaxed' // Estilo padrão para parágrafos
+  titleClassName = 'text-2xl font-bold text-gray-800 mb-4',
+  paragraphClassName = 'text-base text-gray-600 leading-relaxed'
 }) => {
+  const gridClasses = `grid grid-cols-1 md:grid-cols-2 ${gap} ${className}`
+
   return (
-    <div className={`grid grid-cols-1 md:grid-cols-2 ${gap} ${className}`}>
+    <div className={gridClasses}>
       {/* Coluna Esquerda */}
       <div>
         <h2 className={titleClassName}>{leftTitle}</h2>

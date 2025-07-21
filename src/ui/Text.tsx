@@ -1,17 +1,74 @@
 import React from 'react'
 
-type TextProps = {
+// ============================================================================
+// TIPOS
+// ============================================================================
+
+type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+type Leading = 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
+
+export type TextProps = {
   children: React.ReactNode
   as?: 'p' | 'span' | 'div' | 'li'
   color?: string
   bulletColor?: string
   uppercase?: boolean
   lowercase?: boolean
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: TextSize
   align?: 'left' | 'center' | 'right'
-  leading?: 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose' | string
+  leading?: Leading
   className?: string
 }
+
+// ============================================================================
+// CONSTANTES
+// ============================================================================
+
+const SIZE_CLASSES: Record<TextSize, string> = {
+  xs: 'text-sm', // ~14px (próximo de 13px)
+  sm: 'text-base', // ~16px (próximo de 15px)
+  md: 'text-lg', // ~18px (próximo de 19px)
+  lg: 'text-xl', // ~20px
+  xl: 'text-2xl' // ~24px
+}
+
+const ALIGN_CLASSES: Record<'left' | 'center' | 'right', string> = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right'
+}
+
+const LEADING_CLASSES: Record<Leading, string> = {
+  none: 'leading-none',
+  tight: 'leading-tight',
+  snug: 'leading-snug',
+  normal: 'leading-normal',
+  relaxed: 'leading-relaxed',
+  loose: 'leading-loose'
+}
+
+// ============================================================================
+// UTILITÁRIOS
+// ============================================================================
+
+const processText = (text: React.ReactNode): React.ReactNode => {
+  if (typeof text === 'string') {
+    return text.split('\n').map((line, index, array) => (
+      <React.Fragment key={index}>
+        {line}
+        {index < array.length - 1 && <br />}
+      </React.Fragment>
+    ))
+  }
+  return text
+}
+
+const isCustomColor = (color: string): boolean =>
+  color.startsWith('#') || color.startsWith('rgb')
+
+// ============================================================================
+// COMPONENTE
+// ============================================================================
 
 const Text: React.FC<TextProps> = ({
   children,
@@ -20,105 +77,51 @@ const Text: React.FC<TextProps> = ({
   bulletColor,
   uppercase = false,
   lowercase = false,
-  size = 'md', // Alterado para 'md' como padrão, próximo a 19px
+  size = 'md',
   align = as === 'li' ? 'left' : 'center',
-  // expanded = false, // Removido, já que a fonte é específica
-  leading = 'relaxed', // Alterado para 'relaxed' para um line-height de 27px (para 19px de fonte)
-  className = 'text-text-muted' // Cor padrão se nenhuma for especificada
+  leading = 'relaxed',
+  className = 'text-text-muted'
 }) => {
-  // Função para processar quebras de linha
-  const processText = (text: React.ReactNode) => {
-    if (typeof text === 'string') {
-      return text.split('\n').map((line, index, array) => (
-        <React.Fragment key={index}>
-          {line}
-          {index < array.length - 1 && <br />}
-        </React.Fragment>
-      ))
-    }
-    return text
-  }
-
-  // Mapeamento de tamanhos para se aproximar de 13px, 15px, 19px
-  // Os valores do Tailwind são baseados em rem, então converti para px para referência
-  const sizeClasses = {
-    // 13px (~0.8125rem)
-    xs: 'text-sm', // Tailwind default: 14px (próximo de 13px)
-    // 15px (~0.9375rem)
-    sm: 'text-base', // Tailwind default: 16px (próximo de 15px)
-    // 19px (~1.1875rem)
-    md: 'text-lg', // Tailwind default: 18px (próximo de 19px)
-    lg: 'text-xl', // Tailwind default: 20px
-    xl: 'text-2xl' // Tailwind default: 24px
-  }
-
-  // Mapeamento de alinhamentos
-  const alignClasses = {
-    left: 'text-left',
-    center: 'text-center',
-    right: 'text-right'
-  }
-
-  // Mapeamento de line-height (mantido, mas com 'relaxed' como padrão)
-  const leadingClasses = {
-    none: 'leading-none',
-    tight: 'leading-tight',
-    snug: 'leading-snug',
-    normal: 'leading-normal',
-    relaxed: 'leading-relaxed', // ~1.625 (para 19px: 19 * 1.625 = 30.875px)
-    loose: 'leading-loose'
-  }
-
   const Component = as
+  const isCustomColorValue = color && isCustomColor(color)
 
-  const isHexOrRgbColor = color.startsWith('#') || color.startsWith('rgb')
+  // Classes base compartilhadas
+  const baseClasses = [
+    'font-lt-superior',
+    SIZE_CLASSES[size],
+    'font-normal',
+    'tracking-wide',
+    ALIGN_CLASSES[align],
+    LEADING_CLASSES[leading],
+    uppercase && 'uppercase',
+    lowercase && 'lowercase',
+    !isCustomColorValue && color,
+    className
+  ]
+    .filter(Boolean)
+    .join(' ')
 
-  // Se for li, renderiza com bullet
+  const style = isCustomColorValue ? { color } : {}
+
+  // Renderização específica para li (com bullet)
   if (as === 'li') {
     return (
       <Component
-        className={`
-          font-lt-superior
-          ${sizeClasses[size]}
-          font-normal
-          ${uppercase ? 'uppercase' : ''}
-          ${lowercase ? 'lowercase' : ''}
-          ${leadingClasses[leading as keyof typeof leadingClasses]}
-          tracking-wide
-          ${alignClasses[align]}
-          flex items-center gap-2
-          ${className}
-        `}
-        style={{ color }}
+        className={`${baseClasses} flex items-center gap-2`}
+        style={style}
       >
-        {/* Bullet personalizado */}
         <span style={{ color: bulletColor || color }}>•</span>
-
-        {/* Conteúdo do item */}
         <span className="flex-1">{processText(children)}</span>
       </Component>
     )
   }
 
-  // Renderização normal para p e span
+  // Renderização padrão
   return (
-    <Component
-      className={`
-        font-lt-superior
-        ${sizeClasses[size]}
-        font-normal
-        ${uppercase ? 'uppercase' : ''}
-        ${lowercase ? 'lowercase' : ''}
-        ${leadingClasses[leading as keyof typeof leadingClasses]}
-        tracking-wide
-        ${alignClasses[align]}
-        ${!isHexOrRgbColor ? color : ''}
-        ${className}
-      `}
-      style={isHexOrRgbColor ? { color } : {}}
-    >
+    <Component className={baseClasses} style={style}>
       {processText(children)}
     </Component>
   )
 }
+
 export default Text
