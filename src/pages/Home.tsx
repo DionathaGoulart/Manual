@@ -2,6 +2,9 @@ import AboutSection from '@/sections/Intro/About'
 import DownloadSection from '@/sections/Intro/Downloads'
 import ManualSection from '@/sections/Intro/Manual'
 import LogoSection from '@/sections/Logotipo/Logo'
+import MargemSection from '@/sections/Logotipo/Margem'
+import TipoSection from '@/sections/Logotipo/Tipo'
+import VariacoesSection from '@/sections/Logotipo/Variacoes'
 import DesvaloresSection from '@/sections/Strat/Desvalores'
 import FilosofiaSection from '@/sections/Strat/Filosofia'
 import InimigoSection from '@/sections/Strat/Inimigo'
@@ -66,6 +69,18 @@ const Home: React.FC = () => {
     {
       id: '4.1',
       content: <LogoSection />
+    },
+    {
+      id: '4.2',
+      content: <TipoSection />
+    },
+    {
+      id: '4.3',
+      content: <VariacoesSection />
+    },
+    {
+      id: '4.4',
+      content: <MargemSection />
     }
   ]
 
@@ -139,7 +154,7 @@ const Home: React.FC = () => {
   }, [])
 
   return (
-    <div className="mt-40">
+    <div className="mt-40 max-w-[500px]">
       {/* Mensagem de Ajuda - responsiva */}
       <div
         className="

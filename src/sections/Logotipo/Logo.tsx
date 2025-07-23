@@ -2,6 +2,7 @@ import React from 'react'
 import Title from '../../ui/Tittle'
 import Text from '../../ui/Text'
 import TwoColumnText from '@/ui/TwoColumnText'
+import ImageGrid from '@/ui/Images'
 
 const LogoSection: React.FC = () => {
   return (
@@ -9,7 +10,6 @@ const LogoSection: React.FC = () => {
       <Title variant="large" align="left" className="text-white">
         Logo
       </Title>
-
       <div className="space-y-6 max-w-3xl mx-auto">
         <Text variant="medium" align="left" className="text-white block">
           Nosso símbolo não é um enfeite. É a representação visual da nossa
@@ -18,23 +18,10 @@ const LogoSection: React.FC = () => {
           dois lados da nossa mola de dupla função.
         </Text>
 
-        <div className="flex gap-7 py-8">
-          {' '}
-          <div className="bg-[#212121] p-16 rounded-3xl h-64 w-64 flex items-center justify-center">
-            <img
-              src="https://picsum.photos/400"
-              alt="Descrição da imagem"
-              className="h-full w-full object-contain"
-            />
-          </div>
-          <div className="bg-[#212121] p-16 rounded-3xl h-64 w-64 flex items-center justify-center">
-            <img
-              src="https://picsum.photos/400"
-              alt="Descrição da imagem"
-              className="h-full w-full object-contain"
-            />
-          </div>
-        </div>
+        <ImageGrid
+          variant={2}
+          images={['https://picsum.photos/400', 'https://picsum.photos/400']}
+        />
 
         <TwoColumnText
           leftTitle="Os 5 A's"
@@ -46,6 +33,8 @@ const LogoSection: React.FC = () => {
           titleClassName="text-white font-orbit-gate text-[23px] leading-[100%] tracking-[0%] uppercase font-normal mb-4"
           paragraphClassName="text-white font-switzer text-[15px] leading-[22px] font-semibold tracking-[0.01em]"
         />
+
+        <ImageGrid variant={1} images={['https://picsum.photos/400']} />
       </div>
     </>
   )
