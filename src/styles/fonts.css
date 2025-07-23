@@ -1,85 +1,31 @@
-/* Mosvita Normal Width */
+/* Orbit Gate */
 @font-face {
-  font-family: 'Mosvita';
-  src: url('/fonts/Mosvita/Mosvita-Light.otf') format('opentype');
-  font-weight: 300;
-  font-stretch: normal;
+  font-family: 'Orbit Gate';
+  src: url('/fonts/Orbit-Gate.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
+/* Switzer */
 @font-face {
-  font-family: 'Mosvita';
-  src: url('/fonts/Mosvita/Mosvita-Regular.otf') format('opentype');
-  font-weight: 400;
-  font-stretch: normal;
+  font-family: 'Switzer';
+  src: url('/fonts/Switzer.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
+/* LTSuperior-Regular */
 @font-face {
-  font-family: 'Mosvita';
-  src: url('/fonts/Mosvita/Mosvita-SemiBold.otf') format('opentype');
+  font-family: 'LTSuperior-Regular';
+  src: url('/fonts/LTSuperior-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* LTSuperior-SemiBold */
+@font-face {
+  font-family: 'LTSuperior-SemiBold';
+  src: url('/fonts/LTSuperior-SemiBold.otf') format('opentype');
   font-weight: 600;
-  font-stretch: normal;
-}
-
-@font-face {
-  font-family: 'Mosvita';
-  src: url('/fonts/Mosvita/Mosvita-Bold.otf') format('opentype');
-  font-weight: 700;
-  font-stretch: normal;
-}
-
-@font-face {
-  font-family: 'Mosvita';
-  src: url('/fonts/Mosvita/Mosvita-ExtraBold.otf') format('opentype');
-  font-weight: 800;
-  font-stretch: normal;
-}
-
-@font-face {
-  font-family: 'Mosvita';
-  src: url('/fonts/Mosvita/Mosvita-Black.otf') format('opentype');
-  font-weight: 900;
-  font-stretch: normal;
-}
-
-/* Mosvita Expanded */
-@font-face {
-  font-family: 'Mosvita Expanded';
-  src: url('/fonts/Mosvita/Mosvita-LightExpanded.otf') format('opentype');
-  font-weight: 300;
-  font-stretch: expanded;
-}
-
-@font-face {
-  font-family: 'Mosvita Expanded';
-  src: url('/fonts/Mosvita/Mosvita-Expanded.otf') format('opentype');
-  font-weight: 400;
-  font-stretch: expanded;
-}
-
-@font-face {
-  font-family: 'Mosvita Expanded';
-  src: url('/fonts/Mosvita/Mosvita-SemiBoldExpanded.otf') format('opentype');
-  font-weight: 600;
-  font-stretch: expanded;
-}
-
-@font-face {
-  font-family: 'Mosvita Expanded';
-  src: url('/fonts/Mosvita/Mosvita-BoldExpanded.otf') format('opentype');
-  font-weight: 700;
-  font-stretch: expanded;
-}
-
-@font-face {
-  font-family: 'Mosvita Expanded';
-  src: url('/fonts/Mosvita/Mosvita-ExtraBoldExpanded.otf') format('opentype');
-  font-weight: 800;
-  font-stretch: expanded;
-}
-
-@font-face {
-  font-family: 'Mosvita Expanded';
-  src: url('/fonts/Mosvita/Mosvita-BlackExpanded.otf') format('opentype');
-  font-weight: 900;
-  font-stretch: expanded;
+  font-style: normal;
 }

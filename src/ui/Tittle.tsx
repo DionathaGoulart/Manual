@@ -70,13 +70,13 @@ const Title: React.FC<TitleProps> = ({
   const isCustomColorValue = color && isCustomColor(color)
 
   const classes = [
-    'font-orbit-gate', // Adicione esta classe no seu Tailwind config
+    'font-orbit-gate',
     VARIANT_CLASSES[variant],
-    'leading-[100%]', // line-height: 100%
-    'tracking-[0%]', // letter-spacing: 0%
-    'uppercase', // text-transform: uppercase (sempre)
+    'leading-[100%]',
+    'tracking-[0%]',
+    'uppercase',
     ALIGN_CLASSES[align],
-    bold ? 'font-bold' : 'font-normal', // 400 (regular) ou bold
+    bold ? 'font-bold' : 'font-normal',
     !isCustomColorValue && color,
     className
   ]

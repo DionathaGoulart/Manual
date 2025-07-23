@@ -10,7 +10,10 @@ export default {
         text: 'rgba(249, 249, 249, 1)',
       },
       fontFamily: {
-        'lt-superior-serif': ['LT Superior Serif', 'serif'],
+        'orbit-gate': ['Orbit Gate', 'sans-serif'],
+        'switzer': ['Switzer', 'sans-serif'],
+        'lt-superior-regular': ['LTSuperior-Regular', 'serif'],
+        'lt-superior-semibold': ['LTSuperior-SemiBold', 'serif'],
       },
       animation: {
         autoRun3d: "autoRun3d 20s linear infinite",

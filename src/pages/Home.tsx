@@ -1,4 +1,6 @@
 import IntroSection from '@/sections/Introduction'
+import StratSection from '@/sections/Strategy'
+import ComplexSection from '@/sections/Verbal'
 import React, { useState, useEffect, useRef } from 'react'
 
 const Home: React.FC = () => {
@@ -10,6 +12,14 @@ const Home: React.FC = () => {
     {
       id: '1.1',
       content: <IntroSection />
+    },
+    {
+      id: '1.2',
+      content: <StratSection />
+    },
+    {
+      id: '1.3',
+      content: <ComplexSection />
     }
   ]
 
@@ -85,6 +95,13 @@ const Home: React.FC = () => {
 
   return (
     <>
+      {/* Mensagem de Ajuda - Mobile: absolute (some ao rolar), Desktop: fixed (sempre visível) */}
+      <div className="absolute top-2 right-2 z-50 text-right text-white/60 text-xs leading-tight sm:fixed sm:top-4 sm:right-4 sm:text-sm sm:leading-relaxed">
+        <div>Última atualização:</div>
+        <div>24/07/2025</div>
+        <div className="mt-1 sm:mt-2">Precisa de ajuda?</div>
+        <div>@051jeferson</div>
+      </div>
       {sections.map((section, index) => (
         <section
           key={section.id}

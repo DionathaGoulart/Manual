@@ -83,7 +83,7 @@ const Text: React.FC<TextProps> = ({
 
   // Classes base compartilhadas
   const baseClasses = [
-    'font-switzer', // Adicione esta classe no seu Tailwind config
+    'font-switzer',
     VARIANT_CLASSES[variant],
     WEIGHT_CLASSES[variant],
     'tracking-[0.01em]', // letter-spacing: 1%
