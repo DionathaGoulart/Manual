@@ -1,6 +1,7 @@
 import AboutSection from '@/sections/Intro/About'
 import DownloadSection from '@/sections/Intro/Downloads'
 import ManualSection from '@/sections/Intro/Manual'
+import LogoSection from '@/sections/Logotipo/Logo'
 import DesvaloresSection from '@/sections/Strat/Desvalores'
 import FilosofiaSection from '@/sections/Strat/Filosofia'
 import InimigoSection from '@/sections/Strat/Inimigo'
@@ -61,6 +62,10 @@ const Home: React.FC = () => {
     {
       id: '3.4',
       content: <ExemplosSection />
+    },
+    {
+      id: '4.1',
+      content: <LogoSection />
     }
   ]
 
