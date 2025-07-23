@@ -3,17 +3,14 @@ import React from 'react'
 // ============================================================================
 // TIPOS
 // ============================================================================
-
-type TitleSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+type TitleVariant = 'large' | 'small'
 
 export type TitleProps = {
   children: React.ReactNode
+  variant?: TitleVariant
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span'
   color?: string
-  uppercase?: boolean
-  lowercase?: boolean
   bold?: boolean
-  size?: TitleSize
   align?: 'left' | 'center' | 'right'
   className?: string
 }
@@ -21,13 +18,14 @@ export type TitleProps = {
 // ============================================================================
 // CONSTANTES
 // ============================================================================
+const VARIANT_CLASSES: Record<TitleVariant, string> = {
+  large: 'text-[51px]', // 51px exato
+  small: 'text-[23px]' // 23px exato
+}
 
-const SIZE_CLASSES: Record<TitleSize, string> = {
-  xs: 'text-base', // ~16px (próximo de 15px)
-  sm: 'text-2xl', // ~24px (próximo de 27px)
-  md: 'text-4xl', // ~36px
-  lg: 'text-5xl', // ~48px (próximo de 43px)
-  xl: 'text-6xl' // ~60px
+const DEFAULT_TAGS: Record<TitleVariant, 'h2' | 'h3'> = {
+  large: 'h2',
+  small: 'h3'
 }
 
 const ALIGN_CLASSES: Record<'left' | 'center' | 'right', string> = {
@@ -39,7 +37,6 @@ const ALIGN_CLASSES: Record<'left' | 'center' | 'right', string> = {
 // ============================================================================
 // UTILITÁRIOS
 // ============================================================================
-
 const processText = (text: React.ReactNode): React.ReactNode => {
   if (typeof text === 'string') {
     return text.split('\n').map((line, index, array) => (
@@ -58,30 +55,28 @@ const isCustomColor = (color: string): boolean =>
 // ============================================================================
 // COMPONENTE
 // ============================================================================
-
 const Title: React.FC<TitleProps> = ({
   children,
-  as = 'h1',
+  variant = 'large',
+  as,
   color = '',
-  uppercase = false,
-  lowercase = false,
-  bold = true,
-  size = 'lg',
+  bold = false,
   align = 'center',
-  className = 'text-text'
+  className = ''
 }) => {
-  const Component = as
+  // Define a tag automaticamente baseada na variante se não especificada
+  const Component = as || DEFAULT_TAGS[variant]
+
   const isCustomColorValue = color && isCustomColor(color)
 
   const classes = [
-    'font-lt-superior-serif',
-    SIZE_CLASSES[size],
-    'leading-tight',
-    'tracking-normal',
+    'font-orbit-gate', // Adicione esta classe no seu Tailwind config
+    VARIANT_CLASSES[variant],
+    'leading-[100%]', // line-height: 100%
+    'tracking-[0%]', // letter-spacing: 0%
+    'uppercase', // text-transform: uppercase (sempre)
     ALIGN_CLASSES[align],
-    bold && 'font-bold',
-    uppercase && 'uppercase',
-    lowercase && 'lowercase',
+    bold ? 'font-bold' : 'font-normal', // 400 (regular) ou bold
     !isCustomColorValue && color,
     className
   ]

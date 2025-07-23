@@ -1,15 +1,5 @@
+import IntroSection from '@/sections/Introduction'
 import React, { useState, useEffect, useRef } from 'react'
-import {
-  About,
-  Blog,
-  Contact,
-  Hero,
-  Portfolio,
-  Pricing,
-  Services,
-  Team,
-  Testimonials
-} from '@/sections'
 
 const Home: React.FC = () => {
   const [activeItem, setActiveItem] = useState('1.1')
@@ -19,39 +9,7 @@ const Home: React.FC = () => {
   const sections = [
     {
       id: '1.1',
-      content: <Hero />
-    },
-    {
-      id: '1.2', // Adicionando IDs que correspondem ao seu menuItems
-      content: <About />
-    },
-    {
-      id: '1.3',
-      content: <Services />
-    },
-    {
-      id: '2.1',
-      content: <Portfolio />
-    },
-    {
-      id: '2.2',
-      content: <Team />
-    },
-    {
-      id: '2.3',
-      content: <Testimonials />
-    },
-    {
-      id: '3.1',
-      content: <Pricing />
-    },
-    {
-      id: '3.2',
-      content: <Blog />
-    },
-    {
-      id: '3.3',
-      content: <Contact />
+      content: <IntroSection />
     }
   ]
 
@@ -127,16 +85,17 @@ const Home: React.FC = () => {
 
   return (
     <>
-      {sections.map((section) => (
+      {sections.map((section, index) => (
         <section
           key={section.id}
           id={section.id}
           ref={(el) => {
             sectionRefs.current[section.id] = el
           }}
-          className="px-6 sm:px-6 lg:px-8 mb-8 min-h-[70vh]"
+          className={`px-2 sm:px-2 lg:px-2 mb-8 min-h-[70vh]
+          }`}
         >
-          <div className="max-w-7xl mx-auto w-full">{section.content}</div>
+          <div className="max-w-3xl mx-auto w-full">{section.content}</div>
         </section>
       ))}
       <div className="h-[80vh]"></div> {/* Espaço extra para scroll */}

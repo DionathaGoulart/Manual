@@ -3,33 +3,39 @@ import React from 'react'
 // ============================================================================
 // TIPOS
 // ============================================================================
-
-type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-type Leading = 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
+type TextVariant = 'large' | 'medium' | 'small'
 
 export type TextProps = {
   children: React.ReactNode
+  variant?: TextVariant
   as?: 'p' | 'span' | 'div' | 'li'
   color?: string
   bulletColor?: string
   uppercase?: boolean
   lowercase?: boolean
-  size?: TextSize
   align?: 'left' | 'center' | 'right'
-  leading?: Leading
   className?: string
 }
 
 // ============================================================================
 // CONSTANTES
 // ============================================================================
+const VARIANT_CLASSES: Record<TextVariant, string> = {
+  large: 'text-[19px] leading-[27px]', // 19px com line-height 27px
+  medium: 'text-[15px] leading-[22px]', // 15px com line-height proporcional
+  small: 'text-[13px] leading-[19px]' // 13px com line-height proporcional
+}
 
-const SIZE_CLASSES: Record<TextSize, string> = {
-  xs: 'text-sm', // ~14px (próximo de 13px)
-  sm: 'text-base', // ~16px (próximo de 15px)
-  md: 'text-lg', // ~18px (próximo de 19px)
-  lg: 'text-xl', // ~20px
-  xl: 'text-2xl' // ~24px
+const DEFAULT_TAGS: Record<TextVariant, 'p' | 'span'> = {
+  large: 'p', // p para 19px
+  medium: 'span', // span para 15px
+  small: 'p' // p para 13px
+}
+
+const WEIGHT_CLASSES: Record<TextVariant, string> = {
+  large: 'font-normal', // 400 regular
+  medium: 'font-semibold', // 600 semibold
+  small: 'font-normal' // 400 regular
 }
 
 const ALIGN_CLASSES: Record<'left' | 'center' | 'right', string> = {
@@ -38,19 +44,9 @@ const ALIGN_CLASSES: Record<'left' | 'center' | 'right', string> = {
   right: 'text-right'
 }
 
-const LEADING_CLASSES: Record<Leading, string> = {
-  none: 'leading-none',
-  tight: 'leading-tight',
-  snug: 'leading-snug',
-  normal: 'leading-normal',
-  relaxed: 'leading-relaxed',
-  loose: 'leading-loose'
-}
-
 // ============================================================================
 // UTILITÁRIOS
 // ============================================================================
-
 const processText = (text: React.ReactNode): React.ReactNode => {
   if (typeof text === 'string') {
     return text.split('\n').map((line, index, array) => (
@@ -69,30 +65,29 @@ const isCustomColor = (color: string): boolean =>
 // ============================================================================
 // COMPONENTE
 // ============================================================================
-
 const Text: React.FC<TextProps> = ({
   children,
-  as = 'p',
+  variant = 'large',
+  as,
   color = '',
   bulletColor,
   uppercase = false,
   lowercase = false,
-  size = 'md',
-  align = as === 'li' ? 'left' : 'center',
-  leading = 'relaxed',
-  className = 'text-text-muted'
+  align = 'left',
+  className = ''
 }) => {
-  const Component = as
+  // Define a tag automaticamente baseada na variante se não especificada
+  const Component = as || DEFAULT_TAGS[variant]
+
   const isCustomColorValue = color && isCustomColor(color)
 
   // Classes base compartilhadas
   const baseClasses = [
-    'font-lt-superior',
-    SIZE_CLASSES[size],
-    'font-normal',
-    'tracking-wide',
+    'font-switzer', // Adicione esta classe no seu Tailwind config
+    VARIANT_CLASSES[variant],
+    WEIGHT_CLASSES[variant],
+    'tracking-[0.01em]', // letter-spacing: 1%
     ALIGN_CLASSES[align],
-    LEADING_CLASSES[leading],
     uppercase && 'uppercase',
     lowercase && 'lowercase',
     !isCustomColorValue && color,
@@ -104,7 +99,7 @@ const Text: React.FC<TextProps> = ({
   const style = isCustomColorValue ? { color } : {}
 
   // Renderização específica para li (com bullet)
-  if (as === 'li') {
+  if (Component === 'li') {
     return (
       <Component
         className={`${baseClasses} flex items-center gap-2`}

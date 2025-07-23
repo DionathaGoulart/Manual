@@ -28,7 +28,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   const sidebarClasses = `
     w-full md:w-64 text-white flex flex-col fixed h-full overflow-y-auto
-    z-50 top-0 left-0 transition-transform duration-300 ease-in-out bg-gray-900
+    z-50 top-0 left-0 transition-transform duration-300 ease-in-out bg-transparent
     ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
   `
     .trim()

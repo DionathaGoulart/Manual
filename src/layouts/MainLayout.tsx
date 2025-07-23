@@ -94,7 +94,41 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       />
 
       {/* Main responsivo: sem margin no mobile, com margin no desktop */}
-      <main className="md:ml-64 space-y-24 pt-16 md:pt-0 px-4 md:px-0">
+      <main
+        className="
+  /* Mobile First (xs - até 639px) */
+  space-y-16
+  pt-20
+  px-4
+
+  /* Small devices (sm - 640px+) */
+  sm:space-y-20
+  sm:pt-24
+  sm:px-6
+
+  /* Medium devices (md - 768px+) */
+  md:ml-64
+  md:mt-20
+  md:space-y-24
+  md:pt-8
+  md:px-8
+
+  /* Large devices (lg - 1024px+) */
+  lg:space-y-28
+  lg:pt-12
+  lg:px-12
+
+  /* Extra Large devices (xl - 1280px+) */
+  xl:space-y-32
+  xl:pt-16
+  xl:px-16
+
+  /* 2XL devices (2xl - 1536px+) */
+  2xl:space-y-36
+  2xl:pt-20
+  2xl:px-20
+"
+      >
         {children}
       </main>
     </>
