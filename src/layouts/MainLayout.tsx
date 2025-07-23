@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Sidebar from '@/components/Sidebar'
 import { menuItems } from '@/data/menuItems'
 
@@ -9,8 +9,12 @@ interface MainLayoutProps {
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const [expandedItem, setExpandedItem] = useState<string | null>(null)
   const [activeItem, setActiveItem] = useState<string>('1.1')
+  const [isCollapsed, setIsCollapsed] = useState(false)
 
-  // Inicializar o item expandido baseado no item ativo
+  const checkSidebarCollapse = useCallback(() => {
+    setIsCollapsed(window.innerWidth < 1024)
+  }, [])
+
   useEffect(() => {
     const initialParent = menuItems.find((item) =>
       item.subitems.some((sub) => sub.id === activeItem)
@@ -18,15 +22,19 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     if (initialParent) {
       setExpandedItem(initialParent.id)
     }
-  }, [activeItem])
 
-  // Listener para mudanças de seção vindas do Home
+    checkSidebarCollapse()
+    window.addEventListener('resize', checkSidebarCollapse)
+
+    return () => {
+      window.removeEventListener('resize', checkSidebarCollapse)
+    }
+  }, [activeItem, checkSidebarCollapse])
+
   useEffect(() => {
     const handleSectionChange = (event: CustomEvent) => {
       const { activeSection } = event.detail
       setActiveItem(activeSection)
-
-      // Expandir automaticamente o item pai da seção ativa
       const parentItem = menuItems.find((item) =>
         item.subitems.some((sub) => sub.id === activeSection)
       )
@@ -48,7 +56,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     }
   }, [expandedItem])
 
-  // Função para expandir/recolher itens
   const handleToggleExpand = (itemId: string) => {
     const itemToExpand = menuItems.find((item) => item.id === itemId)
     if (expandedItem === itemId) {
@@ -58,8 +65,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       if (itemToExpand && itemToExpand.subitems.length > 0) {
         const firstSubitemId = itemToExpand.subitems[0].id
         setActiveItem(firstSubitemId)
-
-        // Dispatch evento para o Home fazer o scroll
         window.dispatchEvent(
           new CustomEvent('sidebarClick', {
             detail: { subitemId: firstSubitemId }
@@ -69,11 +74,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     }
   }
 
-  // Função para selecionar subitem
   const handleSubitemClick = (subitemId: string) => {
     setActiveItem(subitemId)
-
-    // Dispatch evento para o Home fazer o scroll
     window.dispatchEvent(
       new CustomEvent('sidebarClick', {
         detail: { subitemId }
@@ -81,57 +83,112 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     )
   }
 
+  const handleToggleCollapsed = useCallback(() => {
+    setIsCollapsed((prev) => !prev)
+  }, [])
+
   return (
-    <>
-      <Sidebar
-        menuItems={menuItems}
-        expandedItem={expandedItem}
-        activeItem={activeItem}
-        onToggleExpand={handleToggleExpand}
-        onSubitemClick={handleSubitemClick}
-        logoSrc="/logo.svg"
-        logoAlt="Logo da Empresa"
-      />
-
-      {/* Main responsivo: sem margin no mobile, com margin no desktop */}
-      <main
-        className="
-  /* Mobile First (xs - até 639px) */
-  space-y-16
-  pt-20
-  px-4
-
-  /* Small devices (sm - 640px+) */
-  sm:space-y-20
-  sm:pt-24
-  sm:px-6
-
-  /* Medium devices (md - 768px+) */
-  md:ml-64
-  md:mt-20
-  md:space-y-24
-  md:pt-8
-  md:px-8
-
-  /* Large devices (lg - 1024px+) */
-  lg:space-y-28
-  lg:pt-12
-  lg:px-12
-
-  /* Extra Large devices (xl - 1280px+) */
-  xl:space-y-32
-  xl:pt-16
-  xl:px-16
-
-  /* 2XL devices (2xl - 1536px+) */
-  2xl:space-y-36
-  2xl:pt-20
-  2xl:px-20
-"
+    <div className="min-h-screen">
+      <div
+        className={`
+        transition-all duration-300 ease-in-out
+        ${
+          isCollapsed
+            ? 'lg:ml-64' // Margem quando sidebar está fixa
+            : 'lg:ml-0' // Sem margem quando sidebar não está fixa
+        }
+        lg:grid lg:grid-cols-12 lg:gap-6 lg:px-8 lg:py-8
+        xl:gap-8 xl:px-12 xl:py-12
+        2xl:gap-10 2xl:px-16 2xl:py-16
+      `}
       >
-        {children}
-      </main>
-    </>
+        {/* Espaçamento esquerdo */}
+        <div
+          className="
+          hidden lg:block lg:col-span-2
+          xl:col-span-2
+          2xl:col-span-2
+        "
+        ></div>
+
+        {/* Sidebar - única renderização */}
+        <div
+          className={`
+          ${
+            isCollapsed
+              ? 'lg:col-span-0' // Não ocupa espaço no grid quando colapsada
+              : 'lg:col-span-2'
+          }
+          xl:col-span-2
+          2xl:col-span-2
+        `}
+        >
+          {!isCollapsed && (
+            <div className="sticky top-8">
+              <Sidebar
+                menuItems={menuItems}
+                expandedItem={expandedItem}
+                activeItem={activeItem}
+                onToggleExpand={handleToggleExpand}
+                onSubitemClick={handleSubitemClick}
+                logoSrc="/logo.svg"
+                logoAlt="Logo da Empresa"
+                isCollapsed={isCollapsed}
+                onToggleCollapsed={handleToggleCollapsed}
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Sidebar colapsada renderizada fora do grid */}
+        {isCollapsed && (
+          <Sidebar
+            menuItems={menuItems}
+            expandedItem={expandedItem}
+            activeItem={activeItem}
+            onToggleExpand={handleToggleExpand}
+            onSubitemClick={handleSubitemClick}
+            logoSrc="/logo.svg"
+            logoAlt="Logo da Empresa"
+            isCollapsed={isCollapsed}
+            onToggleCollapsed={handleToggleCollapsed}
+          />
+        )}
+
+        {/* Conteúdo principal */}
+        <main
+          className={`
+          pt-16 pb-8 px-4
+          ${
+            isCollapsed
+              ? 'lg:col-span-7 lg:col-start-3' // Ajusta posição quando sidebar colapsada
+              : 'lg:col-span-5'
+          }
+          lg:pt-0 lg:px-0
+          xl:col-span-5
+          2xl:col-span-5
+        `}
+        >
+          <div
+            className="
+            w-full
+            pr-16 lg:pr-20 xl:pr-24 2xl:pr-28
+          "
+          >
+            {children}
+          </div>
+        </main>
+
+        {/* Espaçamento direito */}
+        <div
+          className="
+          hidden lg:block lg:col-span-3
+          xl:col-span-3
+          2xl:col-span-3
+        "
+        ></div>
+      </div>
+    </div>
   )
 }
 

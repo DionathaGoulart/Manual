@@ -15,15 +15,16 @@ export type TextProps = {
   lowercase?: boolean
   align?: 'left' | 'center' | 'right'
   className?: string
+  maxWidth?: boolean // Nova prop para controlar se aplica max-width
 }
 
 // ============================================================================
 // CONSTANTES
 // ============================================================================
 const VARIANT_CLASSES: Record<TextVariant, string> = {
-  large: 'text-[19px] leading-[27px]', // 19px com line-height 27px
-  medium: 'text-[15px] leading-[22px]', // 15px com line-height proporcional
-  small: 'text-[13px] leading-[19px]' // 13px com line-height proporcional
+  large: 'text-lg leading-7', // 19px com line-height 27px
+  medium: 'text-base leading-snug', // 15px com line-height proporcional
+  small: 'text-sm leading-tight' // 13px com line-height proporcional
 }
 
 const DEFAULT_TAGS: Record<TextVariant, 'p' | 'span'> = {
@@ -74,11 +75,11 @@ const Text: React.FC<TextProps> = ({
   uppercase = false,
   lowercase = false,
   align = 'left',
-  className = ''
+  className = '',
+  maxWidth = true // Por padrão aplica o max-width
 }) => {
   // Define a tag automaticamente baseada na variante se não especificada
   const Component = as || DEFAULT_TAGS[variant]
-
   const isCustomColorValue = color && isCustomColor(color)
 
   // Classes base compartilhadas
@@ -88,6 +89,7 @@ const Text: React.FC<TextProps> = ({
     WEIGHT_CLASSES[variant],
     'tracking-[0.01em]', // letter-spacing: 1%
     ALIGN_CLASSES[align],
+    maxWidth && 'max-w-[500px]', // Adiciona max-width de 517px
     uppercase && 'uppercase',
     lowercase && 'lowercase',
     !isCustomColorValue && color,

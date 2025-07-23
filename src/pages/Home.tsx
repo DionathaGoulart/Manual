@@ -1,6 +1,15 @@
-import IntroSection from '@/sections/Introduction'
+import AboutSection from '@/sections/Intro/About'
+import DownloadSection from '@/sections/Intro/Downloads'
+import ManualSection from '@/sections/Intro/Manual'
+import DesvaloresSection from '@/sections/Strat/Desvalores'
+import FilosofiaSection from '@/sections/Strat/Filosofia'
+import InimigoSection from '@/sections/Strat/Inimigo'
+import ValoresSection from '@/sections/Strat/Valores'
 import StratSection from '@/sections/Strategy'
-import ComplexSection from '@/sections/Verbal'
+import ConceitoSection from '@/sections/Verbal/Conceito'
+import ExemplosSection from '@/sections/Verbal/Exemplos'
+import PersonalidadeSection from '@/sections/Verbal/Personalidade'
+import VocabularioSection from '@/sections/Verbal/Vocabulario'
 import React, { useState, useEffect, useRef } from 'react'
 
 const Home: React.FC = () => {
@@ -11,15 +20,47 @@ const Home: React.FC = () => {
   const sections = [
     {
       id: '1.1',
-      content: <IntroSection />
+      content: <ManualSection />
     },
     {
       id: '1.2',
-      content: <StratSection />
+      content: <AboutSection />
     },
     {
       id: '1.3',
-      content: <ComplexSection />
+      content: <DownloadSection />
+    },
+    {
+      id: '2.1',
+      content: <FilosofiaSection />
+    },
+    {
+      id: '2.2',
+      content: <InimigoSection />
+    },
+    {
+      id: '2.3',
+      content: <ValoresSection />
+    },
+    {
+      id: '2.4',
+      content: <DesvaloresSection />
+    },
+    {
+      id: '3.1',
+      content: <PersonalidadeSection />
+    },
+    {
+      id: '3.2',
+      content: <ConceitoSection />
+    },
+    {
+      id: '3.3',
+      content: <VocabularioSection />
+    },
+    {
+      id: '3.4',
+      content: <ExemplosSection />
     }
   ]
 
@@ -38,7 +79,6 @@ const Home: React.FC = () => {
         if (entry.isIntersecting) {
           const sectionId = entry.target.id
           setActiveItem(sectionId)
-
           // Dispatch evento customizado para o MainLayout
           window.dispatchEvent(
             new CustomEvent('sectionChange', {
@@ -94,14 +134,32 @@ const Home: React.FC = () => {
   }, [])
 
   return (
-    <>
-      {/* Mensagem de Ajuda - Mobile: absolute (some ao rolar), Desktop: fixed (sempre visível) */}
-      <div className="absolute top-2 right-2 z-50 text-right text-white/60 text-xs leading-tight sm:fixed sm:top-4 sm:right-4 sm:text-sm sm:leading-relaxed">
-        <div>Última atualização:</div>
-        <div>24/07/2025</div>
-        <div className="mt-1 sm:mt-2">Precisa de ajuda?</div>
-        <div>@051jeferson</div>
+    <div className="mt-40">
+      {/* Mensagem de Ajuda - responsiva */}
+      <div
+        className="
+          /* Mobile - canto superior direito */
+          absolute top-4 right-4 z-50
+          text-right text-white/70 text-xs leading-tight
+
+          /* Desktop - fixa no espaço reservado */
+          lg:fixed lg:top-12 lg:right-12 lg:z-50
+          lg:text-sm lg:leading-relaxed lg:text-white/60
+
+          /* Ajustes para telas maiores */
+          xl:top-16 xl:right-16
+          2xl:top-20 2xl:right-20
+        "
+      >
+        <div className="text-start">
+          <div className="font-medium">Última atualização:</div>
+          <div className="text-white/60">24/07/2025</div>
+          <div className="mt-2 font-medium">Precisa de ajuda?</div>
+          <div className="text-white/60">@051jeferson</div>
+        </div>
       </div>
+
+      {/* Sections com espaçamento harmonizado */}
       {sections.map((section, index) => (
         <section
           key={section.id}
@@ -109,14 +167,29 @@ const Home: React.FC = () => {
           ref={(el) => {
             sectionRefs.current[section.id] = el
           }}
-          className={`px-2 sm:px-2 lg:px-2 mb-8 min-h-[70vh]
-          }`}
+          className="
+              /* Responsivo */
+              sm:mb-20
+              md:mb-24
+              lg:mb-28
+              xl:mb-32
+              2xl:mb-24
+            "
         >
-          <div className="max-w-3xl mx-auto w-full">{section.content}</div>
+          {/* Container do conteúdo centralizado */}
+          <div className="max-w-4xl mx-auto w-full">{section.content}</div>
         </section>
       ))}
-      <div className="h-[80vh]"></div> {/* Espaço extra para scroll */}
-    </>
+
+      {/* Espaço extra para scroll com altura responsiva */}
+      <div
+        className="
+          h-[60vh]
+          md:h-[70vh]
+          lg:h-[80vh]
+        "
+      ></div>
+    </div>
   )
 }
 

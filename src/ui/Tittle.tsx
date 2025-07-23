@@ -19,8 +19,8 @@ export type TitleProps = {
 // CONSTANTES
 // ============================================================================
 const VARIANT_CLASSES: Record<TitleVariant, string> = {
-  large: 'text-[51px]', // 51px exato
-  small: 'text-[23px]' // 23px exato
+  large: 'text-6xl', // 51px exato
+  small: 'text-xl' // 23px exato
 }
 
 const DEFAULT_TAGS: Record<TitleVariant, 'h2' | 'h3'> = {
@@ -71,6 +71,7 @@ const Title: React.FC<TitleProps> = ({
 
   const classes = [
     'font-orbit-gate',
+    'mb-6',
     VARIANT_CLASSES[variant],
     'leading-[100%]',
     'tracking-[0%]',

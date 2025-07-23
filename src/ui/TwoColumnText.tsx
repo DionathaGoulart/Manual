@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 // ============================================================================
 // TIPOS
 // ============================================================================
 
 export type TwoColumnTextProps = {
-  leftTitle: string
-  leftParagraph: string
-  rightTitle: string
-  rightParagraph: string
+  mainTitle?: string // Novo prop para o título principal
+  leftTitle?: string
+  leftParagraph: string | ReactNode
+  rightTitle?: string
+  rightParagraph: string | ReactNode
   gap?: string
   className?: string
+  // Removendo mainTitleClassName, pois vamos usar titleClassName
   titleClassName?: string
   paragraphClassName?: string
 }
@@ -20,29 +22,39 @@ export type TwoColumnTextProps = {
 // ============================================================================
 
 const TwoColumnText: React.FC<TwoColumnTextProps> = ({
+  mainTitle,
   leftTitle,
   leftParagraph,
-  rightTitle,
   rightParagraph,
+  rightTitle,
   gap = 'gap-8',
   className = '',
+  // Usando a mesma classe para o título principal e os títulos das colunas
   titleClassName = 'text-2xl font-bold text-gray-800 mb-4',
   paragraphClassName = 'text-base text-gray-600 leading-relaxed'
 }) => {
   const gridClasses = `grid grid-cols-1 md:grid-cols-2 ${gap} ${className}`
 
   return (
-    <div className={gridClasses}>
-      {/* Coluna Esquerda */}
-      <div>
-        <h2 className={titleClassName}>{leftTitle}</h2>
-        <p className={paragraphClassName}>{leftParagraph}</p>
-      </div>
+    <div>
+      {/* Título Principal (opcional) */}
+      {/* Aplicando a mesma classe titleClassName aqui */}
+      {mainTitle && (
+        <h1 className={`${titleClassName} text-start`}>{mainTitle}</h1>
+      )}
 
-      {/* Coluna Direita */}
-      <div>
-        <h2 className={titleClassName}>{rightTitle}</h2>
-        <p className={paragraphClassName}>{rightParagraph}</p>
+      <div className={gridClasses}>
+        {/* Coluna Esquerda */}
+        <div>
+          {leftTitle && <h2 className={titleClassName}>{leftTitle}</h2>}
+          <p className={paragraphClassName}>{leftParagraph}</p>
+        </div>
+
+        {/* Coluna Direita */}
+        <div>
+          {rightTitle && <h2 className={titleClassName}>{rightTitle}</h2>}
+          <p className={paragraphClassName}>{rightParagraph}</p>
+        </div>
       </div>
     </div>
   )
