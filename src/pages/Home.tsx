@@ -124,7 +124,7 @@ const Home: React.FC = () => {
       content: <ExemplosGuiaSection />
     },
     {
-      id: '9.1',
+      id: '9',
       content: <InspiSection />
     }
   ]

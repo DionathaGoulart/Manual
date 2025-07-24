@@ -23,9 +23,10 @@ export const menuItems: MenuItemData[] = [
     id: '2',
     title: 'Estratégia',
     subitems: [
-      { id: '2.1', title: 'Filosofi' },
-      { id: '2.2', title: 'Valores' },
-      { id: '2.3', title: 'Desvalores' }
+      { id: '2.1', title: 'Filosofia' },
+      { id: '2.2', title: 'Inimigo' },
+      { id: '2.3', title: 'Valores' },
+      { id: '2.4', title: 'Desvalores' }
     ]
   },
   {
@@ -54,7 +55,7 @@ export const menuItems: MenuItemData[] = [
     title: 'Cores',
     subitems: [
       { id: '5.1', title: 'Contexto' },
-      { id: '5.2', title: 'Cores INstitucionais' }
+      { id: '5.2', title: 'Cores Institucionais' }
     ]
   },
   {
@@ -86,6 +87,6 @@ export const menuItems: MenuItemData[] = [
   {
     id: '9',
     title: 'Inspirações',
-    subitems: [{ id: '9.1', title: 'Preços' }]
+    subitems: []
   }
 ]

@@ -16,11 +16,24 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    const initialParent = menuItems.find((item) =>
-      item.subitems.some((sub) => sub.id === activeItem)
+    // Verifica se o activeItem é um item principal (sem subitens)
+    const directItem = menuItems.find(
+      (item) =>
+        item.id === activeItem && (!item.subitems || item.subitems.length === 0)
     )
-    if (initialParent) {
-      setExpandedItem(initialParent.id)
+
+    if (directItem) {
+      // Se é um item direto, não expande nada
+      setExpandedItem(null)
+    } else {
+      // Se não é um item direto, procura o pai entre os subitens
+      const initialParent = menuItems.find(
+        (item) =>
+          item.subitems && item.subitems.some((sub) => sub.id === activeItem)
+      )
+      if (initialParent) {
+        setExpandedItem(initialParent.id)
+      }
     }
 
     checkSidebarCollapse()
@@ -35,11 +48,25 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     const handleSectionChange = (event: CustomEvent) => {
       const { activeSection } = event.detail
       setActiveItem(activeSection)
-      const parentItem = menuItems.find((item) =>
-        item.subitems.some((sub) => sub.id === activeSection)
+
+      // Verifica se é um item direto (sem subitens)
+      const directItem = menuItems.find(
+        (item) =>
+          item.id === activeSection &&
+          (!item.subitems || item.subitems.length === 0)
       )
-      if (parentItem && expandedItem !== parentItem.id) {
-        setExpandedItem(parentItem.id)
+
+      if (directItem) {
+        setExpandedItem(null)
+      } else {
+        const parentItem = menuItems.find(
+          (item) =>
+            item.subitems &&
+            item.subitems.some((sub) => sub.id === activeSection)
+        )
+        if (parentItem && expandedItem !== parentItem.id) {
+          setExpandedItem(parentItem.id)
+        }
       }
     }
 
@@ -58,11 +85,21 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
   const handleToggleExpand = (itemId: string) => {
     const itemToExpand = menuItems.find((item) => item.id === itemId)
+
+    // Se o item não tem subitens, não faz nada relacionado ao expand
+    if (
+      !itemToExpand ||
+      !itemToExpand.subitems ||
+      itemToExpand.subitems.length === 0
+    ) {
+      return
+    }
+
     if (expandedItem === itemId) {
       setExpandedItem(null)
     } else {
       setExpandedItem(itemId)
-      if (itemToExpand && itemToExpand.subitems.length > 0) {
+      if (itemToExpand.subitems.length > 0) {
         const firstSubitemId = itemToExpand.subitems[0].id
         setActiveItem(firstSubitemId)
         window.dispatchEvent(
