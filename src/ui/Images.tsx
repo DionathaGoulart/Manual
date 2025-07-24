@@ -5,31 +5,33 @@ interface ImageGridProps {
   images?: string[]
   tall?: boolean
   bgColors?: string[] // Nova prop para cores de fundo customizáveis
+  fullImage?: boolean // Nova prop para imagem ocupar 100% do card
 }
 
 const ImageGrid: React.FC<ImageGridProps> = ({
   variant = 1,
   images = [],
   tall = false,
-  bgColors = [] // Array de cores de fundo
+  bgColors = [], // Array de cores de fundo
+  fullImage = false // Por padrão false (mantém padding)
 }) => {
   // Configurações para cada variante
   const configs = {
     1: {
       containerClass: 'flex items-center justify-center py-8',
-      itemClass: `p-16 rounded-3xl w-[570px] ${tall ? 'h-96' : 'h-[570px]'} flex items-center justify-center`,
+      itemClass: `${fullImage ? '' : 'p-16'} rounded-3xl w-[570px] ${tall ? 'h-96' : 'h-[570px]'} flex items-center justify-center overflow-hidden`,
       gap: '',
       maxImages: 1
     },
     2: {
       containerClass: 'flex gap-7 py-8',
-      itemClass: `p-16 rounded-3xl ${tall ? 'h-96' : 'h-64'} w-64 flex items-center justify-center`,
+      itemClass: `${fullImage ? '' : 'p-16'} rounded-3xl ${tall ? 'h-96' : 'h-64'} w-64 flex items-center justify-center overflow-hidden`,
       gap: 'gap-7',
       maxImages: 2
     },
     3: {
       containerClass: 'flex gap-4 py-8',
-      itemClass: `p-4 rounded-3xl w-44 ${tall ? 'h-96' : 'h-44'} flex items-center justify-center`,
+      itemClass: `${fullImage ? '' : 'p-4'} rounded-3xl w-44 ${tall ? 'h-96' : 'h-44'} flex items-center justify-center overflow-hidden`,
       gap: 'gap-4',
       maxImages: 3
     }
@@ -62,7 +64,7 @@ const ImageGrid: React.FC<ImageGridProps> = ({
           <img
             src={src}
             alt={`Imagem ${index + 1}`}
-            className="h-full w-full object-contain"
+            className={`h-full w-full ${fullImage ? 'object-cover rounded-3xl' : 'object-contain'}`}
           />
         </div>
       ))}

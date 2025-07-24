@@ -1,3 +1,6 @@
+import ContextoSection from '@/sections/Cores/Contexto'
+import PrimariasSection from '@/sections/Cores/Primarias'
+import SecundariasSection from '@/sections/Cores/Secundarias'
 import AboutSection from '@/sections/Intro/About'
 import DownloadSection from '@/sections/Intro/Downloads'
 import ManualSection from '@/sections/Intro/Manual'
@@ -81,6 +84,18 @@ const Home: React.FC = () => {
     {
       id: '4.4',
       content: <MargemSection />
+    },
+    {
+      id: '5.1',
+      content: <ContextoSection />
+    },
+    {
+      id: '5.2',
+      content: <PrimariasSection />
+    },
+    {
+      id: '5.3',
+      content: <SecundariasSection />
     }
   ]
 

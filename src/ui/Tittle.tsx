@@ -20,7 +20,7 @@ export type TitleProps = {
 // ============================================================================
 const VARIANT_CLASSES: Record<TitleVariant, string> = {
   large: 'text-6xl', // 51px exato
-  small: 'text-xl' // 23px exato
+  small: 'text-2xl' // 23px exato
 }
 
 const DEFAULT_TAGS: Record<TitleVariant, 'h2' | 'h3'> = {
