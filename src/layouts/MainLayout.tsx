@@ -15,55 +15,48 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     setIsCollapsed(window.innerWidth < 1024)
   }, [])
 
-  useEffect(() => {
-    // Verifica se o activeItem é um item principal (sem subitens)
-    const directItem = menuItems.find(
-      (item) =>
-        item.id === activeItem && (!item.subitems || item.subitems.length === 0)
+  const findParentItem = useCallback((itemId: string) => {
+    return menuItems.find((item) =>
+      item.subitems?.some((sub) => sub.id === itemId)
     )
+  }, [])
 
-    if (directItem) {
-      // Se é um item direto, não expande nada
-      setExpandedItem(null)
-    } else {
-      // Se não é um item direto, procura o pai entre os subitens
-      const initialParent = menuItems.find(
-        (item) =>
-          item.subitems && item.subitems.some((sub) => sub.id === activeItem)
-      )
-      if (initialParent) {
-        setExpandedItem(initialParent.id)
+  const isDirectItem = useCallback((itemId: string) => {
+    const item = menuItems.find((item) => item.id === itemId)
+    return item && (!item.subitems || item.subitems.length === 0)
+  }, [])
+
+  const updateExpandedState = useCallback(
+    (itemId: string) => {
+      if (isDirectItem(itemId)) {
+        setExpandedItem(null)
+      } else {
+        const parentItem = findParentItem(itemId)
+        if (parentItem) {
+          setExpandedItem(parentItem.id)
+        }
       }
-    }
+    },
+    [isDirectItem, findParentItem]
+  )
 
+  useEffect(() => {
+    updateExpandedState(activeItem)
     checkSidebarCollapse()
-    window.addEventListener('resize', checkSidebarCollapse)
 
-    return () => {
-      window.removeEventListener('resize', checkSidebarCollapse)
-    }
-  }, [activeItem, checkSidebarCollapse])
+    window.addEventListener('resize', checkSidebarCollapse)
+    return () => window.removeEventListener('resize', checkSidebarCollapse)
+  }, [activeItem, checkSidebarCollapse, updateExpandedState])
 
   useEffect(() => {
     const handleSectionChange = (event: CustomEvent) => {
       const { activeSection } = event.detail
       setActiveItem(activeSection)
 
-      // Verifica se é um item direto (sem subitens)
-      const directItem = menuItems.find(
-        (item) =>
-          item.id === activeSection &&
-          (!item.subitems || item.subitems.length === 0)
-      )
-
-      if (directItem) {
+      if (isDirectItem(activeSection)) {
         setExpandedItem(null)
       } else {
-        const parentItem = menuItems.find(
-          (item) =>
-            item.subitems &&
-            item.subitems.some((sub) => sub.id === activeSection)
-        )
+        const parentItem = findParentItem(activeSection)
         if (parentItem && expandedItem !== parentItem.id) {
           setExpandedItem(parentItem.id)
         }
@@ -74,32 +67,25 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       'sectionChange',
       handleSectionChange as EventListener
     )
-
-    return () => {
+    return () =>
       window.removeEventListener(
         'sectionChange',
         handleSectionChange as EventListener
       )
-    }
-  }, [expandedItem])
+  }, [expandedItem, isDirectItem, findParentItem])
 
-  const handleToggleExpand = (itemId: string) => {
-    const itemToExpand = menuItems.find((item) => item.id === itemId)
+  const handleToggleExpand = useCallback(
+    (itemId: string) => {
+      const itemToExpand = menuItems.find((item) => item.id === itemId)
 
-    // Se o item não tem subitens, não faz nada relacionado ao expand
-    if (
-      !itemToExpand ||
-      !itemToExpand.subitems ||
-      itemToExpand.subitems.length === 0
-    ) {
-      return
-    }
+      if (!itemToExpand?.subitems?.length) {
+        return
+      }
 
-    if (expandedItem === itemId) {
-      setExpandedItem(null)
-    } else {
-      setExpandedItem(itemId)
-      if (itemToExpand.subitems.length > 0) {
+      if (expandedItem === itemId) {
+        setExpandedItem(null)
+      } else {
+        setExpandedItem(itemId)
         const firstSubitemId = itemToExpand.subitems[0].id
         setActiveItem(firstSubitemId)
         window.dispatchEvent(
@@ -108,122 +94,87 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           })
         )
       }
-    }
-  }
+    },
+    [expandedItem]
+  )
 
-  const handleSubitemClick = (subitemId: string) => {
+  const handleSubitemClick = useCallback((subitemId: string) => {
     setActiveItem(subitemId)
     window.dispatchEvent(
       new CustomEvent('sidebarClick', {
         detail: { subitemId }
       })
     )
-  }
+  }, [])
 
   const handleToggleCollapsed = useCallback(() => {
     setIsCollapsed((prev) => !prev)
   }, [])
 
+  const containerClasses = `
+    transition-all duration-300 ease-in-out
+    ${isCollapsed ? 'lg:ml-64' : 'lg:ml-0'}
+    lg:grid lg:grid-cols-12 lg:gap-6 lg:px-8 lg:py-8
+    xl:gap-8 xl:px-12 xl:py-12
+    2xl:gap-10 2xl:px-16 2xl:py-16
+  `
+    .trim()
+    .replace(/\s+/g, ' ')
+
+  const sidebarContainerClasses = `
+    ${isCollapsed ? 'lg:col-span-0' : 'lg:col-span-2'}
+    xl:col-span-2 2xl:col-span-2
+  `
+    .trim()
+    .replace(/\s+/g, ' ')
+
+  const mainContentClasses = `
+    pt-16 pb-8 px-6
+    ${isCollapsed ? 'lg:col-span-7 lg:col-start-3' : 'lg:col-span-5'}
+    lg:pt-0 lg:px-0 xl:col-span-5 2xl:col-span-5
+  `
+    .trim()
+    .replace(/\s+/g, ' ')
+
+  const sidebarProps = {
+    menuItems,
+    expandedItem,
+    activeItem,
+    onToggleExpand: handleToggleExpand,
+    onSubitemClick: handleSubitemClick,
+    logoSrc: '/logo.svg',
+    logoAlt: 'Logo da Empresa',
+    isCollapsed,
+    onToggleCollapsed: handleToggleCollapsed
+  }
+
   return (
     <div className="min-h-screen">
-      <div
-        className={`
-        transition-all duration-300 ease-in-out
-        ${
-          isCollapsed
-            ? 'lg:ml-64' // Margem quando sidebar está fixa
-            : 'lg:ml-0' // Sem margem quando sidebar não está fixa
-        }
-        lg:grid lg:grid-cols-12 lg:gap-6 lg:px-8 lg:py-8
-        xl:gap-8 xl:px-12 xl:py-12
-        2xl:gap-10 2xl:px-16 2xl:py-16
-      `}
-      >
+      <div className={containerClasses}>
         {/* Espaçamento esquerdo */}
-        <div
-          className="
-          hidden lg:block lg:col-span-2
-          xl:col-span-2
-          2xl:col-span-2
-        "
-        ></div>
+        <div className="hidden lg:block lg:col-span-2 xl:col-span-2 2xl:col-span-2" />
 
-        {/* Sidebar - única renderização */}
-        <div
-          className={`
-          ${
-            isCollapsed
-              ? 'lg:col-span-0' // Não ocupa espaço no grid quando colapsada
-              : 'lg:col-span-2'
-          }
-          xl:col-span-2
-          2xl:col-span-2
-        `}
-        >
+        {/* Sidebar - renderização condicional */}
+        <div className={sidebarContainerClasses}>
           {!isCollapsed && (
             <div className="sticky top-8">
-              <Sidebar
-                menuItems={menuItems}
-                expandedItem={expandedItem}
-                activeItem={activeItem}
-                onToggleExpand={handleToggleExpand}
-                onSubitemClick={handleSubitemClick}
-                logoSrc="/logo.svg"
-                logoAlt="Logo da Empresa"
-                isCollapsed={isCollapsed}
-                onToggleCollapsed={handleToggleCollapsed}
-              />
+              <Sidebar {...sidebarProps} />
             </div>
           )}
         </div>
 
-        {/* Sidebar colapsada renderizada fora do grid */}
-        {isCollapsed && (
-          <Sidebar
-            menuItems={menuItems}
-            expandedItem={expandedItem}
-            activeItem={activeItem}
-            onToggleExpand={handleToggleExpand}
-            onSubitemClick={handleSubitemClick}
-            logoSrc="/logo.svg"
-            logoAlt="Logo da Empresa"
-            isCollapsed={isCollapsed}
-            onToggleCollapsed={handleToggleCollapsed}
-          />
-        )}
+        {/* Sidebar colapsada - renderizada fora do grid */}
+        {isCollapsed && <Sidebar {...sidebarProps} />}
 
         {/* Conteúdo principal */}
-        <main
-          className={`
-          pt-16 pb-8 px-4
-          ${
-            isCollapsed
-              ? 'lg:col-span-7 lg:col-start-3' // Ajusta posição quando sidebar colapsada
-              : 'lg:col-span-5'
-          }
-          lg:pt-0 lg:px-0
-          xl:col-span-5
-          2xl:col-span-5
-        `}
-        >
-          <div
-            className="
-            w-full
-            pr-16 lg:pr-20 xl:pr-24 2xl:pr-28
-          "
-          >
+        <main className={mainContentClasses}>
+          <div className="w-full mx-auto max-w-4xl pr-0 lg:pr-16 lg:max-w-none xl:pr-20 xl:pr-24 2xl:pr-28">
             {children}
           </div>
         </main>
 
         {/* Espaçamento direito */}
-        <div
-          className="
-          hidden lg:block lg:col-span-3
-          xl:col-span-3
-          2xl:col-span-3
-        "
-        ></div>
+        <div className="hidden lg:block lg:col-span-3 xl:col-span-3 2xl:col-span-3" />
       </div>
     </div>
   )

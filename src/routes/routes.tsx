@@ -13,7 +13,7 @@ const routesConfig: RouteConfig[] = [
   {
     path: '/',
     component: Home,
-    title: 'Home - Sua Marca por Intenção'
+    title: 'Trac - Manual de Marca'
   }
 ]
 
