@@ -44,7 +44,7 @@ const Sidebar: React.FC<CustomSidebarProps> = ({
   // Sidebar que rola naturalmente junto com o conteúdo da página
   const sidebarClasses = `
     text-white flex flex-col
-    transition-transform duration-300 ease-in-out bg-transparent
+    transition-transform duration-300 ease-in-out bg-[#191919]
 
     ${
       isCollapsed
@@ -63,7 +63,7 @@ const Sidebar: React.FC<CustomSidebarProps> = ({
       {isCollapsed && (
         <button
           onClick={toggleMobileMenu}
-          className="fixed top-4 left-4 z-[100] p-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors lg:hidden"
+          className="fixed top-4 left-4 z-[100] p-2 bg-transparent text-white rounded-md hover:bg-gray-700 transition-colors lg:hidden"
           aria-label={isMobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={isMobileMenuOpen}
         >
