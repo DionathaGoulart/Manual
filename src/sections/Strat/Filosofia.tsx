@@ -9,8 +9,8 @@ const FilosofiaSection: React.FC = () => {
         Filosofia{' '}
       </Title>
 
-      <div className="space-y-6 max-w-3xl mx-auto">
-        <Text variant="medium" align="left" className="text-white block">
+      <div className="space-y-6">
+        <Text variant="large" align="left" className="text-white block">
           Esta não é apenas a nossa frase de efeito; é o nosso ponto de partida
           para tudo. "Sem tracking, não há traction" é a crença que define como
           pensamos, agimos e entregamos resultados. Ela representa uma verdade
@@ -18,7 +18,7 @@ const FilosofiaSection: React.FC = () => {
           dedicado.
         </Text>
 
-        <Text variant="medium" align="left" className="text-white block">
+        <Text variant="large" align="left" className="text-white block">
           Pense nesta frase como o nosso principal filtro de qualidade e de
           estratégia. Ela deve guiar cada decisão.
         </Text>

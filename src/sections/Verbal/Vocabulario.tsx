@@ -10,8 +10,8 @@ const VocabularioSection: React.FC = () => {
         Vocabulário
       </Title>
 
-      <div className="space-y-6 max-w-3xl mx-auto">
-        <Text variant="medium" align="left" className="text-white block">
+      <div className="space-y-6">
+        <Text variant="large" align="left" className="text-white block">
           Para soar como trac©, use as palavras que refletem nossa metodologia
           e evite as que representam nosso inimigo.
         </Text>
@@ -37,9 +37,8 @@ const VocabularioSection: React.FC = () => {
           rightTitle="Evite essas"
           rightParagraph="Palavras Estáticas e/ou Agressivas: Mapa, Regra, Receita de bolo, Agressivo, Você não sabe, Você precisa, Crescimento a qualquer custo, Depressa, Para ontem, Ficando para trás, Máquina de vendas."
           gap="gap-12"
-          className="max-w-6xl mx-auto"
-          titleClassName="text-white font-orbit-gate text-[23px] leading-[100%] tracking-[0%] uppercase font-normal mb-4"
-          paragraphClassName="text-white font-switzer text-[15px] leading-[22px] font-semibold tracking-[0.01em]"
+          titleClassName="text-white font-orbit-gate  uppercase font-normal mb-4"
+          paragraphClassName="text-white font-switzer font-semibold"
         />
       </div>
     </>

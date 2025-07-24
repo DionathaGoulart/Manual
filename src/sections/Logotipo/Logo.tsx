@@ -10,18 +10,15 @@ const LogoSection: React.FC = () => {
       <Title variant="large" align="left" className="text-white">
         Logo
       </Title>
-      <div className="space-y-6 max-w-3xl mx-auto">
-        <Text variant="medium" align="left" className="text-white block">
+      <div className="space-y-6">
+        <Text variant="large" align="left" className="text-white block">
           Nosso símbolo não é um enfeite. É a representação visual da nossa
           crença fundamental: "Sem tracking, não há traction". Cada elemento foi
           projetado para contar a história de como geramos resultados, unindo os
           dois lados da nossa mola de dupla função.
         </Text>
 
-        <ImageGrid
-          variant={2}
-          images={['https://picsum.photos/400', 'https://picsum.photos/400']}
-        />
+        <ImageGrid variant={2} images={['/pentagono.png', '/mola.svg']} />
 
         <TwoColumnText
           leftTitle="Os 5 A's"
@@ -29,12 +26,11 @@ const LogoSection: React.FC = () => {
           rightTitle="A Mola"
           rightParagraph="A mola é o coração da nossa operação, o motor que converte análise em ação. No modo suspensão (tracking), absorve os dados do terreno, e no modo propulsão (traction), libera essa energia acumulada com uma força precisa e inteligente. É a nossa garantia de que a atenção sempre se converte em movimento."
           gap="gap-12"
-          className="max-w-6xl mx-auto"
-          titleClassName="text-white font-orbit-gate text-[23px] leading-[100%] tracking-[0%] uppercase font-normal mb-4"
-          paragraphClassName="text-white font-switzer text-[15px] leading-[22px] font-semibold tracking-[0.01em]"
+          titleClassName="text-white font-orbit-gate uppercase font-normal mb-4"
+          paragraphClassName="text-white font-switzer font-semibold "
         />
 
-        <ImageGrid variant={1} images={['https://picsum.photos/400']} />
+        <ImageGrid variant={1} images={['/Vector.svg']} />
       </div>
     </>
   )

@@ -9,8 +9,8 @@ const InimigoSection: React.FC = () => {
         Inimigo
       </Title>
 
-      <div className="space-y-6 max-w-3xl mx-auto">
-        <Text variant="medium" align="left" className="text-white block">
+      <div className="space-y-6">
+        <Text variant="large" align="left" className="text-white block">
           O inimigo que a trac© combate é a mentalidade de "agência-esteira",
           obcecada pelo próprio crescimento, que se traduz em um tracking
           superficial e, por consequência, uma traction que não move o ponteiro

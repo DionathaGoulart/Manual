@@ -10,14 +10,14 @@ const PersonalidadeSection: React.FC = () => {
         Personalidade
       </Title>
 
-      <div className="space-y-6 max-w-3xl mx-auto">
-        <Text variant="medium" align="left" className="text-white block">
+      <div className="space-y-6">
+        <Text variant="large" align="left" className="text-white block">
           Se nossa marca fosse uma pessoa, ela seria a parceira propulsora. É a
           aliada estratégica que entende que a atenção aos detalhes (tracking) é
           o que alimenta a força para avançar (traction).
         </Text>
 
-        <Text variant="medium" align="left" className="text-white block">
+        <Text variant="large" align="left" className="text-white block">
           Para facilitar, usamos o princípio "Somos X, mas não Y":
         </Text>
 
@@ -68,9 +68,8 @@ const PersonalidadeSection: React.FC = () => {
             </>
           }
           gap="gap-12"
-          className="max-w-6xl mx-auto"
-          titleClassName="text-white font-orbit-gate text-[23px] leading-[100%] tracking-[0%] uppercase font-normal mb-4"
-          paragraphClassName="text-white font-switzer text-[15px] leading-[22px] font-semibold tracking-[0.01em]"
+          titleClassName="text-white font-orbit-gate  uppercase font-normal mb-4"
+          paragraphClassName="text-white font-switzer font-semibold"
         />
       </div>
     </>

@@ -87,9 +87,7 @@ const Text: React.FC<TextProps> = ({
     'font-switzer',
     VARIANT_CLASSES[variant],
     WEIGHT_CLASSES[variant],
-    'tracking-[0.01em]', // letter-spacing: 1%
     ALIGN_CLASSES[align],
-    maxWidth && 'max-w-[500px]', // Adiciona max-width de 517px
     uppercase && 'uppercase',
     lowercase && 'lowercase',
     !isCustomColorValue && color,

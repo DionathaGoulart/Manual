@@ -10,8 +10,8 @@ const ExemplosSection: React.FC = () => {
         Exemplos
       </Title>
 
-      <div className="space-y-6 max-w-3xl mx-auto">
-        <Text variant="medium" align="left" className="text-white block">
+      <div className="space-y-6">
+        <Text variant="large" align="left" className="text-white block">
           Veja como nossa voz transforma uma comunicação genérica em algo único
           da trac©.
         </Text>
@@ -48,9 +48,8 @@ const ExemplosSection: React.FC = () => {
             </>
           }
           gap="gap-12"
-          className="max-w-6xl mx-auto"
-          titleClassName="text-white font-orbit-gate text-[23px] leading-[100%] tracking-[0%] uppercase font-normal mb-4"
-          paragraphClassName="text-white font-switzer text-[15px] leading-[22px] font-semibold tracking-[0.01em]"
+          titleClassName="text-white font-orbit-gate uppercase font-normal mb-4"
+          paragraphClassName="text-white font-switzer font-semibold"
         />
       </div>
     </>

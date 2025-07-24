@@ -154,7 +154,7 @@ const Home: React.FC = () => {
   }, [])
 
   return (
-    <div className="mt-40 max-w-[500px]">
+    <div className="mt-40 max-w-xl">
       {/* Mensagem de Ajuda - responsiva */}
       <div
         className="

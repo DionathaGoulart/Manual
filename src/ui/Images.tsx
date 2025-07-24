@@ -4,30 +4,32 @@ interface ImageGridProps {
   variant?: 1 | 2 | 3
   images?: string[]
   tall?: boolean
+  bgColors?: string[] // Nova prop para cores de fundo customizáveis
 }
 
 const ImageGrid: React.FC<ImageGridProps> = ({
   variant = 1,
   images = [],
-  tall = false
+  tall = false,
+  bgColors = [] // Array de cores de fundo
 }) => {
   // Configurações para cada variante
   const configs = {
     1: {
       containerClass: 'flex items-center justify-center py-8',
-      itemClass: `bg-[#212121] p-16 rounded-3xl w-[570px] ${tall ? 'h-96' : 'h-[570px]'} flex items-center justify-center`,
+      itemClass: `p-16 rounded-3xl w-[570px] ${tall ? 'h-96' : 'h-[570px]'} flex items-center justify-center`,
       gap: '',
       maxImages: 1
     },
     2: {
       containerClass: 'flex gap-7 py-8',
-      itemClass: `bg-[#212121] p-16 rounded-3xl ${tall ? 'h-96' : 'h-64'} w-64 flex items-center justify-center`,
+      itemClass: `p-16 rounded-3xl ${tall ? 'h-96' : 'h-64'} w-64 flex items-center justify-center`,
       gap: 'gap-7',
       maxImages: 2
     },
     3: {
       containerClass: 'flex gap-4 py-8',
-      itemClass: `bg-[#212121] p-4 rounded-3xl w-44 ${tall ? 'h-96' : 'h-44'} flex items-center justify-center`,
+      itemClass: `p-4 rounded-3xl w-44 ${tall ? 'h-96' : 'h-44'} flex items-center justify-center`,
       gap: 'gap-4',
       maxImages: 3
     }
@@ -44,10 +46,19 @@ const ImageGrid: React.FC<ImageGridProps> = ({
     finalImages.push(displayImages[i] || 'https://picsum.photos/400')
   }
 
+  // Função para obter a cor de fundo para cada índice
+  const getBgColor = (index: number): string => {
+    return bgColors[index] || '#212121' // Cor padrão se não especificada
+  }
+
   return (
     <div className={config.containerClass}>
       {finalImages.map((src, index) => (
-        <div key={index} className={config.itemClass}>
+        <div
+          key={index}
+          className={config.itemClass}
+          style={{ backgroundColor: getBgColor(index) }}
+        >
           <img
             src={src}
             alt={`Imagem ${index + 1}`}

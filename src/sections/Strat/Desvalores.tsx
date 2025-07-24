@@ -22,9 +22,8 @@ const DesvaloresSection: React.FC = () => {
           rightTitle="“Amigão”"
           rightParagraph="Nossa proximidade é profunda, mas tem um foco absoluto: o traction. Respeitamos demais o investimento do cliente para gastar energia em qualquer coisa que não seja o avanço do negócio. Somos o parceiro para confiar as decisões importantes, não aquele com quem se joga conversa fora."
           gap="gap-12"
-          className="max-w-6xl mx-auto"
-          titleClassName="text-white font-orbit-gate text-[23px] leading-[100%] tracking-[0%] uppercase font-normal mb-4"
-          paragraphClassName="text-white font-switzer text-[15px] leading-[22px] font-semibold tracking-[0.01em]"
+          titleClassName="text-white font-orbit-gate  uppercase font-normal mb-4"
+          paragraphClassName="text-white font-switzer font-semibold"
         />
       </div>
     </>

@@ -10,8 +10,8 @@ const TipoSection: React.FC = () => {
         Tipo{' '}
       </Title>
 
-      <div className="space-y-6 max-w-3xl mx-auto">
-        <Text variant="medium" align="left" className="text-white block">
+      <div className="space-y-6">
+        <Text variant="large" align="left" className="text-white block">
           A tipografia do nosso símbolo nasceu da estrutura da fonte Cascadia,
           mas foi totalmente redesenhada por nós. Cada letra passou pelo nosso
           processo de "suspensão e propulsão": suavizamos suas formas e
@@ -21,14 +21,14 @@ const TipoSection: React.FC = () => {
           impulso do nosso símbolo (traction).
         </Text>
 
-        <Text variant="medium" align="left" className="text-white block">
+        <Text variant="large" align="left" className="text-white block">
           O resultado é uma assinatura visual proprietária. As letras da marca
           trac© não foram apenas desenhadas, foram projetadas para carregar
           nossa filosofia em sua própria forma, unindo a fluidez da adaptação
           com a precisão da força.
         </Text>
 
-        <ImageGrid variant={1} images={['https://picsum.photos/400']} />
+        <ImageGrid variant={1} images={['/LOGOTIPO1.svg']} />
       </div>
     </>
   )
