@@ -24,13 +24,13 @@ const ImageGrid: React.FC<ImageGridProps> = ({
       maxImages: 1
     },
     2: {
-      containerClass: 'flex gap-7 py-8',
+      containerClass: 'flex gap-6',
       itemClass: `${fullImage ? '' : 'p-16'} rounded-3xl ${tall ? 'h-96' : 'h-64'} w-64 flex items-center justify-center overflow-hidden`,
       gap: 'gap-7',
       maxImages: 2
     },
     3: {
-      containerClass: 'flex gap-4 py-8',
+      containerClass: 'flex gap-6 py-3',
       itemClass: `${fullImage ? '' : 'p-4'} rounded-3xl w-44 ${tall ? 'h-96' : 'h-44'} flex items-center justify-center overflow-hidden`,
       gap: 'gap-4',
       maxImages: 3

@@ -1,6 +1,7 @@
+import CaixaSection from '@/sections/Apoio/Caixa'
+import MolaSection from '@/sections/Apoio/Mola'
 import ContextoSection from '@/sections/Cores/Contexto'
-import PrimariasSection from '@/sections/Cores/Primarias'
-import SecundariasSection from '@/sections/Cores/Secundarias'
+import CoresSection from '@/sections/Cores/Cores'
 import AboutSection from '@/sections/Intro/About'
 import DownloadSection from '@/sections/Intro/Downloads'
 import ManualSection from '@/sections/Intro/Manual'
@@ -13,6 +14,7 @@ import FilosofiaSection from '@/sections/Strat/Filosofia'
 import InimigoSection from '@/sections/Strat/Inimigo'
 import ValoresSection from '@/sections/Strat/Valores'
 import StratSection from '@/sections/Strategy'
+import PrincipalSection from '@/sections/Tipografia/Principal'
 import ConceitoSection from '@/sections/Verbal/Conceito'
 import ExemplosSection from '@/sections/Verbal/Exemplos'
 import PersonalidadeSection from '@/sections/Verbal/Personalidade'
@@ -91,11 +93,19 @@ const Home: React.FC = () => {
     },
     {
       id: '5.2',
-      content: <PrimariasSection />
+      content: <CoresSection />
     },
     {
-      id: '5.3',
-      content: <SecundariasSection />
+      id: '6.1',
+      content: <PrincipalSection />
+    },
+    {
+      id: '7.1',
+      content: <MolaSection />
+    },
+    {
+      id: '7.2',
+      content: <CaixaSection />
     }
   ]
 
