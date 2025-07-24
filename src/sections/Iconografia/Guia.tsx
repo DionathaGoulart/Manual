@@ -3,8 +3,13 @@ import Title from '../../ui/Tittle'
 import Text from '../../ui/Text'
 
 import ImageGrid from '@/ui/Images'
+import Button from '@/ui/Btn'
 
 const GuiaSection: React.FC = () => {
+  function handleClick(): void {
+    throw new Error('Function not implemented.')
+  }
+
   return (
     <>
       <Title variant="large" align="left" className="text-white">
@@ -40,16 +45,12 @@ const GuiaSection: React.FC = () => {
           de cada ícone.
         </Text>
         <Text variant="large" align="left" className="text-white block">
-          O pentágono é uma forma irregular. E é por isso ele não se encaixará
-          perfeitamente a um grid engessado. Nossas keylines não são uma grade
-          para prender o design; são o nosso sistema de suspensão, a ferramenta
-          que usamos para absorver a irregularidade e equilibrar o peso visual
-          de cada ícone.
-        </Text>
-        <Text variant="large" align="left" className="text-white block">
           Para garantir o ponto de partida correto, o template com as keylines
           está pronto para ser usado.
         </Text>
+        <div className="flex justify-start">
+          <Button text="BAIXAR KEYLINES" icon="upload" onClick={handleClick} />
+        </div>
         <ImageGrid variant={1} images={['/guia.svg']} />
         <Title variant="small" align="left" className="text-white">
           Traçado
