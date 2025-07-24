@@ -7,42 +7,36 @@ const GraficSection: React.FC = () => {
   return (
     <>
       <Title variant="large" align="left" className="text-white">
-        Caixa Emendada
+        Gráficos <br /> Emendados
       </Title>
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block">
-          A caixa é mais do que um contorno; é a nossa ferramenta para criar
-          foco e clareza.
+          Priorizamos o uso de gráficos de coluna e barra por um motivo
+          estratégico: eles são a melhor tela para aplicar nosso princípio de
+          tracking, inspirado na mola.
         </Text>
         <Text variant="large" align="left" className="text-white block">
-          Use-a para dar estrutura e destaque a elementos importantes — sejam
-          textos ou imagens — separando-os do ruído visual e concentrando a
-          atenção no que realmente importa.
+          Ao conectar as barras ou colunas, transformamos um gráfico padrão em
+          uma narrativa visual da trac©. Cada conexão simboliza nosso
+          acompanhamento contínuo e a forma como um resultado leva ao próximo,
+          reforçando nossa metodologia com clareza e impacto.
         </Text>
-        <Text variant="large" align="left" className="text-white block">
-          Assim como nossa mola, a caixa opera sob o princípio de tracking. Para
-          simbolizar nosso acompanhamento contínuo e nossa atenção sem falhas,
-          suas linhas devem estar sempre conectadas, criando uma estrutura
-          fechada e segura.
-        </Text>
-
         <div>
           <ImageGrid
-            variant={3}
-            bgColors={['#212121', '#212121', '#212121']}
-            images={['/caixa1.svg', '/caixa2.svg', '/caixa3.svg']}
-          />
-          <ImageGrid
-            variant={3}
-            bgColors={['#FF5733', '#FF5733', '#FF5733']}
-            images={['/caixa4.svg', '/caixa5.svg', '/caixa6.svg']}
-          />
-          <ImageGrid
-            variant={3}
-            bgColors={['#212121', '#212121', '#212121']}
-            images={['/caixa7.svg', '/caixa8.svg', '/caixa9.svg']}
+            variant={2}
+            bgColors={['#212121', '#212121']}
+            images={['/g1.svg', '/g2.svg']}
           />
         </div>
+        <Text variant="large" align="left" className="text-white block">
+          Ao utilizar os gráficos, as bordas devem ser arredondadas. Contudo,
+          para não comprometer a espessura das linhas de conexão, esse ajuste
+          deve ser feito na última etapa.
+        </Text>
+        <Text variant="large" align="left" className="text-white block">
+          O valor do arredondamento deve ser a altura do elemento dividido por
+          40 (Altura / 40 = Arredondamento).
+        </Text>
       </div>
     </>
   )

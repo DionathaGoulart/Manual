@@ -1,7 +1,10 @@
 import CaixaSection from '@/sections/Apoio/Caixa'
+import GraficSection from '@/sections/Apoio/Grafic'
 import MolaSection from '@/sections/Apoio/Mola'
 import ContextoSection from '@/sections/Cores/Contexto'
 import CoresSection from '@/sections/Cores/Cores'
+import ExemplosGuiaSection from '@/sections/Iconografia/Exemplos'
+import GuiaSection from '@/sections/Iconografia/Guia'
 import AboutSection from '@/sections/Intro/About'
 import DownloadSection from '@/sections/Intro/Downloads'
 import ManualSection from '@/sections/Intro/Manual'
@@ -106,6 +109,18 @@ const Home: React.FC = () => {
     {
       id: '7.2',
       content: <CaixaSection />
+    },
+    {
+      id: '7.3',
+      content: <GraficSection />
+    },
+    {
+      id: '8.1',
+      content: <GuiaSection />
+    },
+    {
+      id: '8.2',
+      content: <ExemplosGuiaSection />
     }
   ]
 

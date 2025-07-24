@@ -24,10 +24,11 @@ const MargemSection: React.FC = () => {
           corresponde a 1/5 da LARGURA do nosso SÍMBOLO — conforme mostra o guia
           abaixo.
         </Text>
-
-        <ImageGrid variant={1} images={['/LOGOTIPO.svg']} />
-        <ImageGrid tall variant={1} images={['/LOGOTIPO2.svg']} />
-        <ImageGrid variant={1} images={['LOGOTIPO3.svg']} />
+        <div>
+          <ImageGrid variant={1} images={['/LOGOTIPO.svg']} />
+          <ImageGrid tall variant={1} images={['/LOGOTIPO2.svg']} />
+          <ImageGrid variant={1} images={['LOGOTIPO3.svg']} />
+        </div>
       </div>
     </>
   )
