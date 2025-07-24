@@ -5,6 +5,7 @@ import ContextoSection from '@/sections/Cores/Contexto'
 import CoresSection from '@/sections/Cores/Cores'
 import ExemplosGuiaSection from '@/sections/Iconografia/Exemplos'
 import GuiaSection from '@/sections/Iconografia/Guia'
+import InspiSection from '@/sections/Inspiracoes/Inspi'
 import AboutSection from '@/sections/Intro/About'
 import DownloadSection from '@/sections/Intro/Downloads'
 import ManualSection from '@/sections/Intro/Manual'
@@ -121,6 +122,10 @@ const Home: React.FC = () => {
     {
       id: '8.2',
       content: <ExemplosGuiaSection />
+    },
+    {
+      id: '9.1',
+      content: <InspiSection />
     }
   ]
 
