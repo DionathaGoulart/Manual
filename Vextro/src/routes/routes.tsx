@@ -13,7 +13,7 @@ const routesConfig: RouteConfig[] = [
   {
     path: '/',
     component: Home,
-    title: 'Trac - Manual de Marca'
+    title: 'Vextro - Manual de Marca'
   }
 ]
 
