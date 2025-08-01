@@ -12,39 +12,38 @@ const ExemplosSection: React.FC = () => {
 
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block">
-          Veja como nossa voz transforma uma comunicação genérica em algo único
-          da trac©.
+          É na prática que a nossa voz se torna uma força.
         </Text>
 
         <TwoColumnText
           leftTitle="Voz Genérica"
           leftParagraph={
             <>
-              1. Soluções Completas de Marketing Digital
+              1. Nosso serviço de SEO é uma solução completa para otimizar seu
+              site, melhorar o ranking e aumentar o tráfego orgânico através de
+              estratégias comprovadas.
               <br />
               <br />
-              2. "Nossa agência usa data-driven marketing para otimizar seus
-              resultados. Fale com um especialista!"
+              2. Convite: Reunião de Acompanhamento Semanal
               <br />
               <br />
-              3. "Conforme solicitado, segue nossa proposta de serviços para sua
-              avaliação. Nosso objetivo é aumentar seu ROI."
+              3. Estamos felizes em anunciar que superamos nossas metas neste
+              trimestre!
             </>
           }
           rightTitle="Voz da trac©"
           rightParagraph={
             <>
-              1. Marketing que se adapta para vender.
+              1. SEO não é sobre ranquear, é dominar. Nós invertemos a lógica do
+              seu concorrente, encontramos as rupturas no algoritmo e exploramos
+              o território que eles têm medo de pisar.
               <br />
               <br />
-              2. "Likes não pagam as contas. Na trac©, nosso tracking é uma
-              obsessão com o que gera impacto real no seu caixa. O resto é
-              performance vazia."
+              2. Acompanhar é pouco. Vamos definir o próximo alvo.
               <br />
               <br />
-              3. "Este documento detalha nosso plano de ação. Ele mostra como
-              nosso acompanhamento dedicado (tracking) será usado para gerar o
-              impulso (traction) que irá mover os ponteiros do negócio"
+              3. Metas superadas. Um bom resultado. Agora, vamos entender como
+              melhorar ainda mais.
             </>
           }
           gap="gap-12"

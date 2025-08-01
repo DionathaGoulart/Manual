@@ -50,7 +50,7 @@ const Button: React.FC<ButtonProps> = ({
   // Variantes de cor
   const variants = {
     primary:
-      'bg-[#FF5733] hover:bg-orange-600 focus:ring-orange-500/50 text-gray-900',
+      'bg-[#0B6AF4] hover:bg-orange-600 focus:ring-orange-500/50 text-gray-900',
     secondary:
       'bg-gray-600 hover:bg-gray-700 focus:ring-gray-500/50 text-white',
     success:

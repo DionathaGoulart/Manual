@@ -12,15 +12,17 @@ const DesvaloresSection: React.FC = () => {
 
       <div className="space-y-6 max-w-3xl mx-auto">
         <Text variant="medium" align="left" className="text-white block">
-          Na trac©, temos clareza sobre o que não somos, pois é essa clareza
-          que nos permite ser a parceira que nossos clientes precisam.
+          Os desvalores servem como nossas fronteiras estratégicas; a linha
+          clara que define o que recusamos a ser. Eles nos lembram diariamente
+          que fomos criados para sermos o oposto do padrão, para rejeitar o
+          mediano e para nos mantermos perpetuamente "revoltados".
         </Text>
 
         <TwoColumnText
-          leftTitle="Autoritário"
-          leftParagraph="Não estamos aqui para ditar um caminho. Acreditamos que a arrogância é inimiga do tracking. Nosso papel não é dar ordens, mas construir a rota em conjunto, usando nossa expertise para guiar e nossa flexibilidade para ajustar sempre que o terreno exigir."
-          rightTitle="“Amigão”"
-          rightParagraph="Nossa proximidade é profunda, mas tem um foco absoluto: o traction. Respeitamos demais o investimento do cliente para gastar energia em qualquer coisa que não seja o avanço do negócio. Somos o parceiro para confiar as decisões importantes, não aquele com quem se joga conversa fora."
+          leftTitle="chatos"
+          leftParagraph="Repudiamos o consenso e o pensamento de rebanho. A conformidade leva a resultados medianos e a uma comunicação indistinguível da concorrência. O caminho seguro é o caminho para a irrelevância."
+          rightTitle="egoístas"
+          rightParagraph='A satisfação é o fim do crescimento. Declaramos guerra à mentalidade de "dever cumprido". Celebrar o "bom" é se contentar com pouco. Para nós, cada resultado é apenas um novo ponto de partida para a próxima provocação.'
           gap="gap-12"
           titleClassName="text-white font-orbit-gate  uppercase font-normal mb-4"
           paragraphClassName="text-white font-switzer font-semibold"

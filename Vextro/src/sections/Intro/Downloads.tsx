@@ -15,9 +15,15 @@ const DownloadSection: React.FC = () => {
       </Title>
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block mb-8">
-          Baixe o kit completo de ativos visuais da trac© no botão abaixo.
-          Lembre-se: para que a propulsão seja precisa, o alinhamento vem
-          primeiro. Uma rápida consulta ao nosso guia garante o impulso.
+          Nossos ativos visuais são a expressão gráfica da nossa insatisfação.
+          Cada módulo, cada linha e cada uso do itálico invertido são uma
+          declaração de desconstrução.
+        </Text>
+        <Text variant="large" align="left" className="text-white block mb-8">
+          AVISO: Não clique no botão abaixo antes de internalizar cada palavra
+          deste manual. Usar nossos ativos sem compreender totalmente a Vextro©
+          é um erro estratégico. Eles não são elementos decorativos; são as
+          ferramentas da nossa revolta.
         </Text>
         <div className="flex justify-start">
           <Button

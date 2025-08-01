@@ -12,59 +12,36 @@ const PersonalidadeSection: React.FC = () => {
 
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block">
-          Se nossa marca fosse uma pessoa, ela seria a parceira propulsora. É a
-          aliada estratégica que entende que a atenção aos detalhes (tracking) é
-          o que alimenta a força para avançar (traction).
-        </Text>
-
-        <Text variant="large" align="left" className="text-white block">
-          Para facilitar, usamos o princípio "Somos X, mas não Y":
+          Somos a consequência de um mercado satisfeito com o mediano. Nascemos
+          da insatisfação e da inquietação, com uma filosofia única: "O bom não
+          basta".
         </Text>
 
         <TwoColumnText
-          leftTitle="Somos.."
+          leftTitle="SOMOS"
           leftParagraph={
             <>
-              Companheira e Dedicada: Estamos genuinamente investidos no sucesso
-              do cliente. Nossa comunicação é atenta, busca entender e reflete a
-              "atenção real" que faltava no mercado.
+              Inquietos
               <br />
+              Provocadores
               <br />
-              Propulsora e Energética: Nossa linguagem é ativa e transmite
-              movimento. Falamos em impulso, avanço e aceleração. Somos a força
-              que gera a tração, sempre com um propósito claro.
+              Diretos
               <br />
+              Insatisfeitos
               <br />
-              Pragmática e Focada em Vendas: Somos obcecados pelo que funciona.
-              Nossa comunicação é direta ao ponto e conecta as ações de
-              marketing ao impacto no caixa.
-              <br />
-              <br />
-              Confiante e Resiliente: Falamos com a segurança de quem domina o
-              que faz. Como um sistema de suspensão, nossa natureza é adaptável,
-              absorvendo impactos para manter o percurso estável.
             </>
           }
-          rightTitle="NÃO somos..."
+          rightTitle="NÃO SOMOS"
           rightParagraph={
             <>
-              "Amigona" ou Casual: Não usamos gírias ou uma linguagem que
-              banalize a seriedade do nosso compromisso. Nossa proximidade é
-              focada no resultado.
+              Ansiosos
               <br />
+              Agressivos
               <br />
-              Agressiva ou Apressada: Não somos a "máquina de vendas" que
-              atropela tudo. Evitamos o tom do "crescimento a qualquer custo".
+              Grosseiros
               <br />
+              Negativos
               <br />
-              Teórica ou Focada em Vaidade: Não nos apaixonamos por relatórios
-              bonitos ou métricas de vaidade. Se uma ação não tem potencial para
-              vender, ela não tem espaço em nossa estratégia.
-              <br />
-              <br />
-              Autoritária ou Rígida: Confiança não é arrogância. Nunca impomos
-              regras. Nossa flexibilidade é o que nos permite encontrar a melhor
-              rota para cada parceiro, em vez de forçar um "método" engessado.
             </>
           }
           gap="gap-12"

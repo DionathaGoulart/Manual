@@ -12,17 +12,17 @@ const ValoresSection: React.FC = () => {
 
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block">
-          Na trac©, um valor não vive sem o outro. Nossa dedicação no Tracking
-          é o que dá inteligência à nossa força de Traction. E nosso foco na
-          Traction é o que dá propósito ao nosso trabalho de Tracking. É essa
-          união que nos define.
+          Valores não são palavras para decorar um quadro na parede. São os
+          nossos códigos de conduta inegociáveis. Servem como um filtro para
+          cada decisão, garantindo que nunca nos desviemos para a zona de
+          conforto que juramos destruir.
         </Text>
 
         <TwoColumnText
-          leftTitle="Tracking"
-          leftParagraph="Para nós, é a manifestação da atenção real. É o valor que nos obriga a ouvir mais, a mergulhar fundo e a entender o contexto antes de agir. É a nossa mola no modo suspensão: um compromisso ativo de ler o terreno, absorver os detalhes e nos adaptar constantemente ao percurso de cada parceiro. Valorizar o tracking significa que nunca oferecemos uma solução pronta; nós construímos o caminho junto com quem confia em nosso trabalho."
-          rightTitle="Traction"
-          rightParagraph="É o nosso valor inegociável do resultado. É a crença de que análise sem ação é energia desperdiçada. É a nossa mola no modo propulsão: a obsessão por transformar cada aprendizado em um impulso concreto e inteligente. Valorizar a traction significa que nosso trabalho só termina quando gera movimento real para o negócio do nosso cliente. Não nos contentamos com relatórios; buscamos o impacto."
+          leftTitle="insatisfeitoS"
+          leftParagraph="Não aceitamos o padrão. Nossa insatisfação é o ponto de partida para o crescimento dos nossos clientes. É uma força que nos impulsiona a questionar tudo e a procurar as alavancas de crescimento que os outros não conseguem ver."
+          rightTitle="inquietoS"
+          rightParagraph="Estamos em movimento constante, sempre em busca do próximo nível. Essa inquietação reflete a natureza de desconstrução da nossa própria identidade e a recusa em aceitar que uma fórmula de sucesso durará para sempre."
           gap="gap-12"
           titleClassName="text-white font-orbit-gate uppercase font-normal mb-4"
           paragraphClassName="text-white font-switzer font-semibold"
