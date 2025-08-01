@@ -1,0 +1,31 @@
+/* Orbit Gate */
+@font-face {
+  font-family: 'Orbit Gate';
+  src: url('/fonts/Orbit-Gate.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Switzer */
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/Switzer.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* LTSuperior-Regular */
+@font-face {
+  font-family: 'LTSuperior-Regular';
+  src: url('/fonts/LTSuperior-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* LTSuperior-SemiBold */
+@font-face {
+  font-family: 'LTSuperior-SemiBold';
+  src: url('/fonts/LTSuperior-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
