@@ -11,7 +11,7 @@ const DownloadSection: React.FC = () => {
   return (
     <>
       <Title variant="large" align="left" className="text-white">
-        Downloads{' '}
+        Downloads
       </Title>
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block mb-8">

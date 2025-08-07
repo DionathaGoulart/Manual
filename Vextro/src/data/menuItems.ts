@@ -15,7 +15,7 @@ export const menuItems: MenuItemData[] = [
     title: 'Introdução',
     subitems: [
       { id: '1.1', title: 'Sobre o Manual' },
-      { id: '1.2', title: 'Sobre a trac©' },
+      { id: '1.2', title: 'Sobre a vextro©' },
       { id: '1.3', title: 'Downloads' }
     ]
   },
@@ -34,54 +34,49 @@ export const menuItems: MenuItemData[] = [
     title: 'Verbal',
     subitems: [
       { id: '3.1', title: 'Personalidade' },
-      { id: '3.2', title: 'Conceitos' },
-      { id: '3.3', title: 'Vocabulário' },
-      { id: '3.4', title: 'Exemplos' },
-      { id: '3.5', title: 'Prompt' }
+      { id: '3.2', title: 'Vocabulário' },
+      { id: '3.3', title: 'Exemplos' },
+      { id: '3.4', title: 'Personalidade' }
     ]
   },
   {
     id: '4',
     title: 'Logotipo',
     subitems: [
-      { id: '4.1', title: 'Logo' },
-      { id: '4.2', title: 'Tipo' },
-      { id: '4.3', title: 'Variações' },
-      { id: '4.4', title: 'Margem de Segurança' }
+      { id: '4.1', title: 'Introdução' },
+      { id: '4.2', title: 'Variações' },
+      { id: '4.3', title: 'Margem de Segurança' }
     ]
   },
   {
     id: '5',
     title: 'Cores',
     subitems: [
-      { id: '5.1', title: 'Contexto' },
-      { id: '5.2', title: 'Cores Institucionais' }
+      { id: '5.1', title: 'Introdução' },
+      { id: '5.2', title: 'Paleta de Cores' }
     ]
   },
   {
     id: '6',
     title: 'Tipografia',
     subitems: [
-      { id: '6.1', title: 'Principal' },
-      { id: '6.2', title: 'Apoio' },
-      { id: '6.3', title: 'Uso' }
+      { id: '6.1', title: 'Introdução' },
+      { id: '6.2', title: 'Tipografia Institucional' },
+      { id: '6.3', title: 'Aplicação' }
     ]
   },
   {
     id: '7',
     title: 'Apoio Gráfico',
-    subitems: [
-      { id: '7.1', title: 'Mola Emendada' },
-      { id: '7.2', title: 'Caixa Emendada' },
-      { id: '7.3', title: 'Gráfico Emendado' }
-    ]
+    subitems: []
   },
   {
     id: '8',
-    title: 'Iconografia',
+    title: 'Fotografia',
     subitems: [
-      { id: '8.1', title: 'Guia' },
-      { id: '8.2', title: 'Exemplos' }
+      { id: '8.1', title: 'Fotografia' },
+      { id: '8.2', title: 'Prompt' },
+      { id: '8.3', title: 'Referências' }
     ]
   },
   {

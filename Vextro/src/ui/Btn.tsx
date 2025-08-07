@@ -50,7 +50,7 @@ const Button: React.FC<ButtonProps> = ({
   // Variantes de cor
   const variants = {
     primary:
-      'bg-[#0B6AF4] hover:bg-orange-600 focus:ring-orange-500/50 text-gray-900',
+      'bg-[#0B6AF4] hover:bg-blue-600 focus:ring-blue-500/50 text-gray-900',
     secondary:
       'bg-gray-600 hover:bg-gray-700 focus:ring-gray-500/50 text-white',
     success:
@@ -60,7 +60,7 @@ const Button: React.FC<ButtonProps> = ({
 
   // Tamanhos
   const sizes = {
-    small: 'px-4 py-2 text-sm',
+    small: 'px-2 py-3 text-sm',
     medium: 'px-8 py-4 text-base',
     large: 'px-12 py-6 text-lg'
   }

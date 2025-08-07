@@ -57,7 +57,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className={`w-full p-2 ${className}`}
+      className={`w-full p-4 ${className}`}
       style={{ backgroundColor: colors.bg }}
     >
       <div className="flex justify-between items-center px-6">

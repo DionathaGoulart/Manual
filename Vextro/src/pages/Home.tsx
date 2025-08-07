@@ -16,7 +16,6 @@ import VocabularioSection from '@/sections/Verbal/Vocabulario'
 import ExemplosSection from '@/sections/Verbal/Exemplos'
 
 import LogoSection from '@/sections/Logotipo/Logo'
-import TipoSection from '@/sections/Logotipo/Tipo'
 import VariacoesSection from '@/sections/Logotipo/Variacoes'
 import MargemSection from '@/sections/Logotipo/Margem'
 
@@ -25,16 +24,13 @@ import CoresSection from '@/sections/Cores/Cores'
 
 import PrincipalSection from '@/sections/Tipografia/Principal'
 
-import MolaSection from '@/sections/Apoio/Mola'
-import CaixaSection from '@/sections/Apoio/Caixa'
-import GraficSection from '@/sections/Apoio/Grafic'
-
-import GuiaSection from '@/sections/Iconografia/Guia'
-import ExemplosGuiaSection from '@/sections/Iconografia/Exemplos'
-
 import InspiSection from '@/sections/Inspiracoes/Inspi'
 import InstitucionalSection from '@/sections/Tipografia/Institucional'
 import AplicacaoSection from '@/sections/Tipografia/Aplicacao'
+import GraficoSection from '@/sections/Apoio/Grafico'
+import FotografiaSection from '@/sections/Fotografia/Fotografia'
+import PromptSection from '@/sections/Fotografia/Prompt'
+import RefsSection from '@/sections/Fotografia/Refs'
 
 const Home: React.FC = () => {
   const [activeItem, setActiveItem] = useState('1.1')
@@ -56,19 +52,17 @@ const Home: React.FC = () => {
       { id: '3.3', content: <ExemplosSection /> },
       { id: '3.4', content: <ConceitoSection /> },
       { id: '4.1', content: <LogoSection /> },
-      { id: '4.2', content: <TipoSection /> },
-      { id: '4.3', content: <VariacoesSection /> },
-      { id: '4.4', content: <MargemSection /> },
+      { id: '4.2', content: <VariacoesSection /> },
+      { id: '4.3', content: <MargemSection /> },
       { id: '5.1', content: <ContextoSection /> },
       { id: '5.2', content: <CoresSection /> },
       { id: '6.1', content: <PrincipalSection /> },
       { id: '6.2', content: <InstitucionalSection /> },
       { id: '6.3', content: <AplicacaoSection /> },
-      { id: '7.1', content: <MolaSection /> },
-      { id: '7.2', content: <CaixaSection /> },
-      { id: '7.3', content: <GraficSection /> },
-      { id: '8.1', content: <GuiaSection /> },
-      { id: '8.2', content: <ExemplosGuiaSection /> },
+      { id: '7', content: <GraficoSection /> },
+      { id: '8.1', content: <FotografiaSection /> },
+      { id: '8.2', content: <PromptSection /> },
+      { id: '8.3', content: <RefsSection /> },
       { id: '9', content: <InspiSection /> }
     ],
     []
