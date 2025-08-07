@@ -12,50 +12,52 @@ const VariacoesSection: React.FC = () => {
 
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block">
-          Um único formato não serve para todas as situações. Assim como nossa
-          metodologia, nossa identidade visual é flexível e se adapta para
-          garantir o máximo de clareza e impacto em qualquer aplicação. Por
-          isso, nossa assinatura possui três configurações estratégicas:
+          Nossa identidade não se curva ao formato. Ela o domina. Ter mais de
+          uma opção de logotipo não é sobre flexibilidade, é sobre estratégia.
+        </Text>
+        <Text variant="large" align="left" className="text-white block">
+          <Text variant="large" align="left" className="text-white block">
+            Nossa identidade não se curva ao formato. Ela o domina. Ter mais de
+            uma opção de logotipo não é sobre flexibilidade, é sobre estratégia.
+          </Text>
         </Text>
         <Title variant="small" align="left" className="text-white">
           Assinatura Principal
         </Title>
         <Text variant="large" align="left" className="text-white block">
-          É a nossa formação padrão, a expressão mais completa da nossa marca.
-          Use-a sempre que houver espaço para comunicar nossa mensagem com força
-          total e com a aplicação de duas cores.
+          Esta é a nossa declaração completa. O logotipo principal, com sua
+          tipografia estilizada, é a materialização explícita da nossa
+          filosofia.
         </Text>
-        <ImageGrid
-          variant={3}
-          bgColors={['#212121', '#F9F9F9', '#FF5733']}
-          images={['/Vector1.svg', '/Vector2.svg', '/Vector3.svg']}
-        />
-        <Title variant="small" align="left" className="text-white">
-          Assinatura Horizontal
-        </Title>
         <Text variant="large" align="left" className="text-white block">
-          A configuração ideal para terrenos amplos e com pouco espaço vertical,
-          como cabeçalhos e rodapés. Garante que nossa marca mantenha a
-          legibilidade e o impacto.
+          Sua orientação predominantemente horizontal garante autoridade e
+          presença, sendo a aplicação recomendada para todos os casos onde o
+          espaço não é uma restrição, mas uma tela para a nossa mensagem.
         </Text>
         <ImageGrid
           variant={3}
-          bgColors={['#212121', '#F9F9F9', '#FF5733']}
-          images={['/Vector4.svg', '/Vector5.svg', '/Vector6.svg']}
+          bgColors={['#0B6AF4', '#101010', '#FFFFFF']}
+          images={['/VexBlack.svg', '/VexWhite.svg', '/VexBlue.svg']}
         />
         <Title variant="small" align="left" className="text-white">
           Assinatura Reduzida
         </Title>
         <Text variant="large" align="left" className="text-white block">
-          A nossa essência, projetada para performance máxima nos terrenos mais
-          difíceis. Quando o espaço é mínimo, a versão reduzida garante nossa
-          presença com clareza e força totais, sem perder identidade.
+          Quando o espaço é limitado, nossa mensagem se concentra, não se reduz.
+          O "V", nossa letra inicial, se torna o símbolo da nossa revolta. Ele
+          condensa toda a tensão, a quebra e a inclinação invertida do logo
+          principal em um único ícone afiado.
+        </Text>
+        <Text variant="large" align="left" className="text-white block">
+          É a nossa ponta de lança, ideal para espaços menores como avatares de
+          redes sociais e ícones de aplicativos, onde a declaração precisa ser
+          instantânea e inconfundível.
         </Text>
         <ImageGrid
           variant={3}
-          bgColors={['#212121', '#F9F9F9', '#FF5733']}
-          images={['/Vector7.svg', '/Vector8.svg', '/Vector9.svg']}
-        />{' '}
+          bgColors={['#0B6AF4', '#101010', '#FFFFFF']}
+          images={['/VBlack.svg', '/VWhite.svg', '/VBlue.svg']}
+        />
       </div>
     </>
   )

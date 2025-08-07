@@ -8,29 +8,36 @@ const LogoSection: React.FC = () => {
   return (
     <>
       <Title variant="large" align="left" className="text-white">
-        Logo
+        Introdução
       </Title>
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block">
-          Nosso símbolo não é um enfeite. É a representação visual da nossa
-          crença fundamental: "Sem tracking, não há traction". Cada elemento foi
-          projetado para contar a história de como geramos resultados, unindo os
-          dois lados da nossa mola de dupla função.
+          Um logo tradicional vive dentro de uma forma previsível, uma zona de
+          conforto. O nosso recusa essa prisão. Ele foi projetado para ser a
+          própria quebra do padrão. Se o padrão é completo e contínuo, o nosso é
+          modular e fragmentado, um reflexo visual da nossa recusa em aceitar
+          sistemas fechados e resultados acabados.
+        </Text>
+        <Text variant="large" align="left" className="text-white block">
+          Onde outros usam retas e curvas, nós usamos dobras, rupturas e tensão.
+          Cada letra é um módulo que parece ter sido quebrado e remontado,
+          representando a nossa insatisfação e inquietação permanentes. A
+          inclinação é um itálico invertido, um movimento deliberado contra a
+          corrente, um desafio visual que simboliza nossa tendência de ir para o
+          caminho inverso.
+        </Text>
+        <Text variant="large" align="left" className="text-white block">
+          Em resumo, nosso logo não foi feito para ser agradável. Ele foi feito
+          para ser uma declaração. É a nossa insatisfação transformada em um
+          símbolo.
         </Text>
 
-        <ImageGrid variant={2} images={['/pentagono.png', '/mola.svg']} />
-
-        <TwoColumnText
-          leftTitle="Os 5 A's"
-          leftParagraph="Os cinco pontos que formam o pentágono representam os 5 A's do Marketing (Aware, Appeal, Ask, Act, Advocate). Para nós, eles não são apenas estágios; eles são o terreno da jornada do cliente. É esse o percurso que acompanhamos (tracking) com atenção, adaptando-se a cada ponto de contato para acumular a inteligência necessária para os resultados (traction)."
-          rightTitle="A Mola"
-          rightParagraph="A mola é o coração da nossa operação, o motor que converte análise em ação. No modo suspensão (tracking), absorve os dados do terreno, e no modo propulsão (traction), libera essa energia acumulada com uma força precisa e inteligente. É a nossa garantia de que a atenção sempre se converte em movimento."
-          gap="gap-12"
-          titleClassName="text-white font-orbit-gate uppercase font-normal mb-4"
-          paragraphClassName="text-white font-switzer font-semibold "
+        <ImageGrid
+          flexibleAspect
+          fullImage
+          variant={1}
+          images={['/introLogo.svg']}
         />
-
-        <ImageGrid variant={1} images={['/Vector.svg']} />
       </div>
     </>
   )

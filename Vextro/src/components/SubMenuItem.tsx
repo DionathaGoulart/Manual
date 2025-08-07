@@ -15,7 +15,7 @@ const SubMenuItem: React.FC<SubMenuItemProps> = ({
 }) => {
   const buttonClasses = `
     w-full text-left pl-8 pr-6 py-2 transition-colors duration-200 group
-    ${active ? 'text-[#0B6AF4]' : 'text-gray-400 hover:text-[##0B6AF4]'}
+    ${active ? 'text-[#0B6AF4]' : 'text-gray-400 hover:text-[#0B6AF4]'}
   `
     .trim()
     .replace(/\s+/g, ' ')

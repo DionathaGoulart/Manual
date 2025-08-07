@@ -12,21 +12,31 @@ const MargemSection: React.FC = () => {
 
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block">
-          Para que nossa marca tenha o máximo de impacto, ela precisa de espaço
-          para respirar. É ela que protege nossa identidade de qualquer ruído
-          visual, garantindo que sua força e clareza se destaquem em qualquer
-          terreno.
+          A margem de segurança do nosso logo, ou área de respiro, é uma zona de
+          controle estratégico. Sua função é proteger a identidade Vextro do
+          ruído visual, garantindo que nossa mensagem de ruptura seja entregue
+          com máximo impacto.
         </Text>
 
         <Text variant="large" align="left" className="text-white block">
-          ara aplicar essa área de forma consistente, usamos a medida ‘X’ — que
-          corresponde a 1/5 da ALTURA do nosso SÍMBOLO — e a medida ‘Y’ — que
-          corresponde a 1/5 da LARGURA do nosso SÍMBOLO — conforme mostra o guia
-          abaixo.
+          Para uma aplicação consistente, a regra é usar a medida “X” — que
+          corresponde à largura da letra “O” do logotipo — como o espaçamento
+          mínimo obrigatório em todos os lados. Sem exceçõe
         </Text>
         <div>
-          <ImageGrid variant={1} images={['/LOGOTIPO.svg']} />
-          <ImageGrid tall variant={1} images={['/LOGOTIPO2.svg']} />
+          <ImageGrid
+            flexibleAspect
+            fullImage
+            variant={1}
+            images={['/mVex.svg']}
+          />
+          <ImageGrid
+            flexibleAspect
+            fullImage
+            tall
+            variant={1}
+            images={['/MV.svg']}
+          />
           <ImageGrid variant={1} images={['LOGOTIPO3.svg']} />
         </div>
       </div>
