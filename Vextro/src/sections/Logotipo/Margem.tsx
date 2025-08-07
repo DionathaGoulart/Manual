@@ -37,7 +37,6 @@ const MargemSection: React.FC = () => {
             variant={1}
             images={['/MV.svg']}
           />
-          <ImageGrid variant={1} images={['LOGOTIPO3.svg']} />
         </div>
       </div>
     </>

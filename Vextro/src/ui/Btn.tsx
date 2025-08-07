@@ -68,7 +68,7 @@ const Button: React.FC<ButtonProps> = ({
   // Classes base do botão
   const baseClasses = `
     inline-flex items-center justify-center
-    font-semibold rounded-xl shadow-lg
+    font-semibold  shadow-lg
     focus:outline-none focus:ring-4
     transform hover:scale-105 transition-all duration-200 ease-in-out
     gap-3

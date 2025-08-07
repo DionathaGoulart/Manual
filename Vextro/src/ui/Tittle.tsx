@@ -23,6 +23,11 @@ const VARIANT_CLASSES: Record<TitleVariant, string> = {
   small: 'text-2xl' // 23px exato
 }
 
+const MARGIN_BOTTOM_CLASSES: Record<TitleVariant, string> = {
+  large: 'mb-8',
+  small: 'mb-2'
+}
+
 const DEFAULT_TAGS: Record<TitleVariant, 'h2' | 'h3'> = {
   large: 'h2',
   small: 'h3'
@@ -66,12 +71,11 @@ const Title: React.FC<TitleProps> = ({
 }) => {
   // Define a tag automaticamente baseada na variante se não especificada
   const Component = as || DEFAULT_TAGS[variant]
-
   const isCustomColorValue = color && isCustomColor(color)
 
   const classes = [
     'font-orbit-gate',
-    'mb-6',
+    MARGIN_BOTTOM_CLASSES[variant], // Margin bottom baseado na variante
     VARIANT_CLASSES[variant],
     'leading-[100%]',
     'tracking-[0%]',

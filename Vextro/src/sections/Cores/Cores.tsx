@@ -7,43 +7,42 @@ const CoresSection: React.FC = () => {
   return (
     <>
       <Title variant="large" align="left" className="text-white">
-        Cores Principais
+        Palet a de Cores
       </Title>
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block">
           Clique sobre qualquer código de cor para copiá-lo instantaneamente e
           garantir a aplicação exata.
         </Text>
-        <Card
-          leftTitle="Laranja"
-          leftSubtitle="Tracionado"
-          rightItems={[
-            'HEX: #FF5733',
-            'CMYK: 00, 76, 77, 00',
-            'RGB: 255, 087, 051'
-          ]}
-          colorVariant={1}
-        />
-        <Card
-          leftTitle="Preto"
-          leftSubtitle="Tracionado"
-          rightItems={[
-            'HEX: #191919',
-            'CMYK: 00, 00, 00, 90',
-            'RGB: 025, 025, 025'
-          ]}
-          colorVariant={2}
-        />
-        <Card
-          leftTitle="Branco"
-          leftSubtitle="Tracionado"
-          rightItems={[
-            'HEX: #F9F9F9',
-            'CMYK: 00, 00, 00, 02',
-            'RGB: 249, 249, 249'
-          ]}
-          colorVariant={3}
-        />
+        <div>
+          <Card
+            leftTitle="AZUL do contra"
+            rightItems={[
+              'HEX: #0B6AF4',
+              'CMYK: 00, 76, 77, 00',
+              'RGB: 255, 087, 051'
+            ]}
+            colorVariant={1}
+          />
+          <Card
+            leftTitle="Preto potente"
+            rightItems={[
+              'HEX: #101010',
+              'CMYK: 00, 00, 00, 90',
+              'RGB: 025, 025, 025'
+            ]}
+            colorVariant={2}
+          />
+          <Card
+            leftTitle="Branco destaque"
+            rightItems={[
+              'HEX: #FFFFFF',
+              'CMYK: 00, 00, 00, 02',
+              'RGB: 249, 249, 249'
+            ]}
+            colorVariant={3}
+          />
+        </div>
       </div>
       <Title variant="large" align="left" className="text-white mt-32">
         Cores <br /> Secundárias

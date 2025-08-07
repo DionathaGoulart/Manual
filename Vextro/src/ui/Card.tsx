@@ -21,19 +21,19 @@ export type CardProps = {
 const COLOR_VARIANTS: Record<ColorVariant, { bg: string; textColor: string }> =
   {
     1: {
-      bg: '#FF5733',
+      bg: '#0B6AF4',
       textColor: '#212121'
     },
     2: {
-      bg: '#212121',
+      bg: '#101010',
       textColor: '#F9F9F9'
     },
     3: {
-      bg: '#F9F9F9',
+      bg: '#FFFFFF',
       textColor: '#212121'
     },
     4: {
-      bg: '#33FF70',
+      bg: '#FFFFFF',
       textColor: '#212121'
     },
     5: {
@@ -53,15 +53,18 @@ const Card: React.FC<CardProps> = ({
   className = ''
 }) => {
   const colors = COLOR_VARIANTS[colorVariant]
+  const hasSubtitle = leftSubtitle && leftSubtitle.trim() !== ''
 
   return (
     <div
-      className={`w-full rounded-xl p-6 ${className}`}
+      className={`w-full p-2 ${className}`}
       style={{ backgroundColor: colors.bg }}
     >
-      <div className="flex justify-between items-center px-6 py-2">
+      <div className="flex justify-between items-center px-6">
         {/* Lado Esquerdo - Títulos */}
-        <div className="flex flex-col space-y-2">
+        <div
+          className={`flex flex-col ${hasSubtitle ? 'space-y-2' : 'justify-center mt-5'}`}
+        >
           <Title
             variant="small"
             color={colors.textColor}
@@ -70,14 +73,16 @@ const Card: React.FC<CardProps> = ({
           >
             {leftTitle}
           </Title>
-          <Title
-            variant="small"
-            color={colors.textColor}
-            align="left"
-            className="mb-0"
-          >
-            {leftSubtitle}
-          </Title>
+          {hasSubtitle && (
+            <Title
+              variant="small"
+              color={colors.textColor}
+              align="left"
+              className="mb-0"
+            >
+              {leftSubtitle}
+            </Title>
+          )}
         </div>
 
         {/* Lado Direito - Lista */}
@@ -85,7 +90,7 @@ const Card: React.FC<CardProps> = ({
           {rightItems.map((item, index) => (
             <Text
               key={index}
-              variant="medium"
+              variant="small"
               as="span"
               color={colors.textColor}
               bulletColor={colors.textColor}

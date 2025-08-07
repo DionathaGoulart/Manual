@@ -1,27 +1,26 @@
 import React from 'react'
 import Title from '../../ui/Tittle'
 import Text from '../../ui/Text'
-import TwoColumnText from '@/ui/TwoColumnText'
-import ImageGrid from '@/ui/Images'
 
 const PrincipalSection: React.FC = () => {
   return (
     <>
       <Title variant="large" align="left" className="text-white">
-        Principal
+        Introdução
       </Title>
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block">
-          Toda tração nasce de um ponto de ignição. Um momento em que a energia
-          acumulada é liberada com força e propósito. A nossa cor principal foi
-          escolhida para capturar exatamente esse instante.
+          A tipografia não é a roupa da marca; é a sua voz tornada legível. É a
+          forma como soamos em um título, em um parágrafo, em uma única palavra.
+          Cada fonte carrega uma personalidade, uma intenção e um tom.
         </Text>
 
         <Text variant="large" align="left" className="text-white block">
-          Não é um laranja qualquer. É o tom de uma mola estressada pelo
-          trabalho intenso do tracking; o calor gerado pela nossa atenção
-          dedicada, no exato momento em que o potencial acumulado se converte em
-          propulsão pura.
+          Manter a consistência tipográfica, portanto, não é uma questão de
+          organização. É uma demonstração de força e convicção. Uma marca que
+          vacila em sua tipografia é uma marca que não acredita na própria
+          mensagem. Nós não vacilamos. Nossa voz é consistente, direta e
+          inconfundível.
         </Text>
       </div>
     </>

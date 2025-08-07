@@ -33,6 +33,8 @@ import GuiaSection from '@/sections/Iconografia/Guia'
 import ExemplosGuiaSection from '@/sections/Iconografia/Exemplos'
 
 import InspiSection from '@/sections/Inspiracoes/Inspi'
+import InstitucionalSection from '@/sections/Tipografia/Institucional'
+import AplicacaoSection from '@/sections/Tipografia/Aplicacao'
 
 const Home: React.FC = () => {
   const [activeItem, setActiveItem] = useState('1.1')
@@ -60,6 +62,8 @@ const Home: React.FC = () => {
       { id: '5.1', content: <ContextoSection /> },
       { id: '5.2', content: <CoresSection /> },
       { id: '6.1', content: <PrincipalSection /> },
+      { id: '6.2', content: <InstitucionalSection /> },
+      { id: '6.3', content: <AplicacaoSection /> },
       { id: '7.1', content: <MolaSection /> },
       { id: '7.2', content: <CaixaSection /> },
       { id: '7.3', content: <GraficSection /> },

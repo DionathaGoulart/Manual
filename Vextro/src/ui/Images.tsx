@@ -23,7 +23,7 @@ const ImageGrid: React.FC<ImageGridProps> = ({
       containerClass: 'flex items-center justify-center py-1',
       itemClass: `${fullImage ? '' : 'p-16'} ${
         flexibleAspect
-          ? `w-full ${tall ? 'h-96' : 'h-64'}`
+          ? `w-full ${tall ? 'h-100' : 'h-64'}`
           : `w-[570px] ${tall ? 'h-96' : 'h-[570px]'}`
       } flex items-center justify-center overflow-hidden`,
       gap: '',
