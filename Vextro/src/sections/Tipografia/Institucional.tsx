@@ -11,8 +11,14 @@ const InstitucionalSection: React.FC = () => {
 
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
-        TIPOGRAFIA institucional
+      <Title
+        bold
+        variant="large"
+        align="left"
+        className="text-white font-ss02 font-ss01 font-ligatures font-dlig"
+      >
+        <span className="font-ss02">Tipografia</span> institucio
+        <span className="font-ss02">nal</span>
       </Title>
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block">

@@ -6,8 +6,14 @@ import ImageGrid from '@/ui/Images'
 const AplicacaoSection: React.FC = () => {
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
-        Aplicação
+      <Title
+        bold
+        variant="large"
+        align="left"
+        className="text-white font-ss02 font-ss01 font-ligatures font-dlig"
+      >
+        <span className="font-ss02">A</span>plicaç
+        <span className="font-ss02">ã</span>o
       </Title>
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block">

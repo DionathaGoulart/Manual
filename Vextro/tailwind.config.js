@@ -10,10 +10,8 @@ export default {
         text: 'rgba(249, 249, 249, 1)',
       },
       fontFamily: {
-        'orbit-gate': ['Orbit Gate', 'sans-serif'],
-        'switzer': ['Switzer', 'sans-serif'],
-        'lt-superior-regular': ['LTSuperior-Regular', 'serif'],
-        'lt-superior-semibold': ['LTSuperior-SemiBold', 'serif'],
+        'avantique': ['Avantique', 'sans-serif'],
+        'avantique-variable': ['Avantique-Variable', 'sans-serif'],
       },
       animation: {
         autoRun3d: "autoRun3d 20s linear infinite",
@@ -32,5 +30,17 @@ export default {
       },
     }
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.font-dlig': {
+          'font-feature-settings': "'dlig' on",
+        },
+        '.font-ss02': {
+          'font-feature-settings': "'ss02' on",
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    },
+  ],
 }

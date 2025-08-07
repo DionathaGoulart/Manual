@@ -20,3 +20,33 @@ body {
   height: 100%;
   background-color: #191919;
 }
+
+@layer utilities {
+  .font-swash {
+    font-feature-settings: 'swsh' 1;
+  }
+
+  .font-alternate {
+    font-feature-settings: 'salt' 1;
+  }
+
+  .font-ligatures {
+    font-feature-settings: 'liga' 1;
+  }
+
+  .font-ss01 {
+    font-feature-settings: 'ss01' 1;
+  }
+
+  .font-ss02 {
+    font-feature-settings: 'ss02' 1;
+  }
+
+  .font-stylistic {
+    font-feature-settings: 'calt', 'liga', 'salt', 'ss01';
+  }
+
+  .font-dlig {
+    font-feature-settings: 'dlig' 1;
+  }
+}

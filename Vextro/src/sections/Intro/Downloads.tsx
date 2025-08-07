@@ -10,9 +10,15 @@ const DownloadSection: React.FC = () => {
 
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
+      <Title
+        bold
+        variant="large"
+        align="left"
+        className="text-white font-ss02 font-ss01 font-ligatures font-dlig"
+      >
         Downloads
       </Title>
+
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block mb-8">
           Nossos ativos visuais são a expressão gráfica da nossa insatisfação.

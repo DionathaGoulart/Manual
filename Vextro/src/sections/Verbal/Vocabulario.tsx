@@ -6,7 +6,7 @@ import TwoColumnText from '@/ui/TwoColumnText'
 const VocabularioSection: React.FC = () => {
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
+      <Title bold variant="large" align="left" className="text-white font-ss02">
         Vocabulário
       </Title>
 

@@ -6,7 +6,7 @@ import TwoColumnText from '@/ui/TwoColumnText'
 const PersonalidadeSection: React.FC = () => {
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
+      <Title bold variant="large" align="left" className="text-white font-ss02">
         Personalidade
       </Title>
 

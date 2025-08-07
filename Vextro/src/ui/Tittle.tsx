@@ -65,7 +65,7 @@ const Title: React.FC<TitleProps> = ({
   variant = 'large',
   as,
   color = '',
-  bold = false,
+  bold = true,
   align = 'center',
   className = ''
 }) => {
@@ -74,14 +74,14 @@ const Title: React.FC<TitleProps> = ({
   const isCustomColorValue = color && isCustomColor(color)
 
   const classes = [
-    'font-orbit-gate',
+    'font-avantique',
     MARGIN_BOTTOM_CLASSES[variant], // Margin bottom baseado na variante
     VARIANT_CLASSES[variant],
     'leading-[100%]',
-    'tracking-[0%]',
+    'tracking-[-2%]',
     'uppercase',
     ALIGN_CLASSES[align],
-    bold ? 'font-bold' : 'font-normal',
+    bold ? 'font-medium' : 'font-normal',
     !isCustomColorValue && color,
     className
   ]

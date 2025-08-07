@@ -33,7 +33,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
 
   const buttonClasses = `
     w-full text-left px-6 py-3 transition-colors duration-200
-    hover:text-[#0B6AF4] font-lt-superior text-[19px] leading-[27px]
+    hover:text-[#0B6AF4] font-avantique text-[19px] leading-[27px]
     tracking-[0.01em] font-normal
     ${isActive ? 'text-[#0B6AF4]' : 'text-white/40'}
   `

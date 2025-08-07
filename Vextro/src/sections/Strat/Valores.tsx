@@ -6,8 +6,8 @@ import TwoColumnText from '@/ui/TwoColumnText'
 const ValoresSection: React.FC = () => {
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
-        Valores{' '}
+      <Title bold variant="large" align="left" className="text-white font-dlig">
+        <span className="font-ss02 font-ss01">Va</span>lores
       </Title>
 
       <div className="space-y-6">

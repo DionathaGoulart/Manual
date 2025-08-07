@@ -6,8 +6,13 @@ import ImageGrid from '@/ui/Images'
 const MargemSection: React.FC = () => {
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
-        Margem de Segurança{' '}
+      <Title
+        bold
+        variant="large"
+        align="left"
+        className="text-white font-ss02 font-ss01 font-ligatures font-s002"
+      >
+        Margem de Segurança
       </Title>
 
       <div className="space-y-6">

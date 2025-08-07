@@ -34,9 +34,9 @@ const DEFAULT_TAGS: Record<TextVariant, 'p' | 'span'> = {
 }
 
 const WEIGHT_CLASSES: Record<TextVariant, string> = {
-  large: 'font-normal', // 400 regular
-  medium: 'font-semibold', // 600 semibold
-  small: 'font-normal' // 400 regular
+  large: 'font-light', // 400 regular
+  medium: 'font-light', // 600 semibold
+  small: 'font-light' // 400 regular
 }
 
 const ALIGN_CLASSES: Record<'left' | 'center' | 'right', string> = {
@@ -84,7 +84,7 @@ const Text: React.FC<TextProps> = ({
 
   // Classes base compartilhadas
   const baseClasses = [
-    'font-switzer',
+    'avantique',
     VARIANT_CLASSES[variant],
     WEIGHT_CLASSES[variant],
     ALIGN_CLASSES[align],

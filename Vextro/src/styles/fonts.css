@@ -1,31 +1,55 @@
-/* Orbit Gate */
 @font-face {
-  font-family: 'Orbit Gate';
-  src: url('/fonts/Orbit-Gate.ttf') format('truetype');
-  font-weight: normal;
+  font-family: 'Avantique';
+  src: url('/fonts/Avantique-Thin.otf') format('opentype');
+  font-weight: 100;
   font-style: normal;
 }
 
-/* Switzer */
 @font-face {
-  font-family: 'Switzer';
-  src: url('/fonts/Switzer.ttf') format('truetype');
-  font-weight: normal;
+  font-family: 'Avantique';
+  src: url('/fonts/Avantique-Extralight.otf') format('opentype');
+  font-weight: 200;
   font-style: normal;
 }
 
-/* LTSuperior-Regular */
 @font-face {
-  font-family: 'LTSuperior-Regular';
-  src: url('/fonts/LTSuperior-Regular.otf') format('opentype');
-  font-weight: normal;
+  font-family: 'Avantique';
+  src: url('/fonts/Avantique-Light.otf') format('opentype');
+  font-weight: 300;
   font-style: normal;
 }
 
-/* LTSuperior-SemiBold */
 @font-face {
-  font-family: 'LTSuperior-SemiBold';
-  src: url('/fonts/LTSuperior-SemiBold.otf') format('opentype');
+  font-family: 'Avantique';
+  src: url('/fonts/Avantique-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avantique';
+  src: url('/fonts/Avantique-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avantique';
+  src: url('/fonts/Avantique-Semibold.otf') format('opentype');
   font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avantique';
+  src: url('/fonts/Avantique-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avantique-Variable';
+  src: url('/fonts/Avantique-Variable.ttf') format('truetype-variations');
+  font-weight: 100 900; /* Define a faixa de peso da fonte variável */
   font-style: normal;
 }

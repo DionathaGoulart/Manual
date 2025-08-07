@@ -5,8 +5,13 @@ import Text from '../../ui/Text'
 const FilosofiaSection: React.FC = () => {
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
-        Filosofia{' '}
+      <Title
+        bold
+        variant="large"
+        align="left"
+        className="text-white font-ss02 font-ss01 font-ligatures font-dlig"
+      >
+        Filosofia
       </Title>
 
       <div className="space-y-6">

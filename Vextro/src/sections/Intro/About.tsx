@@ -5,8 +5,16 @@ import Text from '../../ui/Text'
 const AboutSection: React.FC = () => {
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
-        Sobre a vextro©
+      <Title bold variant="large" align="left" className="text-white">
+        Sobre{' '}
+        <span
+          className="
+      font-bold
+      font-ss02
+    "
+        >
+          a vextro©
+        </span>
       </Title>
 
       <div className="space-y-6">

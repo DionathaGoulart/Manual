@@ -6,8 +6,8 @@ import TwoColumnText from '@/ui/TwoColumnText'
 const ExemplosSection: React.FC = () => {
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
-        Exemplos
+      <Title bold variant="large" align="left" className="text-white font-ss02">
+        Exem<span className="font-dlig">plos</span>
       </Title>
 
       <div className="space-y-6">

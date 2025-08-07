@@ -6,7 +6,12 @@ import Card from '@/ui/Card'
 const CoresSection: React.FC = () => {
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
+      <Title
+        bold
+        variant="large"
+        align="left"
+        className="text-white font-ss02 font-ss01 font-ligatures font-s002"
+      >
         Palet a de Cores
       </Title>
       <div className="space-y-6">

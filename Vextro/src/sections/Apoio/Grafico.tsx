@@ -6,7 +6,12 @@ import ImageGrid from '@/ui/Images'
 const GraficoSection: React.FC = () => {
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
+      <Title
+        bold
+        variant="large"
+        align="left"
+        className="text-white font-ss02 font-ss01 font-ligatures font-ss02"
+      >
         APOIO GRÁFICO
       </Title>
       <div className="space-y-6">

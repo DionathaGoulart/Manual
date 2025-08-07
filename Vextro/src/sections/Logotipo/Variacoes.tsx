@@ -6,8 +6,13 @@ import ImageGrid from '@/ui/Images'
 const VariacoesSection: React.FC = () => {
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
-        Variações{' '}
+      <Title
+        bold
+        variant="large"
+        align="left"
+        className="text-white font-ss02 font-ss01 font-ligatures font-s002"
+      >
+        Variações
       </Title>
 
       <div className="space-y-6">

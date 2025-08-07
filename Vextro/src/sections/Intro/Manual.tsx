@@ -6,8 +6,16 @@ const ManualSection: React.FC = () => {
   return (
     <>
       {/* Primeira Parte */}
-      <Title variant="large" align="left" className="text-white">
-        Sobre o Manual
+      <Title bold variant="large" align="left" className="text-white">
+        Sobre o{' '}
+        <span
+          className="
+      font-bold
+      font-ss02
+    "
+        >
+          Manual
+        </span>
       </Title>
 
       <div className="space-y-6">

@@ -31,7 +31,7 @@ const SubMenuItem: React.FC<SubMenuItemProps> = ({
     <li>
       <button onClick={() => onClick(id)} className={buttonClasses}>
         <span className={idSpanClasses}>{id}</span>
-        <span className="font-lt-superior font-normal text-[15px] leading-[23px] tracking-[0.03em]">
+        <span className="font-avantique font-normal text-[15px] leading-[23px] tracking-[0.03em]">
           {title}
         </span>
       </button>

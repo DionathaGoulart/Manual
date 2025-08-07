@@ -6,8 +6,13 @@ import TwoColumnText from '@/ui/TwoColumnText'
 const FotografiaSection: React.FC = () => {
   return (
     <>
-      <Title variant="large" align="left" className="text-white">
-        fotografia
+      <Title
+        bold
+        variant="large"
+        align="left"
+        className="text-white font-ss02 font-ss01 font-ligatures font-dlig"
+      >
+        foto<span className="font-ss02">grafia</span>
       </Title>
 
       <div className="space-y-6">
