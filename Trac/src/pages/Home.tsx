@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
+import AnimatedSection from '@/components/AnimatedSection'
 
 // Imports organizados por categoria
 import ManualSection from '@/sections/Intro/Manual'
@@ -35,51 +36,176 @@ import ExemplosGuiaSection from '@/sections/Iconografia/Exemplos'
 import InspiSection from '@/sections/Inspiracoes/Inspi'
 
 const Home: React.FC = () => {
-  const [activeMainSection, setActiveMainSection] = useState('1') // Seção principal ativa
-  const [activeItem, setActiveItem] = useState('1.1') // Item específico ativo
+  const [activeMainSection, setActiveMainSection] = useState('1')
+  const [activeItem, setActiveItem] = useState('1.1')
   const [isScrollingByClick, setIsScrollingByClick] = useState(false)
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({})
-  // Memoização das seções para evitar recriação desnecessária
+
+  // Memoização das seções com configurações de animação
   const allSections = useMemo(
     () => ({
       '1': [
-        { id: '1.1', content: <ManualSection /> },
-        { id: '1.2', content: <AboutSection /> },
-        { id: '1.3', content: <DownloadSection /> }
+        {
+          id: '1.1',
+          content: <ManualSection />,
+          animation: 'fadeUp' as const,
+          delay: 0
+        },
+        {
+          id: '1.2',
+          content: <AboutSection />,
+          animation: 'fadeLeft' as const,
+          delay: 100
+        },
+        {
+          id: '1.3',
+          content: <DownloadSection />,
+          animation: 'fadeRight' as const,
+          delay: 200
+        }
       ],
       '2': [
-        { id: '2.1', content: <FilosofiaSection /> },
-        { id: '2.2', content: <InimigoSection /> },
-        { id: '2.3', content: <ValoresSection /> },
-        { id: '2.4', content: <DesvaloresSection /> }
+        {
+          id: '2.1',
+          content: <FilosofiaSection />,
+          animation: 'elastic' as const,
+          delay: 0
+        },
+        {
+          id: '2.2',
+          content: <InimigoSection />,
+          animation: 'slideUp' as const,
+          delay: 100
+        },
+        {
+          id: '2.3',
+          content: <ValoresSection />,
+          animation: 'fadeUp' as const,
+          delay: 200
+        },
+        {
+          id: '2.4',
+          content: <DesvaloresSection />,
+          animation: 'fadeLeft' as const,
+          delay: 300
+        }
       ],
       '3': [
-        { id: '3.1', content: <PersonalidadeSection /> },
-        { id: '3.2', content: <ConceitoSection /> },
-        { id: '3.3', content: <VocabularioSection /> },
-        { id: '3.4', content: <ExemplosSection /> }
+        {
+          id: '3.1',
+          content: <PersonalidadeSection />,
+          animation: 'fadeRight' as const,
+          delay: 0
+        },
+        {
+          id: '3.2',
+          content: <ConceitoSection />,
+          animation: 'wave' as const,
+          delay: 100
+        },
+        {
+          id: '3.3',
+          content: <VocabularioSection />,
+          animation: 'scale' as const,
+          delay: 200
+        },
+        {
+          id: '3.4',
+          content: <ExemplosSection />,
+          animation: 'slideUp' as const,
+          delay: 300
+        }
       ],
       '4': [
-        { id: '4.1', content: <LogoSection /> },
-        { id: '4.2', content: <TipoSection /> },
-        { id: '4.3', content: <VariacoesSection /> },
-        { id: '4.4', content: <MargemSection /> }
+        {
+          id: '4.1',
+          content: <LogoSection />,
+          animation: 'zoomBounce' as const,
+          delay: 0
+        },
+        {
+          id: '4.2',
+          content: <TipoSection />,
+          animation: 'fadeLeft' as const,
+          delay: 100
+        },
+        {
+          id: '4.3',
+          content: <VariacoesSection />,
+          animation: 'fadeRight' as const,
+          delay: 200
+        },
+        {
+          id: '4.4',
+          content: <MargemSection />,
+          animation: 'slideDiagonal' as const,
+          delay: 300
+        }
       ],
       '5': [
-        { id: '5.1', content: <ContextoSection /> },
-        { id: '5.2', content: <CoresSection /> }
+        {
+          id: '5.1',
+          content: <ContextoSection />,
+          animation: 'fadeBlur' as const,
+          delay: 0
+        },
+        {
+          id: '5.2',
+          content: <CoresSection />,
+          animation: 'flip' as const,
+          delay: 100
+        }
       ],
-      '6': [{ id: '6.1', content: <PrincipalSection /> }],
+      '6': [
+        {
+          id: '6.1',
+          content: <PrincipalSection />,
+          animation: 'elastic' as const,
+          delay: 0
+        }
+      ],
       '7': [
-        { id: '7.1', content: <MolaSection /> },
-        { id: '7.2', content: <CaixaSection /> },
-        { id: '7.3', content: <GraficSection /> }
+        {
+          id: '7.1',
+          content: <MolaSection />,
+          animation: 'slideRotate' as const,
+          delay: 0
+        },
+        {
+          id: '7.2',
+          content: <CaixaSection />,
+          animation: 'fadeUp' as const,
+          delay: 100
+        },
+        {
+          id: '7.3',
+          content: <GraficSection />,
+          animation: 'scale' as const,
+          delay: 200
+        }
       ],
       '8': [
-        { id: '8.1', content: <GuiaSection /> },
-        { id: '8.2', content: <ExemplosGuiaSection /> }
+        {
+          id: '8.1',
+          content: <GuiaSection />,
+          animation: 'wave' as const,
+          delay: 0
+        },
+        {
+          id: '8.2',
+          content: <ExemplosGuiaSection />,
+          animation: 'slideDiagonal' as const,
+          delay: 100
+        }
       ],
-      '9': [{ id: '9', content: <InspiSection /> }]
+      '9': [
+        {
+          id: '9',
+          content: <InspiSection />,
+          animation: 'zoomBounce' as const,
+          delay: 0
+        }
+      ]
     }),
     []
   )
@@ -109,8 +235,6 @@ const Home: React.FC = () => {
           const sectionId = entry.target.id
           setActiveItem(sectionId)
 
-          // Não atualiza a seção principal quando está navegando via scroll
-          // apenas quando clica diretamente nos itens da sidebar
           window.dispatchEvent(
             new CustomEvent('sectionChange', {
               detail: { activeSection: sectionId }
@@ -147,10 +271,8 @@ const Home: React.FC = () => {
     (event: CustomEvent) => {
       const { subitemId, mainSectionId } = event.detail
 
-      // Se é um clique em uma seção principal, muda a seção ativa
       if (mainSectionId && mainSectionId !== activeMainSection) {
         setActiveMainSection(mainSectionId)
-        // Pega o primeiro item da nova seção
         const newSections =
           allSections[mainSectionId as keyof typeof allSections]
         const firstItemId = newSections?.[0]?.id
@@ -158,7 +280,6 @@ const Home: React.FC = () => {
           setActiveItem(firstItemId)
           setIsScrollingByClick(true)
 
-          // Aguarda um frame para garantir que o DOM foi atualizado
           setTimeout(() => {
             sectionRefs.current[firstItemId]?.scrollIntoView({
               behavior: 'smooth',
@@ -167,9 +288,7 @@ const Home: React.FC = () => {
             setTimeout(() => setIsScrollingByClick(false), 800)
           }, 50)
         }
-      }
-      // Se é um clique em um subitem da mesma seção
-      else if (subitemId) {
+      } else if (subitemId) {
         setActiveItem(subitemId)
         setIsScrollingByClick(true)
 
@@ -196,10 +315,10 @@ const Home: React.FC = () => {
 
   // Classes CSS memoizadas
   const helpBoxClasses = `
-  absolute top-20 right-4 z-50 text-right text-white/70 text-xs leading-tight
-  lg:fixed lg:top-44 lg:right-12 lg:z-50 lg:text-sm lg:leading-relaxed lg:text-white/60
-  xl:top-48 xl:right-16 2xl:top-52 2xl:right-20
-`
+    absolute top-20 right-4 z-50 text-right text-white/70 text-xs leading-tight
+    lg:fixed lg:top-44 lg:right-12 lg:z-50 lg:text-sm lg:leading-relaxed lg:text-white/60
+    xl:top-48 xl:right-16 2xl:top-52 2xl:right-20
+  `
     .trim()
     .replace(/\s+/g, ' ')
 
@@ -228,18 +347,20 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* Renderização das seções da seção principal ativa */}
+      {/* Renderização das seções com animações */}
       {currentSections.map((section) => (
-        <section
+        <AnimatedSection
           key={section.id}
           id={section.id}
           ref={(el) => {
             sectionRefs.current[section.id] = el
           }}
+          delay={section.delay}
+          duration={600}
           className={sectionClasses}
         >
           <div className="max-w-4xl mx-auto w-full">{section.content}</div>
-        </section>
+        </AnimatedSection>
       ))}
 
       {/* Espaçador final */}
