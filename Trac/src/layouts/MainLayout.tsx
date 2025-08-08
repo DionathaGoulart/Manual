@@ -7,7 +7,7 @@ interface MainLayoutProps {
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
-  const [expandedItem, setExpandedItem] = useState<string | null>(null)
+  const [expandedItem, setExpandedItem] = useState<string | null>('1') // Começa com a primeira seção expandida
   const [activeItem, setActiveItem] = useState<string>('1.1')
   const [isCollapsed, setIsCollapsed] = useState(false)
 
@@ -78,19 +78,35 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     (itemId: string) => {
       const itemToExpand = menuItems.find((item) => item.id === itemId)
 
-      if (!itemToExpand?.subitems?.length) {
+      if (!itemToExpand) return
+
+      // Se não tem subitems, é um item direto - navegar para a seção principal
+      if (!itemToExpand.subitems?.length) {
+        setExpandedItem(null)
+        setActiveItem(itemId)
+
+        // Dispara evento para mudança de seção principal
+        window.dispatchEvent(
+          new CustomEvent('sidebarClick', {
+            detail: { mainSectionId: itemId, subitemId: itemId }
+          })
+        )
         return
       }
 
+      // Se já está expandido, colapsa
       if (expandedItem === itemId) {
         setExpandedItem(null)
       } else {
+        // Expande e navega para o primeiro subitem
         setExpandedItem(itemId)
         const firstSubitemId = itemToExpand.subitems[0].id
         setActiveItem(firstSubitemId)
+
+        // Dispara evento para mudança de seção principal
         window.dispatchEvent(
           new CustomEvent('sidebarClick', {
-            detail: { subitemId: firstSubitemId }
+            detail: { mainSectionId: itemId, subitemId: firstSubitemId }
           })
         )
       }

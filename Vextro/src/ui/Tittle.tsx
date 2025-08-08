@@ -19,8 +19,8 @@ export type TitleProps = {
 // CONSTANTES
 // ============================================================================
 const VARIANT_CLASSES: Record<TitleVariant, string> = {
-  large: 'text-6xl', // 51px exato
-  small: 'text-2xl' // 23px exato
+  large: 'text-4xl md:text-6xl', // Mobile: 36px, Desktop: 60px
+  small: 'text-xl md:text-2xl' // Mobile: 20px, Desktop: 24px
 }
 
 const MARGIN_BOTTOM_CLASSES: Record<TitleVariant, string> = {

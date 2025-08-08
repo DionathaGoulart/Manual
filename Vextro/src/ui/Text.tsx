@@ -22,15 +22,15 @@ export type TextProps = {
 // CONSTANTES
 // ============================================================================
 const VARIANT_CLASSES: Record<TextVariant, string> = {
-  large: 'text-lg leading-7', // 19px com line-height 27px
-  medium: 'text-base leading-snug', // 15px com line-height proporcional
-  small: 'text-sm leading-tight' // 13px com line-height proporcional
+  large: 'text-base md:text-lg leading-6 md:leading-7', // Mobile: 16px, Desktop: 18px
+  medium: 'text-sm md:text-base leading-5 md:leading-snug', // Mobile: 14px, Desktop: 16px
+  small: 'text-xs md:text-sm leading-4 md:leading-tight' // Mobile: 12px, Desktop: 14px
 }
 
 const DEFAULT_TAGS: Record<TextVariant, 'p' | 'span'> = {
-  large: 'p', // p para 19px
-  medium: 'span', // span para 15px
-  small: 'p' // p para 13px
+  large: 'p', // 9px
+  medium: 'span', // 15px
+  small: 'p' // 3px
 }
 
 const WEIGHT_CLASSES: Record<TextVariant, string> = {
