@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import Sidebar from '@/components/Sidebar'
+import Sidebar from '@layouts/Sidebar'
 import { menuItems } from '@/data/menuItems'
 
 interface MainLayoutProps {

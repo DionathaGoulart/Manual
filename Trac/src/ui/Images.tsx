@@ -1,12 +1,5 @@
+import { ImageGridProps } from '@/types/Uis'
 import React from 'react'
-
-interface ImageGridProps {
-  variant?: 1 | 2 | 3
-  images?: string[]
-  tall?: boolean
-  bgColors?: string[] // Nova prop para cores de fundo customizáveis
-  fullImage?: boolean // Nova prop para imagem ocupar 100% do card
-}
 
 const ImageGrid: React.FC<ImageGridProps> = ({
   variant = 1,

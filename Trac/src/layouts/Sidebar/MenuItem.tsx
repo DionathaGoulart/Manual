@@ -1,14 +1,6 @@
 import React from 'react'
 import SubMenuItem from './SubMenuItem'
-import { MenuItemData } from '../types/sidebar'
-
-interface MenuItemProps {
-  item: MenuItemData
-  expanded: boolean
-  activeItem: string
-  onToggleExpand: (itemId: string) => void
-  onSubitemClick: (subitemId: string) => void
-}
+import { MenuItemData, MenuItemProps } from '@/types/Sidebar'
 
 const MenuItem: React.FC<MenuItemProps> = ({
   item,

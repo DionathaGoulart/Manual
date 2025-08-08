@@ -1,19 +1,5 @@
+import { TitleVariant, TitleProps } from '@/types/Uis'
 import React from 'react'
-
-// ============================================================================
-// TIPOS
-// ============================================================================
-type TitleVariant = 'large' | 'small'
-
-export type TitleProps = {
-  children: React.ReactNode
-  variant?: TitleVariant
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span'
-  color?: string
-  bold?: boolean
-  align?: 'left' | 'center' | 'right'
-  className?: string
-}
 
 // ============================================================================
 // CONSTANTES

@@ -1,39 +1,31 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
-import AnimatedSection from '@/components/AnimatedSection'
-
-// Imports organizados por categoria
-import ManualSection from '@/sections/Intro/Manual'
-import AboutSection from '@/sections/Intro/About'
-import DownloadSection from '@/sections/Intro/Downloads'
-
-import FilosofiaSection from '@/sections/Strat/Filosofia'
-import InimigoSection from '@/sections/Strat/Inimigo'
-import ValoresSection from '@/sections/Strat/Valores'
-import DesvaloresSection from '@/sections/Strat/Desvalores'
-
-import PersonalidadeSection from '@/sections/Verbal/Personalidade'
-import ConceitoSection from '@/sections/Verbal/Conceito'
-import VocabularioSection from '@/sections/Verbal/Vocabulario'
-import ExemplosSection from '@/sections/Verbal/Exemplos'
-
-import LogoSection from '@/sections/Logotipo/Logo'
-import TipoSection from '@/sections/Logotipo/Tipo'
-import VariacoesSection from '@/sections/Logotipo/Variacoes'
-import MargemSection from '@/sections/Logotipo/Margem'
-
-import ContextoSection from '@/sections/Cores/Contexto'
-import CoresSection from '@/sections/Cores/Cores'
-
-import PrincipalSection from '@/sections/Tipografia/Principal'
-
-import MolaSection from '@/sections/Apoio/Mola'
-import CaixaSection from '@/sections/Apoio/Caixa'
-import GraficSection from '@/sections/Apoio/Grafic'
-
-import GuiaSection from '@/sections/Iconografia/Guia'
-import ExemplosGuiaSection from '@/sections/Iconografia/Exemplos'
-
-import InspiSection from '@/sections/Inspiracoes/Inspi'
+import AnimatedSection from '@components/AnimatedSection'
+import {
+  AboutSection,
+  CaixaSection,
+  ConceitoSection,
+  ContextoSection,
+  CoresSection,
+  DesvaloresSection,
+  DownloadSection,
+  ExemplosGuiaSection,
+  ExemplosSection,
+  FilosofiaSection,
+  GraficSection,
+  GuiaSection,
+  InimigoSection,
+  InspiSection,
+  LogoSection,
+  ManualSection,
+  MargemSection,
+  MolaSection,
+  PersonalidadeSection,
+  PrincipalSection,
+  TipoSection,
+  ValoresSection,
+  VariacoesSection,
+  VocabularioSection
+} from '@sections'
 
 const Home: React.FC = () => {
   const [activeMainSection, setActiveMainSection] = useState('1')

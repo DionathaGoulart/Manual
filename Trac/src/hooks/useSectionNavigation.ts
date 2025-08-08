@@ -1,16 +1,6 @@
 import { useState, useCallback, useEffect } from 'react'
 import { menuItems } from '@/data/menuItems'
-
-interface UseSectionNavigationReturn {
-  activeMainSection: string
-  activeItem: string
-  setActiveMainSection: (section: string) => void
-  setActiveItem: (item: string) => void
-  getMainSectionFromItem: (itemId: string) => string
-  getFirstItemFromSection: (sectionId: string) => string | null
-  navigateToSection: (sectionId: string) => void
-  navigateToItem: (itemId: string) => void
-}
+import { UseSectionNavigationReturn } from '@/types/Sidebar'
 
 /**
  * Hook personalizado para gerenciar navegação dinâmica entre seções

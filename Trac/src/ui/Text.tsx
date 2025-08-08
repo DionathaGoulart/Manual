@@ -1,22 +1,5 @@
 import React from 'react'
-
-// ============================================================================
-// TIPOS
-// ============================================================================
-type TextVariant = 'large' | 'medium' | 'small'
-
-export type TextProps = {
-  children: React.ReactNode
-  variant?: TextVariant
-  as?: 'p' | 'span' | 'div' | 'li'
-  color?: string
-  bulletColor?: string
-  uppercase?: boolean
-  lowercase?: boolean
-  align?: 'left' | 'center' | 'right'
-  className?: string
-  maxWidth?: boolean // Nova prop para controlar se aplica max-width
-}
+import { TextVariant, TextProps } from '@/types/Uis'
 
 // ============================================================================
 // CONSTANTES

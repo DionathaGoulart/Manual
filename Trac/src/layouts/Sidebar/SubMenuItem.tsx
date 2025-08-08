@@ -1,11 +1,5 @@
 import React from 'react'
-
-interface SubMenuItemProps {
-  id: string
-  title: string
-  active: boolean
-  onClick: (id: string) => void
-}
+import { SubMenuItemProps } from '@/types/Sidebar'
 
 const SubMenuItem: React.FC<SubMenuItemProps> = ({
   id,

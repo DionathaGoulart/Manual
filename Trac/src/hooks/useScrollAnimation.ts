@@ -1,16 +1,8 @@
+import {
+  AnimationState,
+  UseScrollAnimationOptions
+} from '@/types/AnimatedSection'
 import { useEffect, useRef, useState, useCallback } from 'react'
-
-interface UseScrollAnimationOptions {
-  threshold?: number
-  rootMargin?: string
-  triggerOnce?: boolean
-  delay?: number
-}
-
-interface AnimationState {
-  isVisible: boolean
-  hasAnimated: boolean
-}
 
 export const useScrollAnimation = (options: UseScrollAnimationOptions = {}) => {
   const {

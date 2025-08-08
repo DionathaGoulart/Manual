@@ -1,3 +1,4 @@
+import { AnalyticsData, RouterContextType, RouteVisit } from '@/types/Routes'
 import React, {
   useState,
   useEffect,
@@ -6,29 +7,6 @@ import React, {
   useCallback,
   useMemo
 } from 'react'
-
-// ============= INTERFACES =============
-interface RouteVisit {
-  id: string
-  route: string
-  source: string
-  timestamp: Date
-  userAgent: string
-}
-
-interface AnalyticsData {
-  totalVisits: number
-  uniqueVisitors: number
-  sourceStats: Record<string, number>
-  routeStats: Record<string, number>
-  visits: RouteVisit[]
-}
-
-interface RouterContextType {
-  currentRoute: string
-  navigate: (route: string, source?: string) => void
-  analytics: AnalyticsData
-}
 
 // ============= CONSTANTS =============
 const REFERRER_SOURCES = {

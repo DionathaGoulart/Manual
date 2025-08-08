@@ -1,20 +1,5 @@
-import React, { ReactNode } from 'react'
-
-// ============================================================================
-// TIPOS
-// ============================================================================
-export type TwoColumnTextProps = {
-  mainTitle?: string // Novo prop para o título principal
-  leftTitle?: string
-  leftParagraph: string | ReactNode
-  rightTitle?: string
-  rightParagraph: string | ReactNode
-  gap?: string
-  className?: string
-  // Removendo mainTitleClassName, pois vamos usar titleClassName
-  titleClassName?: string
-  paragraphClassName?: string
-}
+import { TwoColumnTextProps } from '@/types/Uis'
+import React from 'react'
 
 // ============================================================================
 // COMPONENTE

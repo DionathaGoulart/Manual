@@ -1,13 +1,8 @@
 import React, { useEffect } from 'react'
 import { useRouter } from './index'
-import Home from '@pages/Home'
-import NotFoundPage from '@pages/NotFoundPage'
+import { Home, NotFoundPage } from '@pages'
 
-interface RouteConfig {
-  path: string
-  component: React.ComponentType<any>
-  title?: string
-}
+import { RouteConfig } from '@/types/Routes'
 
 const routesConfig: RouteConfig[] = [
   {

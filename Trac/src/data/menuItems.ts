@@ -1,13 +1,4 @@
-export interface Subitem {
-  id: string
-  title: string
-}
-
-export interface MenuItemData {
-  id: string
-  title: string
-  subitems: Subitem[]
-}
+import { MenuItemData } from '@/types/Sidebar'
 
 export const menuItems: MenuItemData[] = [
   {
