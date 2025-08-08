@@ -333,7 +333,7 @@ const Home: React.FC = () => {
       <div className={helpBoxClasses}>
         <div className="text-start">
           <div className="mt-2 font-medium">Última atualização:</div>
-          <div className="text-white/60">24/07/2025</div>
+          <div className="text-white/60">08/08/2025</div>
           <div className="mt-2 font-medium">Precisa de ajuda?</div>
           <div className="text-white/60">@051jeferson</div>
         </div>
