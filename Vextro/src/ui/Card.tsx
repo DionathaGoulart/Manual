@@ -1,19 +1,7 @@
 import React from 'react'
 import Title from './Tittle'
 import Text from './Text'
-
-// ============================================================================
-// TIPOS
-// ============================================================================
-type ColorVariant = 1 | 2 | 3 | 4 | 5
-
-export type CardProps = {
-  leftTitle?: string
-  leftSubtitle?: string
-  rightItems: string[]
-  colorVariant: ColorVariant
-  className?: string
-}
+import { CardProps, ColorVariant } from '@/types/Uis'
 
 // ============================================================================
 // CONSTANTES

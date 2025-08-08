@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import SidebarLogo from './SidebarLogo'
 import MenuItem from './MenuItem'
-import { SidebarProps } from '../types/sidebar'
+import { SidebarProps } from '@/types/Sidebar'
 
 interface CustomSidebarProps extends SidebarProps {
   isCollapsed: boolean

@@ -1,9 +1,5 @@
 import React from 'react'
-
-interface SidebarLogoProps {
-  logoSrc: string
-  altText: string
-}
+import { SidebarLogoProps } from '@/types/Sidebar'
 
 const SidebarLogo: React.FC<SidebarLogoProps> = ({ logoSrc, altText }) => (
   <div className="p-6 flex justify-start items-center mb-8">

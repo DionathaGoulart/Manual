@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import Sidebar from '@/components/Sidebar'
 import { menuItems } from '@/data/menuItems'
+import Sidebar from './Sidebar'
 
 interface MainLayoutProps {
   children?: React.ReactNode

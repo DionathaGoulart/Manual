@@ -1,37 +1,31 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import AnimatedSection from '@/components/AnimatedSection'
-
-// Imports organizados por categoria
-import ManualSection from '@/sections/Intro/Manual'
-import AboutSection from '@/sections/Intro/About'
-import DownloadSection from '@/sections/Intro/Downloads'
-
-import FilosofiaSection from '@/sections/Strat/Filosofia'
-import InimigoSection from '@/sections/Strat/Inimigo'
-import ValoresSection from '@/sections/Strat/Valores'
-import DesvaloresSection from '@/sections/Strat/Desvalores'
-
-import PersonalidadeSection from '@/sections/Verbal/Personalidade'
-import ConceitoSection from '@/sections/Verbal/Conceito'
-import VocabularioSection from '@/sections/Verbal/Vocabulario'
-import ExemplosSection from '@/sections/Verbal/Exemplos'
-
-import LogoSection from '@/sections/Logotipo/Logo'
-import VariacoesSection from '@/sections/Logotipo/Variacoes'
-import MargemSection from '@/sections/Logotipo/Margem'
-
-import ContextoSection from '@/sections/Cores/Contexto'
-import CoresSection from '@/sections/Cores/Cores'
-
-import PrincipalSection from '@/sections/Tipografia/Principal'
-
-import InspiSection from '@/sections/Inspiracoes/Inspi'
-import InstitucionalSection from '@/sections/Tipografia/Institucional'
-import AplicacaoSection from '@/sections/Tipografia/Aplicacao'
-import GraficoSection from '@/sections/Apoio/Grafico'
-import FotografiaSection from '@/sections/Fotografia/Fotografia'
-import PromptSection from '@/sections/Fotografia/Prompt'
-import RefsSection from '@/sections/Fotografia/Refs'
+import {
+  AboutSection,
+  AplicacaoSection,
+  ConceitoSection,
+  ContextoSection,
+  CoresSection,
+  DesvaloresSection,
+  DownloadSection,
+  ExemplosSection,
+  FilosofiaSection,
+  FotografiaSection,
+  GraficoSection,
+  InimigoSection,
+  InspiSection,
+  InstitucionalSection,
+  LogoSection,
+  ManualSection,
+  MargemSection,
+  PersonalidadeSection,
+  PrincipalSection,
+  PromptSection,
+  RefsSection,
+  ValoresSection,
+  VariacoesSection,
+  VocabularioSection
+} from '@/sections'
 
 const Home: React.FC = () => {
   const [activeMainSection, setActiveMainSection] = useState('1')

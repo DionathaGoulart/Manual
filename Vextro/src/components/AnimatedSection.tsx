@@ -1,23 +1,6 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
+import { AnimatedSectionProps } from '@/types/AnimatedSection'
 import React, { forwardRef, useImperativeHandle } from 'react'
-
-type AnimationType =
-  | 'fadeUp'
-  | 'fadeDown'
-  | 'fadeLeft'
-  | 'fadeRight'
-  | 'scale'
-  | 'slideUp'
-  | 'slideDown'
-
-interface AnimatedSectionProps {
-  children: React.ReactNode
-  animation?: AnimationType
-  delay?: number
-  duration?: number
-  className?: string
-  id?: string
-}
 
 const AnimatedSection = forwardRef<HTMLElement, AnimatedSectionProps>(
   (

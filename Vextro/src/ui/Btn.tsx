@@ -1,14 +1,5 @@
+import { ButtonProps } from '@/types/Uis'
 import React from 'react'
-
-interface ButtonProps {
-  text: string
-  onClick: () => void
-  icon?: 'download' | 'upload' | 'none'
-  variant?: 'primary' | 'secondary' | 'success' | 'danger'
-  size?: 'small' | 'medium' | 'large'
-  disabled?: boolean
-  className?: string
-}
 
 const Button: React.FC<ButtonProps> = ({
   text,
