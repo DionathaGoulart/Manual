@@ -322,7 +322,7 @@ const Home: React.FC = () => {
     .replace(/\s+/g, ' ')
 
   const spacerClasses = `
-    h-[60vh] md:h-[70vh] lg:h-[80vh]
+    h-[20vh] md:h-[20vh] lg:h-[20vh]
   `
     .trim()
     .replace(/\s+/g, ' ')
