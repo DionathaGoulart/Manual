@@ -32,8 +32,9 @@ const Home: React.FC = () => {
   const [activeItem, setActiveItem] = useState('1.1')
   const [isScrollingByClick, setIsScrollingByClick] = useState(false)
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({})
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  // Configuração de animações para cada seção
+  // Configuração de animações
   const sectionAnimations = useMemo(() => {
     const animations = [
       'fadeUp',
@@ -56,167 +57,43 @@ const Home: React.FC = () => {
   const allSections = useMemo(
     () => ({
       '1': [
-        {
-          id: '1.1',
-          content: <ManualSection />,
-          animation: 'fadeUp' as const,
-          delay: 0
-        },
-        {
-          id: '1.2',
-          content: <AboutSection />,
-          animation: 'fadeLeft' as const,
-          delay: 100
-        },
-        {
-          id: '1.3',
-          content: <DownloadSection />,
-          animation: 'fadeRight' as const,
-          delay: 200
-        }
+        { id: '1.1', content: <ManualSection /> },
+        { id: '1.2', content: <AboutSection /> },
+        { id: '1.3', content: <DownloadSection /> }
       ],
       '2': [
-        {
-          id: '2.1',
-          content: <FilosofiaSection />,
-          animation: 'scale' as const,
-          delay: 0
-        },
-        {
-          id: '2.2',
-          content: <InimigoSection />,
-          animation: 'slideUp' as const,
-          delay: 100
-        },
-        {
-          id: '2.3',
-          content: <ValoresSection />,
-          animation: 'fadeUp' as const,
-          delay: 200
-        },
-        {
-          id: '2.4',
-          content: <DesvaloresSection />,
-          animation: 'fadeLeft' as const,
-          delay: 300
-        }
+        { id: '2.1', content: <FilosofiaSection /> },
+        { id: '2.2', content: <InimigoSection /> },
+        { id: '2.3', content: <ValoresSection /> },
+        { id: '2.4', content: <DesvaloresSection /> }
       ],
       '3': [
-        {
-          id: '3.1',
-          content: <PersonalidadeSection />,
-          animation: 'fadeRight' as const,
-          delay: 0
-        },
-        {
-          id: '3.2',
-          content: <VocabularioSection />,
-          animation: 'scale' as const,
-          delay: 100
-        },
-        {
-          id: '3.3',
-          content: <ExemplosSection />,
-          animation: 'slideUp' as const,
-          delay: 200
-        },
-        {
-          id: '3.4',
-          content: <ConceitoSection />,
-          animation: 'fadeUp' as const,
-          delay: 300
-        }
+        { id: '3.1', content: <PersonalidadeSection /> },
+        { id: '3.2', content: <VocabularioSection /> },
+        { id: '3.3', content: <ExemplosSection /> },
+        { id: '3.4', content: <ConceitoSection /> }
       ],
       '4': [
-        {
-          id: '4.1',
-          content: <LogoSection />,
-          animation: 'fadeLeft' as const,
-          delay: 0
-        },
-        {
-          id: '4.2',
-          content: <VariacoesSection />,
-          animation: 'fadeRight' as const,
-          delay: 100
-        },
-        {
-          id: '4.3',
-          content: <MargemSection />,
-          animation: 'scale' as const,
-          delay: 200
-        }
+        { id: '4.1', content: <LogoSection /> },
+        { id: '4.2', content: <VariacoesSection /> },
+        { id: '4.3', content: <MargemSection /> }
       ],
       '5': [
-        {
-          id: '5.1',
-          content: <ContextoSection />,
-          animation: 'slideUp' as const,
-          delay: 0
-        },
-        {
-          id: '5.2',
-          content: <CoresSection />,
-          animation: 'fadeUp' as const,
-          delay: 100
-        }
+        { id: '5.1', content: <ContextoSection /> },
+        { id: '5.2', content: <CoresSection /> }
       ],
       '6': [
-        {
-          id: '6.1',
-          content: <PrincipalSection />,
-          animation: 'fadeLeft' as const,
-          delay: 0
-        },
-        {
-          id: '6.2',
-          content: <InstitucionalSection />,
-          animation: 'fadeRight' as const,
-          delay: 100
-        },
-        {
-          id: '6.3',
-          content: <AplicacaoSection />,
-          animation: 'scale' as const,
-          delay: 200
-        }
+        { id: '6.1', content: <PrincipalSection /> },
+        { id: '6.2', content: <InstitucionalSection /> },
+        { id: '6.3', content: <AplicacaoSection /> }
       ],
-      '7': [
-        {
-          id: '7',
-          content: <GraficoSection />,
-          animation: 'slideUp' as const,
-          delay: 0
-        }
-      ],
+      '7': [{ id: '7', content: <GraficoSection /> }],
       '8': [
-        {
-          id: '8.1',
-          content: <FotografiaSection />,
-          animation: 'fadeUp' as const,
-          delay: 0
-        },
-        {
-          id: '8.2',
-          content: <PromptSection />,
-          animation: 'fadeLeft' as const,
-          delay: 100
-        },
-        {
-          id: '8.3',
-          content: <RefsSection />,
-          animation: 'fadeRight' as const,
-          delay: 200
-        }
+        { id: '8.1', content: <FotografiaSection /> },
+        { id: '8.2', content: <PromptSection /> },
+        { id: '8.3', content: <RefsSection /> }
       ],
-      '9': [
-        {
-          id: '9',
-          content: <InspiSection />,
-          animation: 'scale' as const,
-          delay: 0
-        }
-      ]
+      '9': [{ id: '9', content: <InspiSection /> }]
     }),
     []
   )
@@ -226,105 +103,135 @@ const Home: React.FC = () => {
     return allSections[activeMainSection as keyof typeof allSections] || []
   }, [activeMainSection, allSections])
 
-  // Configurações do observer memoizadas
-  const observerOptions = useMemo(
-    () => ({
-      root: null,
-      rootMargin: '-20% 0px -80% 0px',
-      threshold: 0
-    }),
-    []
-  )
+  // Função para scroll suave
+  const smoothScrollToSection = useCallback((sectionId: string) => {
+    const element = sectionRefs.current[sectionId]
+    if (!element) return
 
-  // Callback para o observer
-  const handleIntersection = useCallback(
-    (entries: IntersectionObserverEntry[]) => {
-      if (isScrollingByClick) return
+    const yOffset = -80 // Offset para compensar headers fixos
+    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
 
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const sectionId = entry.target.id
-          setActiveItem(sectionId)
+    window.scrollTo({ top: y, behavior: 'smooth' })
+  }, [])
 
+  // Intersection Observer para detectar seção ativa no scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (isScrollingByClick) return
+
+        // Encontra a seção mais visível
+        let maxRatio = 0
+        let mostVisibleSection = ''
+
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+            maxRatio = entry.intersectionRatio
+            mostVisibleSection = entry.target.id
+          }
+        })
+
+        if (mostVisibleSection && mostVisibleSection !== activeItem) {
+          setActiveItem(mostVisibleSection)
+
+          // Dispara evento para sincronizar com o sidebar
           window.dispatchEvent(
             new CustomEvent('sectionChange', {
-              detail: { activeSection: sectionId }
+              detail: { activeSection: mostVisibleSection }
             })
           )
         }
-      })
-    },
-    [isScrollingByClick]
-  )
-
-  // Setup do Intersection Observer
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      handleIntersection,
-      observerOptions
+      },
+      {
+        root: null,
+        rootMargin: '-20% 0px -20% 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      }
     )
-    const currentRefs = Object.values(sectionRefs.current)
 
-    currentRefs.forEach((section) => {
+    // Observa todas as seções que existem
+    Object.values(sectionRefs.current).forEach((section) => {
       if (section) observer.observe(section)
     })
 
-    return () => {
-      currentRefs.forEach((section) => {
-        if (section) observer.unobserve(section)
-      })
-      observer.disconnect()
-    }
-  }, [handleIntersection, observerOptions, currentSections])
+    return () => observer.disconnect()
+  }, [activeItem, isScrollingByClick])
 
   // Handler para cliques do sidebar
   const handleSidebarClick = useCallback(
     (event: CustomEvent) => {
-      const { subitemId, mainSectionId } = event.detail
+      const { sectionId, parentId, isDirect } = event.detail
 
-      if (mainSectionId && mainSectionId !== activeMainSection) {
-        setActiveMainSection(mainSectionId)
-        const newSections =
-          allSections[mainSectionId as keyof typeof allSections]
-        const firstItemId = newSections?.[0]?.id
-        if (firstItemId) {
-          setActiveItem(firstItemId)
-          setIsScrollingByClick(true)
+      if (!sectionId) return
 
-          setTimeout(() => {
-            sectionRefs.current[firstItemId]?.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            })
-            setTimeout(() => setIsScrollingByClick(false), 800)
-          }, 50)
-        }
-      } else if (subitemId) {
-        setActiveItem(subitemId)
-        setIsScrollingByClick(true)
+      // Ativa flag de scroll programático
+      setIsScrollingByClick(true)
 
-        sectionRefs.current[subitemId]?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        })
-
-        setTimeout(() => setIsScrollingByClick(false), 800)
+      // Limpa timeout anterior
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
       }
+
+      // Para itens diretos (7, 9)
+      if (isDirect) {
+        setActiveMainSection(sectionId)
+        setActiveItem(sectionId)
+
+        // Limpa as refs antigas e scroll para o topo
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }, 100)
+      }
+      // Para itens com seção pai
+      else if (parentId) {
+        setActiveMainSection(parentId)
+        setActiveItem(sectionId)
+
+        // Limpa as refs antigas e scroll para o topo
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }, 100)
+      }
+      // Para subitens na mesma seção
+      else {
+        setActiveItem(sectionId)
+        smoothScrollToSection(sectionId)
+      }
+
+      // Desativa a flag após o scroll
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsScrollingByClick(false)
+      }, 1200)
     },
-    [activeMainSection, allSections]
+    [smoothScrollToSection]
   )
 
   // Listener para eventos do sidebar
   useEffect(() => {
     window.addEventListener('sidebarClick', handleSidebarClick as EventListener)
-    return () =>
+
+    return () => {
       window.removeEventListener(
         'sidebarClick',
         handleSidebarClick as EventListener
       )
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
+    }
   }, [handleSidebarClick])
 
-  // Classes CSS memoizadas
+  // Atualiza a seção principal quando o activeItem muda via scroll
+  useEffect(() => {
+    const mainSection = activeItem.includes('.')
+      ? activeItem.split('.')[0]
+      : activeItem
+    if (mainSection !== activeMainSection) {
+      setActiveMainSection(mainSection)
+    }
+  }, [activeItem, activeMainSection])
+
+  // Classes CSS
   const helpBoxClasses = `
     absolute top-20 right-4 z-50 text-right text-white/70 text-xs leading-tight
     lg:fixed lg:top-44 lg:right-12 lg:z-50 lg:text-sm lg:leading-relaxed lg:text-white/60
@@ -359,15 +266,15 @@ const Home: React.FC = () => {
       </div>
 
       {/* Renderização das seções da seção principal ativa com animações */}
-      {currentSections.map((section) => (
+      {currentSections.map((section, index) => (
         <AnimatedSection
           key={section.id}
           id={section.id}
           ref={(el) => {
             sectionRefs.current[section.id] = el
           }}
-          animation={section.animation}
-          delay={section.delay}
+          animation={getSectionAnimation(index)}
+          delay={index * 100}
           duration={600}
           className={sectionClasses}
         >

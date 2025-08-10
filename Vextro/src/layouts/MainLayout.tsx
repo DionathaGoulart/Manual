@@ -7,59 +7,57 @@ interface MainLayoutProps {
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
-  const [expandedItem, setExpandedItem] = useState<string | null>('1') // Começa com a primeira seção expandida
+  const [expandedItem, setExpandedItem] = useState<string | null>('1')
   const [activeItem, setActiveItem] = useState<string>('1.1')
   const [isCollapsed, setIsCollapsed] = useState(false)
 
+  // Função para verificar se deve colapsar baseado no tamanho da tela
   const checkSidebarCollapse = useCallback(() => {
     setIsCollapsed(window.innerWidth < 1024)
   }, [])
 
+  // Função para encontrar o item pai de um subitem
   const findParentItem = useCallback((itemId: string) => {
-    return menuItems.find((item) =>
-      item.subitems?.some((sub) => sub.id === itemId)
-    )
+    for (const item of menuItems) {
+      if (item.subitems?.some((sub) => sub.id === itemId)) {
+        return item
+      }
+    }
+    return null
   }, [])
 
+  // Função para verificar se é um item direto (sem subitens)
   const isDirectItem = useCallback((itemId: string) => {
     const item = menuItems.find((item) => item.id === itemId)
     return item && (!item.subitems || item.subitems.length === 0)
   }, [])
 
-  const updateExpandedState = useCallback(
-    (itemId: string) => {
-      if (isDirectItem(itemId)) {
-        setExpandedItem(null)
-      } else {
-        const parentItem = findParentItem(itemId)
-        if (parentItem) {
-          setExpandedItem(parentItem.id)
-        }
-      }
-    },
-    [isDirectItem, findParentItem]
-  )
-
+  // Inicialização e eventos de resize
   useEffect(() => {
-    updateExpandedState(activeItem)
     checkSidebarCollapse()
-
     window.addEventListener('resize', checkSidebarCollapse)
     return () => window.removeEventListener('resize', checkSidebarCollapse)
-  }, [activeItem, checkSidebarCollapse, updateExpandedState])
+  }, [checkSidebarCollapse])
 
+  // Handler para mudanças de seção vindas do scroll observer
   useEffect(() => {
     const handleSectionChange = (event: CustomEvent) => {
       const { activeSection } = event.detail
+
+      if (!activeSection) return
+
       setActiveItem(activeSection)
 
+      // Se é um item direto (como seção 7 ou 9)
       if (isDirectItem(activeSection)) {
         setExpandedItem(null)
-      } else {
-        const parentItem = findParentItem(activeSection)
-        if (parentItem && expandedItem !== parentItem.id) {
-          setExpandedItem(parentItem.id)
-        }
+        return
+      }
+
+      // Procura o item pai para subitens
+      const parentItem = findParentItem(activeSection)
+      if (parentItem) {
+        setExpandedItem(parentItem.id)
       }
     }
 
@@ -72,41 +70,48 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         'sectionChange',
         handleSectionChange as EventListener
       )
-  }, [expandedItem, isDirectItem, findParentItem])
+  }, [isDirectItem, findParentItem])
 
+  // Handler para expandir/colapsar itens do menu
   const handleToggleExpand = useCallback(
     (itemId: string) => {
       const itemToExpand = menuItems.find((item) => item.id === itemId)
-
       if (!itemToExpand) return
 
-      // Se não tem subitems, é um item direto - navegar para a seção principal
+      // Se não tem subitems, é um item direto
       if (!itemToExpand.subitems?.length) {
         setExpandedItem(null)
         setActiveItem(itemId)
 
-        // Dispara evento para mudança de seção principal
+        // Dispara evento para navegação direta
         window.dispatchEvent(
           new CustomEvent('sidebarClick', {
-            detail: { mainSectionId: itemId, subitemId: itemId }
+            detail: {
+              sectionId: itemId,
+              isDirect: true
+            }
           })
         )
         return
       }
 
-      // Se já está expandido, colapsa
+      // Para itens com subitens
       if (expandedItem === itemId) {
+        // Se já está expandido, colapsa
         setExpandedItem(null)
       } else {
-        // Expande e navega para o primeiro subitem
+        // Expande e ativa o primeiro subitem
         setExpandedItem(itemId)
         const firstSubitemId = itemToExpand.subitems[0].id
         setActiveItem(firstSubitemId)
 
-        // Dispara evento para mudança de seção principal
+        // Dispara evento para navegação
         window.dispatchEvent(
           new CustomEvent('sidebarClick', {
-            detail: { mainSectionId: itemId, subitemId: firstSubitemId }
+            detail: {
+              sectionId: firstSubitemId,
+              parentId: itemId
+            }
           })
         )
       }
@@ -114,11 +119,15 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     [expandedItem]
   )
 
+  // Handler para cliques em subitens
   const handleSubitemClick = useCallback((subitemId: string) => {
     setActiveItem(subitemId)
+
     window.dispatchEvent(
       new CustomEvent('sidebarClick', {
-        detail: { subitemId }
+        detail: {
+          sectionId: subitemId
+        }
       })
     )
   }, [])
@@ -127,6 +136,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     setIsCollapsed((prev) => !prev)
   }, [])
 
+  // Classes CSS organizadas
   const containerClasses = `
     transition-all duration-300 ease-in-out
     ${isCollapsed ? 'lg:ml-64' : 'lg:ml-0'}

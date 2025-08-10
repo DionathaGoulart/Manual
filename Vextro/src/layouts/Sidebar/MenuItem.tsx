@@ -10,17 +10,19 @@ const MenuItem: React.FC<MenuItemProps> = ({
   onSubitemClick
 }) => {
   const hasSubitems = item.subitems?.length > 0
+
+  // Verifica se algum subitem está ativo
   const hasActiveSubitem =
     hasSubitems && item.subitems!.some((subitem) => subitem.id === activeItem)
+
+  // Verifica se este item (sem subitens) está ativo
   const isDirectlyActive = !hasSubitems && activeItem === item.id
+
+  // Item está ativo se é direto e ativo, ou se tem subitem ativo
   const isActive = hasActiveSubitem || isDirectlyActive
 
   const handleClick = () => {
-    if (hasSubitems) {
-      onToggleExpand(item.id)
-    } else {
-      onSubitemClick(item.id)
-    }
+    onToggleExpand(item.id)
   }
 
   const buttonClasses = `
