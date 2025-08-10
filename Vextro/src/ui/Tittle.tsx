@@ -67,7 +67,7 @@ const Title: React.FC<TitleProps> = ({
     'tracking-[-2%]',
     'uppercase',
     ALIGN_CLASSES[align],
-    bold ? 'font-medium' : 'font-normal',
+    bold ? 'font-bold' : 'font-normal',
     !isCustomColorValue && color,
     className
   ]
