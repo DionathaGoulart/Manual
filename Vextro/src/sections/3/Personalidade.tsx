@@ -45,8 +45,6 @@ const PersonalidadeSection: React.FC = () => {
             </>
           }
           gap="gap-12"
-          titleClassName="text-white font-orbit-gate  uppercase font-normal mb-4"
-          paragraphClassName="text-white font-switzer font-semibold"
         />
       </div>
     </>

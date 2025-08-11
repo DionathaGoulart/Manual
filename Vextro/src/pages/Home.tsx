@@ -255,7 +255,7 @@ const Home: React.FC = () => {
     .replace(/\s+/g, ' ')
 
   return (
-    <div className="mt-40 max-w-[50.9rem]">
+    <div className="mt-40 max-w-[50.91rem]">
       {/* Caixa de Ajuda */}
       <div className={helpBoxClasses}>
         <div className="text-start">

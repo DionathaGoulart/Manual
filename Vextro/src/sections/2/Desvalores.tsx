@@ -10,8 +10,8 @@ const DesvaloresSection: React.FC = () => {
         Des<span className="font-ss02 font-ss01">va</span>lores
       </Title>
 
-      <div className="space-y-6 max-w-3xl mx-auto">
-        <Text variant="medium" align="left" className="text-white block">
+      <div className="space-y-6">
+        <Text variant="large" align="left" className="text-white block">
           Os desvalores servem como nossas fronteiras estratégicas; a linha
           clara que define o que recusamos a ser. Eles nos lembram diariamente
           que fomos criados para sermos o oposto do padrão, para rejeitar o
@@ -24,8 +24,6 @@ const DesvaloresSection: React.FC = () => {
           rightTitle="egoístas"
           rightParagraph='A satisfação é o fim do crescimento. Declaramos guerra à mentalidade de "dever cumprido". Celebrar o "bom" é se contentar com pouco. Para nós, cada resultado é apenas um novo ponto de partida para a próxima provocação.'
           gap="gap-12"
-          titleClassName="text-white font-orbit-gate  uppercase font-normal mb-4"
-          paragraphClassName="text-white font-switzer font-semibold"
         />
       </div>
     </>

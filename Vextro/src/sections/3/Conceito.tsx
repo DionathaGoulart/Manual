@@ -20,11 +20,11 @@ const ConceitoSection: React.FC = () => {
           ordem.
         </Text>
         <Text variant="large" align="left" className="text-white block mb-8">
-          Lembre-se: a máquina é uma ferramenta, não um estrategista. Ela é
-          limitada, programada para a média e vai cometer erros. O uso deste
-          prompt não retira a necessidade de um copywriter para avaliar, refinar
-          e garantir o impacto final. A supervisão humana não é uma opção, é um
-          comando.
+          <span className="font-medium">Lembre-se:</span> a máquina é uma
+          ferramenta, não um estrategista. Ela é limitada, programada para a
+          média e vai cometer erros. O uso deste prompt não retira a necessidade
+          de um copywriter para avaliar, refinar e garantir o impacto final. A
+          supervisão humana não é uma opção, é um comando.
         </Text>
         <Text variant="large" align="left" className="text-white block mb-8">
           Use a IA para acelerar, mas use a inteligência humana para vencer.
