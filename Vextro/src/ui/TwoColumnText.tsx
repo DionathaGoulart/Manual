@@ -17,8 +17,9 @@ const TwoColumnText: React.FC<TwoColumnTextProps> = ({
 }) => {
   // Classes base que sempre serão aplicadas
   const baseTitleClasses =
-    'text-2xl font-normal uppercase leading-none tracking-normal'
-  const baseParagraphClasses = 'text-sm font-normal leading-5 tracking-wide'
+    'text-white font-avantique text-2xl font-medium uppercase leading-none tracking-normal mb-5'
+  const baseParagraphClasses =
+    'text-white font-avantique text-sm font-light leading-5 tracking-wide'
 
   // Classes finais combinando base + customização
   const finalTitleClasses = `${baseTitleClasses} ${titleClassName}`

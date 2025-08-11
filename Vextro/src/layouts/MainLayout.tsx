@@ -157,8 +157,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
   const mainContentClasses = `
     pt-16 pb-8 px-6
-    ${isCollapsed ? 'lg:col-span-7 lg:col-start-3' : 'lg:col-span-5'}
-    lg:pt-0 lg:px-0 xl:col-span-5 2xl:col-span-5
+    ${isCollapsed ? 'lg:col-span-8 lg:col-start-3' : 'lg:col-span-7'}
+    lg:pt-0 lg:px-0 xl:col-span-7 2xl:col-span-7
   `
     .trim()
     .replace(/\s+/g, ' ')
@@ -195,11 +195,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
         {/* Conteúdo principal */}
         <main className={mainContentClasses}>
-          <div className="w-full mx-auto"> {children}</div>
+          <div className="w-full mx-auto">{children}</div>
         </main>
 
-        {/* Espaçamento direito */}
-        <div className="hidden lg:block lg:col-span-3 xl:col-span-3 2xl:col-span-3" />
+        {/* Espaçamento direito - REDUZIDO */}
+        <div className="hidden lg:block lg:col-span-1 xl:col-span-1 2xl:col-span-1" />
       </div>
     </div>
   )

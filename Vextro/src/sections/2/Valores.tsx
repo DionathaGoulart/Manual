@@ -24,8 +24,6 @@ const ValoresSection: React.FC = () => {
           rightTitle="inquietoS"
           rightParagraph="Estamos em movimento constante, sempre em busca do próximo nível. Essa inquietação reflete a natureza de desconstrução da nossa própria identidade e a recusa em aceitar que uma fórmula de sucesso durará para sempre."
           gap="gap-12"
-          titleClassName="text-white font-orbit-gate uppercase font-normal mb-4"
-          paragraphClassName="text-white font-switzer font-semibold"
         />
       </div>
     </>

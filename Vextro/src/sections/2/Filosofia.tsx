@@ -9,15 +9,16 @@ const FilosofiaSection: React.FC = () => {
         bold
         variant="large"
         align="left"
-        className="text-white font-ss02 font-ss01 font-ligatures font-dlig"
+        className="text-white font-ligatures font-dlig"
       >
         Filosofia
       </Title>
 
       <div className="space-y-6">
         <Text variant="large" align="left" className="text-white block">
-          Nossa filosofia é uma frase: "O bom não basta". Esta não é apenas uma
-          tagline; é o motor de todas as nossas ações.
+          Nossa filosofia é uma frase:{' '}
+          <span className="font-medium">"O bom não basta".</span> Esta não é
+          apenas uma tagline; é o motor de todas as nossas ações.
         </Text>
 
         <Text variant="large" align="left" className="text-white block">

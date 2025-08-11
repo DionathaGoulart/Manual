@@ -13,7 +13,7 @@ const DownloadSection: React.FC = () => {
       <Title
         variant="large"
         align="left"
-        className="text-white font-ss02 font-ss01 font-ligatures font-dlig"
+        className="text-white font-ligatures font-dlig"
       >
         Downloads
       </Title>
@@ -25,10 +25,10 @@ const DownloadSection: React.FC = () => {
           declaração de desconstrução.
         </Text>
         <Text variant="large" align="left" className="text-white block mb-8">
-          AVISO: Não clique no botão abaixo antes de internalizar cada palavra
-          deste manual. Usar nossos ativos sem compreender totalmente a Vextro©
-          é um erro estratégico. Eles não são elementos decorativos; são as
-          ferramentas da nossa revolta.
+          <span className="font-medium">AVISO:</span> Não clique no botão abaixo
+          antes de internalizar cada palavra deste manual. Usar nossos ativos
+          sem compreender totalmente a Vextro© é um erro estratégico. Eles não
+          são elementos decorativos; são as ferramentas da nossa revolta.
         </Text>
         <div className="flex justify-start">
           <Button
