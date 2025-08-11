@@ -15,7 +15,7 @@ const SubMenuItem: React.FC<SubMenuItemProps> = ({
     .replace(/\s+/g, ' ')
 
   const idSpanClasses = `
-    mr-3 text-xs font-mono
+    mr-3 text-xs font-avantique
     ${active ? 'text-[#0B6AF4]' : 'text-gray-400 group-hover:text-[#0B6AF4]'}
   `
     .trim()

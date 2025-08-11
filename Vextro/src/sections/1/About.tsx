@@ -5,11 +5,11 @@ import Text from '../../ui/Text'
 const AboutSection: React.FC = () => {
   return (
     <>
-      <Title bold variant="large" align="left" className="text-white">
+      <Title variant="large" align="left" className="text-white">
         Sobre{' '}
         <span
           className="
-      font-bold
+      font-medium
       font-ss02
     "
         >

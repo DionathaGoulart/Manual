@@ -233,6 +233,7 @@ const Home: React.FC = () => {
 
   // Classes CSS
   const helpBoxClasses = `
+  font-avantique
     absolute top-20 right-4 z-50 text-right text-white/70 text-xs leading-tight
     lg:fixed lg:top-44 lg:right-12 lg:z-50 lg:text-sm lg:leading-relaxed lg:text-white/60
     xl:top-48 xl:right-16 2xl:top-52 2xl:right-20
@@ -248,13 +249,13 @@ const Home: React.FC = () => {
     .replace(/\s+/g, ' ')
 
   const spacerClasses = `
-    h-[20vh] md:h-[20vh] lg:h-[20vh]
+    h-[1vh] md:h-[1vh] lg:h-[1vh]
   `
     .trim()
     .replace(/\s+/g, ' ')
 
   return (
-    <div className="mt-40 max-w-xl">
+    <div className="mt-40">
       {/* Caixa de Ajuda */}
       <div className={helpBoxClasses}>
         <div className="text-start">
@@ -278,7 +279,7 @@ const Home: React.FC = () => {
           duration={600}
           className={sectionClasses}
         >
-          <div className="max-w-4xl mx-auto w-full">{section.content}</div>
+          <div className="w-full">{section.content}</div>
         </AnimatedSection>
       ))}
 

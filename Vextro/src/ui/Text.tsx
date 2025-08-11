@@ -4,10 +4,11 @@ import { TextVariant, TextProps } from '@/types/Uis'
 // ============================================================================
 // CONSTANTES
 // ============================================================================
+
 const VARIANT_CLASSES: Record<TextVariant, string> = {
-  large: 'text-base md:text-lg leading-6 md:leading-7', // Mobile: 16px, Desktop: 18px
-  medium: 'text-sm md:text-base leading-5 md:leading-snug', // Mobile: 14px, Desktop: 16px
-  small: 'text-xs md:text-sm leading-4 md:leading-tight' // Mobile: 12px, Desktop: 14px
+  large: 'text-base md:text-lg leading-7 md:leading-7 tracking-wider', // Mobile: 16px, Desktop: 18px, Line height: 28px, Letter spacing: 0.05em (~5%)
+  medium: 'text-sm md:text-base leading-6 md:leading-6 tracking-wider', // Mobile: 14px, Desktop: 16px, Line height: 24px, Letter spacing: 0.05em (~5%)
+  small: 'text-xs md:text-sm leading-5 md:leading-5 tracking-wider' // Mobile: 12px, Desktop: 14px, Line height: 20px, Letter spacing: 0.05em (~5%)
 }
 
 const DEFAULT_TAGS: Record<TextVariant, 'p' | 'span'> = {
@@ -17,9 +18,9 @@ const DEFAULT_TAGS: Record<TextVariant, 'p' | 'span'> = {
 }
 
 const WEIGHT_CLASSES: Record<TextVariant, string> = {
-  large: 'font-light', // 400 regular
-  medium: 'font-light', // 600 semibold
-  small: 'font-light' // 400 regular
+  large: 'font-light', // 400 regular (Avantique-Regular.otf)
+  medium: 'font-light', // 500 medium (Avantique-Medium.otf)
+  small: 'font-light' // 300 light (Avantique-Light.otf)
 }
 
 const ALIGN_CLASSES: Record<'left' | 'center' | 'right', string> = {
@@ -31,6 +32,7 @@ const ALIGN_CLASSES: Record<'left' | 'center' | 'right', string> = {
 // ============================================================================
 // UTILITÁRIOS
 // ============================================================================
+
 const processText = (text: React.ReactNode): React.ReactNode => {
   if (typeof text === 'string') {
     return text.split('\n').map((line, index, array) => (
@@ -49,6 +51,7 @@ const isCustomColor = (color: string): boolean =>
 // ============================================================================
 // COMPONENTE
 // ============================================================================
+
 const Text: React.FC<TextProps> = ({
   children,
   variant = 'large',
@@ -58,8 +61,7 @@ const Text: React.FC<TextProps> = ({
   uppercase = false,
   lowercase = false,
   align = 'left',
-  className = '',
-  maxWidth = true // Por padrão aplica o max-width
+  className = ''
 }) => {
   // Define a tag automaticamente baseada na variante se não especificada
   const Component = as || DEFAULT_TAGS[variant]
@@ -67,7 +69,7 @@ const Text: React.FC<TextProps> = ({
 
   // Classes base compartilhadas
   const baseClasses = [
-    'avantique',
+    'font-avantique',
     VARIANT_CLASSES[variant],
     WEIGHT_CLASSES[variant],
     ALIGN_CLASSES[align],

@@ -4,8 +4,9 @@ import { TitleVariant, TitleProps } from '@/types/Uis'
 // ============================================================================
 // CONSTANTES
 // ============================================================================
+
 const VARIANT_CLASSES: Record<TitleVariant, string> = {
-  large: 'text-4xl md:text-6xl', // Mobile: 36px, Desktop: 60px
+  large: 'text-5xl md:text-5xl', // Mobile: 36px, Desktop: 60px
   small: 'text-xl md:text-2xl' // Mobile: 20px, Desktop: 24px
 }
 
@@ -14,9 +15,9 @@ const MARGIN_BOTTOM_CLASSES: Record<TitleVariant, string> = {
   small: 'mb-2'
 }
 
-const DEFAULT_TAGS: Record<TitleVariant, 'h2' | 'h3'> = {
-  large: 'h2',
-  small: 'h3'
+const DEFAULT_TAGS: Record<TitleVariant, 'h1' | 'h2'> = {
+  large: 'h1',
+  small: 'h2'
 }
 
 const ALIGN_CLASSES: Record<'left' | 'center' | 'right', string> = {
@@ -28,6 +29,7 @@ const ALIGN_CLASSES: Record<'left' | 'center' | 'right', string> = {
 // ============================================================================
 // UTILITÁRIOS
 // ============================================================================
+
 const processText = (text: React.ReactNode): React.ReactNode => {
   if (typeof text === 'string') {
     return text.split('\n').map((line, index, array) => (
@@ -46,6 +48,7 @@ const isCustomColor = (color: string): boolean =>
 // ============================================================================
 // COMPONENTE
 // ============================================================================
+
 const Title: React.FC<TitleProps> = ({
   children,
   variant = 'large',
@@ -63,21 +66,24 @@ const Title: React.FC<TitleProps> = ({
     'font-avantique',
     MARGIN_BOTTOM_CLASSES[variant], // Margin bottom baseado na variante
     VARIANT_CLASSES[variant],
-    'leading-[100%]',
-    'tracking-[-2%]',
+    'leading-none', // 100% line height
     'uppercase',
     ALIGN_CLASSES[align],
-    bold ? 'font-bold' : 'font-normal',
+    bold ? 'font-medium' : 'font-normal',
     !isCustomColorValue && color,
     className
   ]
     .filter(Boolean)
     .join(' ')
 
-  const style = isCustomColorValue ? { color } : {}
+  // Style para letter-spacing customizado (-2%)
+  const customStyle = {
+    letterSpacing: '-0.02em', // -2%
+    ...(isCustomColorValue && { color })
+  }
 
   return (
-    <Component className={classes} style={style}>
+    <Component className={classes} style={customStyle}>
       {processText(children)}
     </Component>
   )

@@ -42,7 +42,7 @@ const Sidebar: React.FC<CustomSidebarProps> = ({
   )
 
   const sidebarClasses = `
-    text-white flex flex-col transition-transform duration-300 ease-in-out bg-[#191919]
+    text-white flex flex-col transition-transform duration-300 ease-in-out bg-[#101010]
     ${
       isCollapsed
         ? `fixed top-0 left-0 z-50 w-64 h-full shadow-xl overflow-y-auto ${
@@ -71,7 +71,7 @@ const Sidebar: React.FC<CustomSidebarProps> = ({
       {/* Overlay Mobile */}
       {isCollapsed && isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-[#101010] bg-opacity-50 z-40 lg:hidden"
           onClick={toggleMobileMenu}
           role="button"
           tabIndex={0}

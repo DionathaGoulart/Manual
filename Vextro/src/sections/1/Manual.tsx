@@ -6,11 +6,11 @@ const ManualSection: React.FC = () => {
   return (
     <>
       {/* Primeira Parte */}
-      <Title bold variant="large" align="left" className="text-white">
+      <Title variant="large" align="left" className="text-white">
         Sobre o{' '}
         <span
           className="
-      font-bold
+      font-medium
       font-ss02
     "
         >

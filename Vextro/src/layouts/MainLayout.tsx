@@ -138,6 +138,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
   // Classes CSS organizadas
   const containerClasses = `
+    bg-[#101010]
     transition-all duration-300 ease-in-out
     ${isCollapsed ? 'lg:ml-64' : 'lg:ml-0'}
     lg:grid lg:grid-cols-12 lg:gap-6 lg:px-8 lg:py-8
@@ -194,9 +195,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
         {/* Conteúdo principal */}
         <main className={mainContentClasses}>
-          <div className="w-full mx-auto max-w-4xl pr-0 lg:pr-16 lg:max-w-none xl:pr-20 xl:pr-24 2xl:pr-28">
-            {children}
-          </div>
+          <div className="w-full mx-auto"> {children}</div>
         </main>
 
         {/* Espaçamento direito */}
