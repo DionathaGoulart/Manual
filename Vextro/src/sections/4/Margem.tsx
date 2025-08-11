@@ -30,6 +30,7 @@ const MargemSection: React.FC = () => {
         </Text>
         <div>
           <ImageGrid
+            tall
             flexibleAspect
             fullImage
             variant={1}

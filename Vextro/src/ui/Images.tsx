@@ -13,41 +13,41 @@ const ImageGrid: React.FC<ImageGridProps> = ({
   // Configurações para cada variante
   const configs = {
     1: {
-      containerClass: 'flex items-center justify-center py-1',
+      containerClass: 'flex items-center justify-center py-1 w-full',
       itemClass: `${fullImage ? '' : 'p-16'} ${
         flexibleAspect
           ? `w-full ${tall ? 'h-100' : 'h-64'}`
-          : `w-[570px] ${tall ? 'h-96' : 'h-[570px]'}`
+          : `w-full ${tall ? 'h-96' : 'aspect-square'}`
       } flex items-center justify-center overflow-hidden`,
       gap: '',
       maxImages: 1
     },
     2: {
-      containerClass: 'flex gap-1',
+      containerClass: 'flex gap-1 w-full',
       itemClass: `${fullImage ? '' : 'p-16'} ${
         flexibleAspect
           ? `flex-1 ${tall ? 'h-96' : 'h-64'}`
-          : `${tall ? 'h-96' : 'h-64'} w-64`
+          : `flex-1 ${tall ? 'h-96' : 'h-64'}`
       } flex items-center justify-center overflow-hidden`,
       gap: 'gap-1',
       maxImages: 2
     },
     3: {
-      containerClass: 'flex gap-0 py-3',
+      containerClass: 'flex gap-0 py-3 w-full',
       itemClass: `${fullImage ? '' : 'p-4'} ${
         flexibleAspect
           ? `flex-1 ${tall ? 'h-96' : 'h-64'}`
-          : `w-44 ${tall ? 'h-96' : 'h-44'}`
+          : `flex-1 ${tall ? 'h-96' : 'aspect-square'}`
       } flex items-center justify-center overflow-hidden`,
       gap: 'gap-1',
       maxImages: 3
     },
     4: {
-      containerClass: 'flex gap-1 justify-center py-0.5',
+      containerClass: 'flex gap-1 justify-center py-0.5 w-full',
       itemClass: `${fullImage ? '' : 'p-3'} ${
         flexibleAspect
           ? `flex-1 ${tall ? 'h-80' : 'h-28'}`
-          : `w-28 ${tall ? 'h-80' : 'h-28'}`
+          : `flex-1 ${tall ? 'h-80' : 'h-28'}`
       } flex items-center justify-center overflow-hidden`,
       gap: 'gap-1',
       maxImages: 5

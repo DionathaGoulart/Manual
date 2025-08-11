@@ -14,7 +14,7 @@ const PromptSection: React.FC = () => {
         bold
         variant="large"
         align="left"
-        className="text-white font-ss02 font-ss01 font-ligatures font-ss02"
+        className="text-white  font-ss01 font-ligatures font-ss02"
       >
         PROMPT
       </Title>
@@ -35,7 +35,7 @@ const PromptSection: React.FC = () => {
           de imagens de referência para guiar a IA, mostrando o resultado que
           exigimos.
         </Text>
-        <div className="flex justify-start gap-2 text-nowrap">
+        <div className="flex justify-start gap-8 text-nowrap">
           <Button
             size="small"
             text="ACESSAR ESTILO NO RECRAFT"

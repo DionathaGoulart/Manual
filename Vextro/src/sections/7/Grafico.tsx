@@ -10,7 +10,7 @@ const GraficoSection: React.FC = () => {
         bold
         variant="large"
         align="left"
-        className="text-white font-ss02 font-ss01 font-ligatures font-ss02"
+        className="text-white font-ss01 font-ligatures font-ss02"
       >
         APOIO GRÁFICO
       </Title>

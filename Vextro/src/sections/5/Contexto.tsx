@@ -26,6 +26,7 @@ const ContextoSection: React.FC = () => {
           bandeira de batalha.
         </Text>
         <ImageGrid
+          tall
           flexibleAspect
           fullImage
           variant={1}

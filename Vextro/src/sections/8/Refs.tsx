@@ -10,18 +10,20 @@ const RefsSection: React.FC = () => {
         bold
         variant="large"
         align="left"
-        className="text-white font-ss02 font-ss01 font-ligatures font-ss02"
+        className="text-white  font-ss01 font-ligatures font-ss02"
       >
         REFERÊNCIAS
       </Title>
 
       <div className="space-y-1">
         <ImageGrid
+          tall
           variant={2}
           bgColors={['#D9D9D9', '#D9D9D9']}
           images={['test.svg', 'test.svg']}
         />
         <ImageGrid
+          tall
           variant={2}
           bgColors={['#D9D9D9', '#D9D9D9']}
           images={['test.svg', 'test.svg']}

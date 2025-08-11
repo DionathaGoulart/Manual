@@ -136,7 +136,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     setIsCollapsed((prev) => !prev)
   }, [])
 
-  // Classes CSS organizadas
+  // Classes CSS organizadas - SIDEBAR MAIS À ESQUERDA
   const containerClasses = `
     bg-[#101010]
     transition-all duration-300 ease-in-out
@@ -149,16 +149,16 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     .replace(/\s+/g, ' ')
 
   const sidebarContainerClasses = `
-    ${isCollapsed ? 'lg:col-span-0' : 'lg:col-span-2'}
-    xl:col-span-2 2xl:col-span-2
+    ${isCollapsed ? 'lg:col-span-0' : 'lg:col-span-3'}
+    xl:col-span-3 2xl:col-span-2
   `
     .trim()
     .replace(/\s+/g, ' ')
 
   const mainContentClasses = `
     pt-16 pb-8 px-6
-    ${isCollapsed ? 'lg:col-span-8 lg:col-start-3' : 'lg:col-span-7'}
-    lg:pt-0 lg:px-0 xl:col-span-7 2xl:col-span-7
+    ${isCollapsed ? 'lg:col-span-8 lg:col-start-3' : 'lg:col-span-6 lg:col-start-4'}
+    lg:pt-0 lg:px-0 xl:col-span-6 xl:col-start-4 2xl:col-span-6 2xl:col-start-4
   `
     .trim()
     .replace(/\s+/g, ' ')
@@ -178,10 +178,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <div className="min-h-screen">
       <div className={containerClasses}>
-        {/* Espaçamento esquerdo */}
-        <div className="hidden lg:block lg:col-span-2 xl:col-span-2 2xl:col-span-2" />
-
-        {/* Sidebar - renderização condicional */}
+        {/* Sidebar - agora começa na primeira coluna */}
         <div className={sidebarContainerClasses}>
           {!isCollapsed && (
             <div className="sticky top-8">
@@ -198,8 +195,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           <div className="w-full mx-auto">{children}</div>
         </main>
 
-        {/* Espaçamento direito - REDUZIDO */}
-        <div className="hidden lg:block lg:col-span-1 xl:col-span-1 2xl:col-span-1" />
+        {/* Espaçamento direito - balanceado para centralizar o conteúdo */}
+        <div className="hidden lg:block lg:col-span-3 xl:col-span-3 2xl:col-span-3" />
       </div>
     </div>
   )

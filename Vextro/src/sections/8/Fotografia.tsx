@@ -10,7 +10,7 @@ const FotografiaSection: React.FC = () => {
         bold
         variant="large"
         align="left"
-        className="text-white font-ss02 font-ss01 font-ligatures font-dlig"
+        className="text-white font-ss01 font-ligatures font-dlig"
       >
         foto<span className="font-ss02">grafia</span>
       </Title>
@@ -43,8 +43,6 @@ const FotografiaSection: React.FC = () => {
             </>
           }
           gap="gap-12"
-          titleClassName="text-white font-orbit-gate uppercase font-normal mb-4"
-          paragraphClassName="text-white font-switzer font-semibold"
         />
 
         <TwoColumnText
@@ -69,8 +67,6 @@ const FotografiaSection: React.FC = () => {
             </>
           }
           gap="gap-12"
-          titleClassName="text-white font-orbit-gate uppercase font-normal mb-4"
-          paragraphClassName="text-white font-switzer font-semibold"
         />
 
         <Text variant="large" align="left" className="text-white block">
