@@ -82,9 +82,9 @@ const Sidebar: React.FC<CustomSidebarProps> = ({
       {/* Sidebar Principal */}
       <aside className={sidebarClasses} role="navigation">
         <SidebarLogo logoSrc={logoSrc} altText={logoAlt} />
-
         <nav className="flex-1 py-4">
-          <ul className="space-y-1" role="menubar">
+          {/* Alterado de space-y-1 para space-y-0 para remover espaçamento */}
+          <ul className="space-y-[-0.5rem]" role="menubar">
             {menuItems.map((item) => (
               <MenuItem
                 key={item.id}
