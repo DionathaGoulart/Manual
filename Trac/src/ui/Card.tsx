@@ -1,44 +1,57 @@
 import React from 'react'
-import Title from './Tittle'
-import Text from './Text'
+
 import { ColorVariant, CardProps } from '@/types/Uis'
+import Text from './Text'
+import Title from './Tittle'
 
-// ============================================================================
+// ================================
 // CONSTANTES
-// ============================================================================
-const COLOR_VARIANTS: Record<ColorVariant, { bg: string; textColor: string }> =
-  {
-    1: {
-      bg: '#FF5733',
-      textColor: '#212121'
-    },
-    2: {
-      bg: '#212121',
-      textColor: '#F9F9F9'
-    },
-    3: {
-      bg: '#F9F9F9',
-      textColor: '#212121'
-    },
-    4: {
-      bg: '#33FF70',
-      textColor: '#212121'
-    },
-    5: {
-      bg: '#FFD433',
-      textColor: '#191919'
-    }
-  }
+// ================================
 
-// ============================================================================
-// COMPONENTE
-// ============================================================================
+const COLOR_VARIANTS: Record<ColorVariant, { bg: string; textColor: string }> = {
+  1: {
+    bg: '#FF5733',
+    textColor: '#212121'
+  },
+  2: {
+    bg: '#212121',
+    textColor: '#F9F9F9'
+  },
+  3: {
+    bg: '#F9F9F9',
+    textColor: '#212121'
+  },
+  4: {
+    bg: '#33FF70',
+    textColor: '#212121'
+  },
+  5: {
+    bg: '#FFD433',
+    textColor: '#191919'
+  }
+}
+
+const DEFAULT_CLASSNAME = ''
+
+// ================================
+// COMPONENTE PRINCIPAL
+// ================================
+
+/**
+ * Componente de card com layout de duas colunas.
+ * Exibe títulos à esquerda e lista de itens à direita.
+ * @param leftTitle - Título principal do lado esquerdo
+ * @param leftSubtitle - Subtítulo do lado esquerdo
+ * @param rightItems - Lista de itens do lado direito
+ * @param colorVariant - Variante de cor do card
+ * @param className - Classes CSS adicionais
+ */
 const Card: React.FC<CardProps> = ({
   leftTitle,
   leftSubtitle,
   rightItems,
   colorVariant,
-  className = ''
+  className = DEFAULT_CLASSNAME
 }) => {
   const colors = COLOR_VARIANTS[colorVariant]
 

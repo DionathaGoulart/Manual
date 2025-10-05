@@ -1,29 +1,72 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import Sidebar from '@layouts/Sidebar'
+
 import { menuItems } from '@/data/menuItems'
+import Sidebar from '@layouts/Sidebar'
+
+// ================================
+// TIPOS
+// ================================
 
 interface MainLayoutProps {
   children?: React.ReactNode
 }
 
+// ================================
+// CONSTANTES
+// ================================
+
+const DEFAULT_EXPANDED_ITEM = '1'
+const DEFAULT_ACTIVE_ITEM = '1.1'
+
+// ================================
+// FUNÇÕES AUXILIARES
+// ================================
+
+/**
+ * Verifica se a sidebar deve estar colapsada baseado na largura da tela.
+ * @returns boolean indicando se deve colapsar
+ */
+const shouldCollapseSidebar = (): boolean => {
+  return window.innerWidth < 1024
+}
+
+/**
+ * Encontra o item pai de um subitem.
+ * @param itemId - ID do subitem
+ * @returns Item pai ou undefined
+ */
+const findParentItem = (itemId: string) => {
+  return menuItems.find((item) =>
+    item.subitems?.some((sub) => sub.id === itemId)
+  )
+}
+
+/**
+ * Verifica se um item é direto (sem subitens).
+ * @param itemId - ID do item
+ * @returns boolean indicando se é item direto
+ */
+const isDirectItem = (itemId: string): boolean => {
+  const item = menuItems.find((item) => item.id === itemId)
+  return item ? (!item.subitems || item.subitems.length === 0) : false
+}
+
+// ================================
+// COMPONENTE PRINCIPAL
+// ================================
+
+/**
+ * Layout principal da aplicação com sidebar e conteúdo.
+ * Gerencia o estado da sidebar, navegação e responsividade.
+ * @param children - Conteúdo a ser renderizado
+ */
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
-  const [expandedItem, setExpandedItem] = useState<string | null>('1') // Começa com a primeira seção expandida
-  const [activeItem, setActiveItem] = useState<string>('1.1')
+  const [expandedItem, setExpandedItem] = useState<string | null>(DEFAULT_EXPANDED_ITEM)
+  const [activeItem, setActiveItem] = useState<string>(DEFAULT_ACTIVE_ITEM)
   const [isCollapsed, setIsCollapsed] = useState(false)
 
   const checkSidebarCollapse = useCallback(() => {
-    setIsCollapsed(window.innerWidth < 1024)
-  }, [])
-
-  const findParentItem = useCallback((itemId: string) => {
-    return menuItems.find((item) =>
-      item.subitems?.some((sub) => sub.id === itemId)
-    )
-  }, [])
-
-  const isDirectItem = useCallback((itemId: string) => {
-    const item = menuItems.find((item) => item.id === itemId)
-    return item && (!item.subitems || item.subitems.length === 0)
+    setIsCollapsed(shouldCollapseSidebar())
   }, [])
 
   const updateExpandedState = useCallback(
@@ -37,7 +80,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         }
       }
     },
-    [isDirectItem, findParentItem]
+    []
   )
 
   useEffect(() => {
@@ -72,7 +115,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         'sectionChange',
         handleSectionChange as EventListener
       )
-  }, [expandedItem, isDirectItem, findParentItem])
+  }, [expandedItem])
 
   const handleToggleExpand = useCallback(
     (itemId: string) => {
@@ -127,6 +170,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     setIsCollapsed((prev) => !prev)
   }, [])
 
+  // ================================
+  // CLASSES CSS MEMOIZADAS
+  // ================================
+
   const containerClasses = `
     transition-all duration-300 ease-in-out
     ${isCollapsed ? 'lg:ml-64' : 'lg:ml-0'}
@@ -151,6 +198,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   `
     .trim()
     .replace(/\s+/g, ' ')
+
+  // ================================
+  // PROPS DO SIDEBAR
+  // ================================
 
   const sidebarProps = {
     menuItems,
@@ -184,7 +235,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
         {/* Conteúdo principal */}
         <main className={mainContentClasses}>
-          <div className="w-full mx-auto max-w-4xl pr-0 lg:pr-16 lg:max-w-none xl:pr-20 xl:pr-24 2xl:pr-28">
+          <div className="w-full mx-auto max-w-4xl pr-0 lg:pr-16 lg:max-w-none xl:pr-24 2xl:pr-28">
             {children}
           </div>
         </main>

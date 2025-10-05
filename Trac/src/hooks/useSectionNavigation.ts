@@ -1,23 +1,47 @@
 import { useState, useCallback, useEffect } from 'react'
+
 import { menuItems } from '@/data/menuItems'
 import { UseSectionNavigationReturn } from '@/types/Sidebar'
 
+// ================================
+// CONSTANTES
+// ================================
+
+const DEFAULT_MAIN_SECTION = '1'
+const DEFAULT_ACTIVE_ITEM = '1.1'
+
+// ================================
+// HOOK PRINCIPAL
+// ================================
+
 /**
- * Hook personalizado para gerenciar navegação dinâmica entre seções
+ * Hook personalizado para gerenciar navegação dinâmica entre seções.
+ * Controla o estado da seção principal ativa e do item ativo, além de
+ * fornecer funções utilitárias para navegação.
+ *
+ * @returns Objeto com estado e funções de navegação
  */
 export const useSectionNavigation = (): UseSectionNavigationReturn => {
-  const [activeMainSection, setActiveMainSection] = useState('1')
-  const [activeItem, setActiveItem] = useState('1.1')
+  const [activeMainSection, setActiveMainSection] = useState(DEFAULT_MAIN_SECTION)
+  const [activeItem, setActiveItem] = useState(DEFAULT_ACTIVE_ITEM)
+
+  // ================================
+  // FUNÇÕES UTILITÁRIAS
+  // ================================
 
   /**
-   * Extrai a seção principal a partir de um ID de item (ex: '2.3' -> '2')
+   * Extrai a seção principal a partir de um ID de item (ex: '2.3' -> '2').
+   * @param itemId - ID do item no formato 'seção.subitem'
+   * @returns ID da seção principal
    */
   const getMainSectionFromItem = useCallback((itemId: string): string => {
     return itemId.split('.')[0]
   }, [])
 
   /**
-   * Obtém o primeiro item de uma seção principal
+   * Obtém o primeiro item de uma seção principal.
+   * @param sectionId - ID da seção principal
+   * @returns ID do primeiro item ou null se não encontrado
    */
   const getFirstItemFromSection = useCallback(
     (sectionId: string): string | null => {
@@ -36,8 +60,13 @@ export const useSectionNavigation = (): UseSectionNavigationReturn => {
     []
   )
 
+  // ================================
+  // FUNÇÕES DE NAVEGAÇÃO
+  // ================================
+
   /**
-   * Navega para uma seção principal
+   * Navega para uma seção principal.
+   * @param sectionId - ID da seção principal
    */
   const navigateToSection = useCallback(
     (sectionId: string) => {
@@ -63,7 +92,8 @@ export const useSectionNavigation = (): UseSectionNavigationReturn => {
   )
 
   /**
-   * Navega para um item específico
+   * Navega para um item específico.
+   * @param itemId - ID do item de destino
    */
   const navigateToItem = useCallback(
     (itemId: string) => {
@@ -90,8 +120,12 @@ export const useSectionNavigation = (): UseSectionNavigationReturn => {
     [getMainSectionFromItem, activeMainSection, activeItem]
   )
 
+  // ================================
+  // EFFECTS
+  // ================================
+
   /**
-   * Atualiza a seção principal quando o item ativo muda
+   * Atualiza a seção principal quando o item ativo muda.
    */
   useEffect(() => {
     const newMainSection = getMainSectionFromItem(activeItem)
@@ -99,6 +133,10 @@ export const useSectionNavigation = (): UseSectionNavigationReturn => {
       setActiveMainSection(newMainSection)
     }
   }, [activeItem, activeMainSection, getMainSectionFromItem])
+
+  // ================================
+  // RETORNO
+  // ================================
 
   return {
     activeMainSection,

@@ -1,14 +1,39 @@
-import { ButtonProps } from '@/types/Uis'
 import React from 'react'
 
+import { ButtonProps } from '@/types/Uis'
+
+// ================================
+// CONSTANTES
+// ================================
+
+const DEFAULT_ICON = 'none'
+const DEFAULT_VARIANT = 'primary'
+const DEFAULT_SIZE = 'medium'
+const DEFAULT_DISABLED = false
+const DEFAULT_CLASSNAME = ''
+
+// ================================
+// COMPONENTE PRINCIPAL
+// ================================
+
+/**
+ * Componente de botão reutilizável com suporte a ícones e variantes.
+ * @param text - Texto exibido no botão
+ * @param onClick - Callback executado ao clicar no botão
+ * @param icon - Ícone a ser exibido no botão
+ * @param variant - Variante visual do botão
+ * @param size - Tamanho do botão
+ * @param disabled - Se o botão está desabilitado
+ * @param className - Classes CSS adicionais
+ */
 const Button: React.FC<ButtonProps> = ({
   text,
   onClick,
-  icon = 'none',
-  variant = 'primary',
-  size = 'medium',
-  disabled = false,
-  className = ''
+  icon = DEFAULT_ICON,
+  variant = DEFAULT_VARIANT,
+  size = DEFAULT_SIZE,
+  disabled = DEFAULT_DISABLED,
+  className = DEFAULT_CLASSNAME
 }) => {
   // Ícones disponíveis
   const icons = {

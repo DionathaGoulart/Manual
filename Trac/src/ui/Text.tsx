@@ -1,9 +1,11 @@
 import React from 'react'
+
 import { TextVariant, TextProps } from '@/types/Uis'
 
-// ============================================================================
+// ================================
 // CONSTANTES
-// ============================================================================
+// ================================
+
 const VARIANT_CLASSES: Record<TextVariant, string> = {
   large: 'text-base md:text-lg leading-6 md:leading-7', // Mobile: 16px, Desktop: 18px
   medium: 'text-sm md:text-base leading-5 md:leading-snug', // Mobile: 14px, Desktop: 16px
@@ -28,9 +30,23 @@ const ALIGN_CLASSES: Record<'left' | 'center' | 'right', string> = {
   right: 'text-right'
 }
 
-// ============================================================================
-// UTILITÁRIOS
-// ============================================================================
+const DEFAULT_VARIANT = 'large'
+const DEFAULT_COLOR = ''
+const DEFAULT_UPPERCASE = false
+const DEFAULT_LOWERCASE = false
+const DEFAULT_ALIGN = 'left'
+const DEFAULT_CLASSNAME = ''
+const DEFAULT_MAX_WIDTH = true
+
+// ================================
+// FUNÇÕES AUXILIARES
+// ================================
+
+/**
+ * Processa texto quebrando linhas em <br> tags.
+ * @param text - Conteúdo a ser processado
+ * @returns Conteúdo processado com quebras de linha
+ */
 const processText = (text: React.ReactNode): React.ReactNode => {
   if (typeof text === 'string') {
     return text.split('\n').map((line, index, array) => (
@@ -43,23 +59,42 @@ const processText = (text: React.ReactNode): React.ReactNode => {
   return text
 }
 
+/**
+ * Verifica se a cor é customizada (hex ou rgb).
+ * @param color - Cor a ser verificada
+ * @returns boolean indicando se é cor customizada
+ */
 const isCustomColor = (color: string): boolean =>
   color.startsWith('#') || color.startsWith('rgb')
 
-// ============================================================================
-// COMPONENTE
-// ============================================================================
+// ================================
+// COMPONENTE PRINCIPAL
+// ================================
+
+/**
+ * Componente de texto reutilizável com suporte a variantes e formatação.
+ * @param children - Conteúdo do texto
+ * @param variant - Variante de tamanho
+ * @param as - Elemento HTML a ser renderizado
+ * @param color - Cor do texto
+ * @param bulletColor - Cor dos bullets (para listas)
+ * @param uppercase - Se o texto deve ser maiúsculo
+ * @param lowercase - Se o texto deve ser minúsculo
+ * @param align - Alinhamento do texto
+ * @param className - Classes CSS adicionais
+ * @param maxWidth - Se deve aplicar largura máxima
+ */
 const Text: React.FC<TextProps> = ({
   children,
-  variant = 'large',
+  variant = DEFAULT_VARIANT,
   as,
-  color = '',
+  color = DEFAULT_COLOR,
   bulletColor,
-  uppercase = false,
-  lowercase = false,
-  align = 'left',
-  className = '',
-  maxWidth = true // Por padrão aplica o max-width
+  uppercase = DEFAULT_UPPERCASE,
+  lowercase = DEFAULT_LOWERCASE,
+  align = DEFAULT_ALIGN,
+  className = DEFAULT_CLASSNAME,
+  maxWidth = DEFAULT_MAX_WIDTH
 }) => {
   // Define a tag automaticamente baseada na variante se não especificada
   const Component = as || DEFAULT_TAGS[variant]

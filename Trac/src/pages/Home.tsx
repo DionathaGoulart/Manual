@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
+
 import AnimatedSection from '@components/AnimatedSection'
 import {
   AboutSection,
@@ -27,13 +28,44 @@ import {
   VocabularioSection
 } from '@sections'
 
+// ================================
+// CONSTANTES
+// ================================
+
+const DEFAULT_MAIN_SECTION = '1'
+const DEFAULT_ACTIVE_ITEM = '1.1'
+const SCROLL_TIMEOUT = 800
+const SCROLL_DELAY = 50
+
+// ================================
+// TIPOS
+// ================================
+
+interface SectionConfig {
+  id: string
+  content: React.ReactElement
+  animation: string
+  delay: number
+}
+
+// ================================
+// COMPONENTE PRINCIPAL
+// ================================
+
+/**
+ * Página principal da aplicação.
+ * Gerencia a navegação entre seções e animações de scroll.
+ */
 const Home: React.FC = () => {
-  const [activeMainSection, setActiveMainSection] = useState('1')
-  const [activeItem, setActiveItem] = useState('1.1')
+  const [activeMainSection, setActiveMainSection] = useState(DEFAULT_MAIN_SECTION)
+  const [activeItem, setActiveItem] = useState(DEFAULT_ACTIVE_ITEM)
   const [isScrollingByClick, setIsScrollingByClick] = useState(false)
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({})
 
-  // Memoização das seções com configurações de animação
+  // ================================
+  // CONFIGURAÇÕES DAS SEÇÕES
+  // ================================
+
   const allSections = useMemo(
     () => ({
       '1': [
@@ -202,12 +234,14 @@ const Home: React.FC = () => {
     []
   )
 
-  // Seções da seção principal ativa
+  // ================================
+  // SEÇÕES ATIVAS E OBSERVER
+  // ================================
+
   const currentSections = useMemo(() => {
     return allSections[activeMainSection as keyof typeof allSections] || []
   }, [activeMainSection, allSections])
 
-  // Configurações do observer memoizadas
   const observerOptions = useMemo(
     () => ({
       root: null,
@@ -217,7 +251,10 @@ const Home: React.FC = () => {
     []
   )
 
-  // Callback para o observer
+  // ================================
+  // HANDLERS DE EVENTOS
+  // ================================
+
   const handleIntersection = useCallback(
     (entries: IntersectionObserverEntry[]) => {
       if (isScrollingByClick) return
@@ -238,7 +275,10 @@ const Home: React.FC = () => {
     [isScrollingByClick]
   )
 
-  // Setup do Intersection Observer
+  // ================================
+  // EFFECTS
+  // ================================
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       handleIntersection,
@@ -258,7 +298,6 @@ const Home: React.FC = () => {
     }
   }, [handleIntersection, observerOptions, currentSections])
 
-  // Handler para cliques do sidebar
   const handleSidebarClick = useCallback(
     (event: CustomEvent) => {
       const { subitemId, mainSectionId } = event.detail
@@ -277,8 +316,8 @@ const Home: React.FC = () => {
               behavior: 'smooth',
               block: 'start'
             })
-            setTimeout(() => setIsScrollingByClick(false), 800)
-          }, 50)
+            setTimeout(() => setIsScrollingByClick(false), SCROLL_TIMEOUT)
+          }, SCROLL_DELAY)
         }
       } else if (subitemId) {
         setActiveItem(subitemId)
@@ -289,13 +328,12 @@ const Home: React.FC = () => {
           block: 'start'
         })
 
-        setTimeout(() => setIsScrollingByClick(false), 800)
+        setTimeout(() => setIsScrollingByClick(false), SCROLL_TIMEOUT)
       }
     },
     [activeMainSection, allSections]
   )
 
-  // Listener para eventos do sidebar
   useEffect(() => {
     window.addEventListener('sidebarClick', handleSidebarClick as EventListener)
     return () =>
@@ -305,7 +343,10 @@ const Home: React.FC = () => {
       )
   }, [handleSidebarClick])
 
-  // Classes CSS memoizadas
+  // ================================
+  // CLASSES CSS
+  // ================================
+
   const helpBoxClasses = `
     absolute top-20 right-4 z-50 text-right text-white/70 text-xs leading-tight
     lg:fixed lg:top-44 lg:right-12 lg:z-50 lg:text-sm lg:leading-relaxed lg:text-white/60
